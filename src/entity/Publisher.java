@@ -4,7 +4,7 @@ package entity;
  * 出版社实体类
  * 
  * @author zengyaoNPU
- *
+ * @date 2018-11-12 23:01:00
  */
 public class Publisher {
 	private int id;

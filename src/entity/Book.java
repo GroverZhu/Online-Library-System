@@ -1,53 +1,35 @@
 package entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * book的属性，在数据库中由表“book”与“book_in_library”同时存储
+ * 
+ * @author GroverZhu
+ * @date 2018-11-12 23:07:00
+ */
 public class Book {
-	private int bookId;
+	private int id;
 	private String ISBN;// in table Book
 	private String name;// in table Book
-	private double price;
+	private BigDecimal price;
 	private String description;// in table Book
 	private Publisher publisher;// in table Book publisher_id
-	private List<Author> authors;// in table Book author_id
+	private ArrayList<Author> authors;// in table Book author_id
 	private String location;
-	private String status;
+	private String state; // 书的状态为"inlib"(在库), "borrowed"(借出), "reserve"(待审批)
 
 	public Book() {
 		this.authors = new ArrayList<Author>();
 	}
 
-	public double getPrice() {
-		return price;
+	public int getId() {
+		return id;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getISBN() {
@@ -55,7 +37,7 @@ public class Book {
 	}
 
 	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+		this.ISBN = iSBN;
 	}
 
 	public String getName() {
@@ -64,6 +46,14 @@ public class Book {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public String getDescription() {
@@ -82,19 +72,35 @@ public class Book {
 		this.publisher = publisher;
 	}
 
-	public List<Author> getAuthors() {
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public ArrayList<Author> getAuthors() {
 		return authors;
 	}
 
-	public void setAuthors(List<Author> authors) {
+	public void setAuthors(ArrayList<Author> authors) {
 		this.authors = authors;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [bookId=" + bookId + ", ISBN=" + ISBN + ", name=" + name + ", price=" + price + ", description="
+		return "Book [bookId=" + id + ", ISBN=" + ISBN + ", name=" + name + ", price=" + price + ", description="
 				+ description + ", publisher=" + publisher + ", author=" + authors + ", location=" + location
-				+ ", status=" + status + "]";
+				+ ", status=" + state + "]";
 	}
 
 }

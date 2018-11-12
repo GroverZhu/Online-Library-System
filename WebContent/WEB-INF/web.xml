@@ -7,127 +7,44 @@
 	<welcome-file-list>
 		<welcome-file>UserLogin.jsp</welcome-file>
 	</welcome-file-list>
-
 	<servlet>
-		<servlet-name>ReaderLogin</servlet-name>
-		<servlet-class>action.ReaderLogin</servlet-class>
-	</servlet>
-	<servlet>
+		<description></description>
+		<display-name>LoginHandler</display-name>
 		<servlet-name>LoginHandler</servlet-name>
 		<servlet-class>action.LoginHandler</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>LibrarianLogin</servlet-name>
-		<servlet-class>action.LibrarianLogin</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>AdministratorLogin</servlet-name>
-		<servlet-class>action.AdministratorLogin</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BookList</display-name>
-		<servlet-name>BookList</servlet-name>
-		<servlet-class>controller.BookList</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>SearchBook</display-name>
-		<servlet-name>SearchBook</servlet-name>
-		<servlet-class>controller.SearchBook</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BookInformation</display-name>
-		<servlet-name>BookInformation</servlet-name>
-		<servlet-class>controller.BookInformation</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>AddToCart</display-name>
-		<servlet-name>AddToCart</servlet-name>
-		<servlet-class>controller.AddToCart</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BorrowHistory</display-name>
-		<servlet-name>BorrowHistory</servlet-name>
-		<servlet-class>controller.BorrowHistory</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BorrowCurrent</display-name>
-		<servlet-name>BorrowCurrent</servlet-name>
-		<servlet-class>controller.BorrowCurrent</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BorrowCartList</display-name>
-		<servlet-name>BorrowCartList</servlet-name>
-		<servlet-class>controller.BorrowCartList</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-  	</description>
-		<display-name>BorrowCart</display-name>
-		<servlet-name>BorrowCart</servlet-name>
-		<servlet-class>controller.BorrowCart</servlet-class>
-	</servlet>
-
-
-	<servlet-mapping>
-		<servlet-name>ReaderLogin</servlet-name>
-		<url-pattern>/action/ReaderLogin</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LoginHandler</servlet-name>
-		<url-pattern>/action/LoginHandler</url-pattern>
+		<url-pattern>/LoginHandler</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LibrarianLogin</servlet-name>
-		<url-pattern>/action/LibrarianLogin</url-pattern>
-	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>AdministratorLogin</display-name>
+		<servlet-name>AdministratorLogin</servlet-name>
+		<servlet-class>controller.administrator.AdministratorLogin</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdministratorLogin</servlet-name>
-		<url-pattern>/action/AdministratorLogin</url-pattern>
+		<url-pattern>/AdministratorLogin</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>LibrarianLogin</display-name>
+		<servlet-name>LibrarianLogin</servlet-name>
+		<servlet-class>controller.librarian.LibrarianLogin</servlet-class>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name>BookList</servlet-name>
-		<url-pattern>/controller/BookList</url-pattern>
+		<servlet-name>LibrarianLogin</servlet-name>
+		<url-pattern>/LibrarianLogin</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ReaderLogin</display-name>
+		<servlet-name>ReaderLogin</servlet-name>
+		<servlet-class>controller.reader.ReaderLogin</servlet-class>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name>SearchBook</servlet-name>
-		<url-pattern>/controller/SearchBook</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BookInformation</servlet-name>
-		<url-pattern>/controller/BookInformation</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>AddToCart</servlet-name>
-		<url-pattern>/controller/AddToCart</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BorrowHistory</servlet-name>
-		<url-pattern>/controller/BorrowHistory</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BorrowCurrent</servlet-name>
-		<url-pattern>/controller/BorrowCurrent</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BorrowCartList</servlet-name>
-		<url-pattern>/controller/BorrowCartList</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BorrowCart</servlet-name>
-		<url-pattern>/controller/BorrowCart</url-pattern>
+		<servlet-name>ReaderLogin</servlet-name>
+		<url-pattern>/ReaderLogin</url-pattern>
 	</servlet-mapping>
 </web-app>

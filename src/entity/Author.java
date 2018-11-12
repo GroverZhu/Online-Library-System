@@ -1,38 +1,35 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
 /**
+ * 表示数据库中的author属性
  * 
  * @author zengyaoNPU
+ * @date 2018-11-12 23:02:00
  *
  */
 public class Author {
 	private int id;
 	private String name;
 	private String description;
-	private List<String> isbnList;
 
 	/**
 	 * 无参构造函数
 	 */
 	public Author() {
-		isbnList = new ArrayList<String>();
 	}
 
+	/**
+	 * 对author进行初始化
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 */
 	public Author(int id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-	}
-
-	public List<String> getIsbnList() {
-		return isbnList;
-	}
-
-	public void setIsbnList(List<String> isbnList) {
-		this.isbnList = isbnList;
 	}
 
 	public int getId() {

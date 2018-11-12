@@ -9,7 +9,7 @@
 <body>
 
 	<h1>User Login</h1>
-	<form method="post" action="action/LoginHandler">
+	<form method="post" action="LoginHandler">
 		User Name<input type="text" name="userName" /><br /> Password <input
 			type="password" name="password" /><br /> <input type="radio"
 			name="authority" value="reader" checked />I'm Reader <input

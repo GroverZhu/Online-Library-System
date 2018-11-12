@@ -1,19 +1,21 @@
-
 package util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * 实现数据加密
  * 
  * @author GroverZhu
+ * @date 2018-11-12 22:42:00
  */
 public class SecurityUtil {
 
 	/**
+	 * 将明文字符串通过MD5加密算法转化为一串MD5码
 	 * 
 	 * @param message
-	 * @return
+	 * @return 加密后的MD5码字符串
 	 */
 	public static String md5(String message) {
 		try {
