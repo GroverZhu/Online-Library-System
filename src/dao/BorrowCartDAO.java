@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-import model.Book;
-import model.Reader;
+import entity.Book;
+import entity.Reader;
 import util.DatabaseUtil;
 
 public class BorrowCartDAO {

@@ -1,4 +1,4 @@
-package action;
+package controller.administrator;
 
 import java.io.IOException;
 import java.sql.Connection;

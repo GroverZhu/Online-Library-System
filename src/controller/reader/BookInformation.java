@@ -1,4 +1,4 @@
-package controller;
+package controller.reader;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import model.Book;
+import entity.Book;
 
 /**
  * Servlet implementation class BookInformation

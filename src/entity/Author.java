@@ -1,8 +1,12 @@
-package model;
+package entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author zengyaoNPU
+ *
+ */
 public class Author {
 	private int id;
 	private String name;

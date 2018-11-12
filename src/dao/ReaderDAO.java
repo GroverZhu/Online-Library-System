@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Reader;
+import entity.Reader;
 import util.DatabaseUtil;
 
 public class ReaderDAO {

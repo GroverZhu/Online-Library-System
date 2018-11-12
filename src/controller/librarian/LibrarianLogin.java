@@ -1,4 +1,4 @@
-package action;
+package controller.librarian;
 
 import java.io.IOException;
 import java.sql.Connection;

@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Author;
+import entity.Author;
 import util.DatabaseUtil;
 
 public class AuthorDAO {
