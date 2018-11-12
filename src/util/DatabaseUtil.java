@@ -10,9 +10,9 @@ public class DatabaseUtil {
 
 	// 加上?useUnicode=true&characterEncoding=UTF-8是解决后面存取数据库时中文乱码问题,
 	// &serverTimezone=GMT解决数据库连接出现时区错误问题
-	private static String url = "jdbc:mysql://localhost:3306/librarysystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT";
-	private static String userName = "root";
-	private static String password = "123456";
+	private String url = "jdbc:mysql://localhost:3306/librarysystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT";
+	private String userName = "root";
+	private String password = "123456";
 	private static DatabaseUtil instance = null;// 单一实例模式
 
 	static {
@@ -48,17 +48,8 @@ public class DatabaseUtil {
 	 * 
 	 * @return
 	 */
-	public static Connection getConnection() {
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection(url, userName, password);
-			return connection;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("--DatabaseUtil--,Failed to getConnection()");
-		} finally {
-			return connection;
-		}
+	public Connection getConnection() throws SQLException {
+		return DriverManager.getConnection(url, userName, password);
 	}
 
 	/**

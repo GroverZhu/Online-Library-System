@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>OnlineLibrarySystem</display-name>
+	<display-name>OnLineLibrarySystem</display-name>
 	<welcome-file-list>
 		<welcome-file>UserLogin.jsp</welcome-file>
 	</welcome-file-list>
@@ -52,6 +52,34 @@
 		<servlet-name>AddToCart</servlet-name>
 		<servlet-class>controller.AddToCart</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+  	</description>
+		<display-name>BorrowHistory</display-name>
+		<servlet-name>BorrowHistory</servlet-name>
+		<servlet-class>controller.BorrowHistory</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+  	</description>
+		<display-name>BorrowCurrent</display-name>
+		<servlet-name>BorrowCurrent</servlet-name>
+		<servlet-class>controller.BorrowCurrent</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+  	</description>
+		<display-name>BorrowCartList</display-name>
+		<servlet-name>BorrowCartList</servlet-name>
+		<servlet-class>controller.BorrowCartList</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+  	</description>
+		<display-name>BorrowCart</display-name>
+		<servlet-name>BorrowCart</servlet-name>
+		<servlet-class>controller.BorrowCart</servlet-class>
+	</servlet>
 
 
 	<servlet-mapping>
@@ -85,5 +113,21 @@
 	<servlet-mapping>
 		<servlet-name>AddToCart</servlet-name>
 		<url-pattern>/controller/AddToCart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BorrowHistory</servlet-name>
+		<url-pattern>/controller/BorrowHistory</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BorrowCurrent</servlet-name>
+		<url-pattern>/controller/BorrowCurrent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BorrowCartList</servlet-name>
+		<url-pattern>/controller/BorrowCartList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BorrowCart</servlet-name>
+		<url-pattern>/controller/BorrowCart</url-pattern>
 	</servlet-mapping>
 </web-app>
