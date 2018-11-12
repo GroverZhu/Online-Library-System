@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 /**
  * 出版社实体类

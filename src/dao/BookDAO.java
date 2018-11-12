@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Author;
-import model.Book;
-import model.Publisher;
+import entity.Author;
+import entity.Book;
+import entity.Publisher;
 import util.DatabaseUtil;
 
 public class BookDAO {

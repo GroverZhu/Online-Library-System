@@ -1,12 +1,22 @@
-package model;
+package entity;
 
-public class Librarian {
+public class Administrator {
 	private int id;
 	private String name;
 	private String password;
 
-	public Librarian() {
+	/**
+	 * 获取数据库中的Administrator
+	 */
+	public Administrator() {
 
+	}
+
+	public Administrator(int id, String name, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
 	}
 
 	public int getId() {
@@ -35,7 +45,7 @@ public class Librarian {
 
 	@Override
 	public String toString() {
-		return "Librarian [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "Administrator [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 
 }

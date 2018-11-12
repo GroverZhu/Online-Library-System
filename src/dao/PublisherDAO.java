@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Publisher;
+import entity.Publisher;
 import util.DatabaseUtil;
 
 public class PublisherDAO {

@@ -1,4 +1,4 @@
-package controller;
+package controller.reader;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
-import model.Book;
+import entity.Book;
 
 /**
  * 展示所有图书

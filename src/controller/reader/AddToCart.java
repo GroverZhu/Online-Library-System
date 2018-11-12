@@ -1,4 +1,4 @@
-package controller;
+package controller.reader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
 import dao.BorrowCartDAO;
-import model.Book;
-import model.Reader;
+import entity.Book;
+import entity.Reader;
 
 /**
  * Servlet implementation class AddToCart

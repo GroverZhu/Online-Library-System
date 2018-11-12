@@ -1,4 +1,4 @@
-package action;
+package controller.administrator;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import util.DatabaseUtil;
 
 /**
- * 该类用于处理Librarian登录的业务逻辑
+ * 该类用于处理Administrator登录的业务逻辑
  * 
  * @author zengyaoNPU
  *
  */
-public class LibrarianLogin extends HttpServlet {
+public class AdministratorLogin extends HttpServlet {
 	public void destroy() {
 		super.destroy();
 	}
@@ -27,10 +27,10 @@ public class LibrarianLogin extends HttpServlet {
 	}
 
 	/**
-	 * 处理Librarian登录的业务逻辑
+	 * 处理Administrator登录的业务逻辑
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 测试用：NPU，710072
+		// 测试用：admin，710072
 		String userName = (String) request.getParameter("userName");
 		String password = (String) request.getParameter("password");
 		// System.out.println(userName);
@@ -38,11 +38,11 @@ public class LibrarianLogin extends HttpServlet {
 		try {
 			Connection conn = DatabaseUtil.getInstance().getConnection();
 			Statement st = conn.createStatement();
-			String sql = "select * from librarian where librarian_name='" + userName + "'";
+			String sql = "select * from administrator where administrator_name='" + userName + "'";
 			ResultSet rs = st.executeQuery(sql);
 			if (rs.next()) {
-				if (userName.equals(rs.getString("librarian_name"))) {
-					if (password.equals(rs.getString("librarian_password"))) {
+				if (userName.equals(rs.getString("administrator_name"))) {
+					if (password.equals(rs.getString("administrator_password"))) {
 						System.out.println("登录成功");
 					} else {
 						System.out.println("密码错误");
@@ -58,4 +58,5 @@ public class LibrarianLogin extends HttpServlet {
 
 		}
 	}
+
 }

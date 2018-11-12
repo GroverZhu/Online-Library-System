@@ -1,4 +1,4 @@
-package action;
+package controller.reader;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ReaderDAO;
-import model.Reader;
+import entity.Reader;
 import util.DatabaseUtil;
 
 /**

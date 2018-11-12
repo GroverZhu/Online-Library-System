@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 import java.sql.Connection;
 import java.sql.Statement;
