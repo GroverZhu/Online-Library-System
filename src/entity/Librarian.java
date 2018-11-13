@@ -55,7 +55,8 @@ public class Librarian {
 
 	@Override
 	public String toString() {
-		return "Librarian [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "Librarian [id=" + id + ", name=" + name + ", password=" + password + ", state=" + state + "]";
 	}
+
 
 }
