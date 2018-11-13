@@ -26,5 +26,11 @@
 </table>
 
 
+<a href="ChangePassword.jsp"><b>修改密码</b></a><br/>
+<form method="post" action="controller/librarian/OperateReader">
+<b>读者管理 :  </b> Reader 查询<input type="text" name="account" value="请输入Reader账号">
+<input type="submit" value="查找">
+</form>
+
 </body>
 </html>
