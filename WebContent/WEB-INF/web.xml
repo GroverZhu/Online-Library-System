@@ -74,4 +74,14 @@
     <servlet-name>ChangeReaderInformation</servlet-name>
     <url-pattern>/controller/librarian/ChangeReaderInformation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchBookForReader</display-name>
+    <servlet-name>SearchBookForReader</servlet-name>
+    <servlet-class>controller.reader.SearchBookForReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchBookForReader</servlet-name>
+    <url-pattern>/SearchBookForReader</url-pattern>
+  </servlet-mapping>
 </web-app>
