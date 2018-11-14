@@ -64,4 +64,14 @@
     <servlet-name>OperateReader</servlet-name>
     <url-pattern>/controller/librarian/OperateReader</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeReaderInformation</display-name>
+    <servlet-name>ChangeReaderInformation</servlet-name>
+    <servlet-class>controller.librarian.ChangeReaderInformation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeReaderInformation</servlet-name>
+    <url-pattern>/controller/librarian/ChangeReaderInformation</url-pattern>
+  </servlet-mapping>
 </web-app>

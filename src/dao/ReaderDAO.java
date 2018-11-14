@@ -1,15 +1,20 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import entity.Reader;
 import util.DatabaseUtil;
 
 public class ReaderDAO {
+	/**
+	 * 根据Reader ID获取Reader实例
+	 * @author zengyaoNPU
+	 * @param id
+	 * @return
+	 */
 	public Reader getReaderById(int id) {
 		Reader reader=new Reader();
 		Connection conn=null;
@@ -47,7 +52,33 @@ public class ReaderDAO {
 			System.out.println("--Reader--,--getReaderById()--,suffers exception");
 			return null;
 		}
-		
+	}
+	/**
+	 * 修改用户信息
+	 * @author zengyaoNPU
+	 * @param id readerID，该值不被改动
+	 * @param name reader_name
+	 * @param password reader_password
+	 * @param email reader_email
+	 * @return 
+	 */
+	public boolean updateData(int id,String name,String password,String email,String state) {
+		Connection conn=null;
+		Statement st=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			//更新Reader的信息
+			String sql="UPDATE reader SET reader_name='"+name+"',reader_password='"+password+"',reader_email='"+email+"',state='"+state+"' WHERE reader_id="+id;
+			st.executeUpdate(sql);
+			int row=st.executeUpdate(sql);
+			st.close();
+			conn.close();
+			return true;
+		}catch(Exception e) {
+			System.out.println("--Reader--,--updateData()--,suffers exception");
+			return false;
+		}
 	}
 
 }

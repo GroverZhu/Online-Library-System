@@ -10,6 +10,7 @@ import util.DatabaseUtil;
 public class LibrarianDAO {
 	/**
 	 * 根据用户名获取Librarian实体
+	 * @author zengyaoNPU
 	 * @param name
 	 * @return
 	 */
@@ -43,6 +44,7 @@ public class LibrarianDAO {
 	}
 	/**
 	 * 修改Librarian的密码
+	 * @author zengyaoNPU
 	 * @param name Librarian的用户名
 	 * @param oldPassword 旧密码
 	 * @param newPassword 新密码
