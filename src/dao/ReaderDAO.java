@@ -42,14 +42,14 @@ public class ReaderDAO {
 				conn.close();
 				return reader;
 			}else{
-				System.out.println("--Reader--,--getReaderById()--,Cannot find the Reader by id="+id);
+				System.out.println("--ReaderDAO--,--getReaderById()--,Cannot find the Reader by id="+id);
 				rs.close();
 				st.close();
 				conn.close();
 				return null;
 			}
 		}catch(Exception e) {
-			System.out.println("--Reader--,--getReaderById()--,suffers exception");
+			System.out.println("--ReaderDAO--,--getReaderById()--,suffers exception");
 			return null;
 		}
 	}
@@ -76,9 +76,49 @@ public class ReaderDAO {
 			conn.close();
 			return true;
 		}catch(Exception e) {
-			System.out.println("--Reader--,--updateData()--,suffers exception");
+			System.out.println("--ReaderDAO--,--updateData()--,suffers exception");
 			return false;
 		}
 	}
-
+	/**
+	 * librarian添加reader的信息
+	 * @author zengyaoNPU
+	 * @param name 用户名
+	 * @param password 初始密码
+	 * @param state 初始状态
+	 * @return 如果插入成功，则返回id；如果插入失败，则返回-1
+	 */
+	public int addReaderByName_Passowrd_State(String name,String password,String state) {
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs=null;
+		int readerId=-1;//初始化为-1
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			//开启事务
+			conn.setAutoCommit(false);
+			st=conn.createStatement();
+			//添加数据，email默认为"default"
+			String sql="insert into reader(reader_name,reader_password,state,reader_email) values ('"+name+"','"+password+"','"+state+"','default')";
+			st.executeUpdate(sql);
+			System.out.println("OK");
+			//获取数据，由于reader_id为自增，因此获取最大整数值，即为刚刚添加的数据
+			sql="select reader_id from reader order by reader_id desc limit 1";
+			rs=st.executeQuery(sql);
+			if(rs.next()) {
+				readerId=rs.getInt("reader_id");//设置返回值，此时不会为-1
+			}
+			//提交事务
+			conn.commit();
+			//关闭连接
+			st.close();
+			conn.close();
+			return readerId;
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--ReaderDAO--,--addReaderByName_Passowrd_State()--,suffers exception");
+			return readerId;
+		}
+		
+	}
 }

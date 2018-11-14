@@ -40,15 +40,15 @@ public class ChangePassword extends HttpServlet {
 		if(newPw.equals(confirm)) {
 			if(librarianDAO.changePasswordByOldPassword_NewPassword(librarian.getName(), oldPw,newPw)) {
 				System.out.println("--Librarian--, 修改密码成功");
-				response.sendRedirect("../../SuccessChangePassword.jsp");
+				response.sendRedirect("SuccessChangePassword.jsp");
 			}else {
 				System.out.println("旧密码错误");
-				response.sendRedirect("../../ChangePassword.jsp");
+				response.sendRedirect("librarianModifyInfo.jsp");
 				
 			}
 		}else {
 			System.out.println("新密码和确认密码不相同");
-			response.sendRedirect("../../ChangePassword.jsp");
+			response.sendRedirect("librarianModifyInfo.jsp");
 		}
 		
 	}

@@ -52,26 +52,36 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ChangePassword</servlet-name>
-    <url-pattern>/controller/librarian/ChangePassword</url-pattern>
+    <url-pattern>/librarian/ChangePassword</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>OperateReader</display-name>
-    <servlet-name>OperateReader</servlet-name>
-    <servlet-class>controller.librarian.OperateReader</servlet-class>
+    <display-name>LibrarianModifyReader</display-name>
+    <servlet-name>LibrarianModifyReader</servlet-name>
+    <servlet-class>controller.librarian.LibrarianModifyReader</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>OperateReader</servlet-name>
-    <url-pattern>/controller/librarian/OperateReader</url-pattern>
+    <servlet-name>LibrarianModifyReader</servlet-name>
+    <url-pattern>/librarian/LibrarianModifyReader</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ChangeReaderInformation</display-name>
-    <servlet-name>ChangeReaderInformation</servlet-name>
-    <servlet-class>controller.librarian.ChangeReaderInformation</servlet-class>
+    <display-name>SearchReaderBeforeEdit</display-name>
+    <servlet-name>SearchReaderBeforeEdit</servlet-name>
+    <servlet-class>controller.librarian.SearchReaderBeforeEdit</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ChangeReaderInformation</servlet-name>
-    <url-pattern>/controller/librarian/ChangeReaderInformation</url-pattern>
+    <servlet-name>SearchReaderBeforeEdit</servlet-name>
+    <url-pattern>/librarian/SearchReaderBeforeEdit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrarianAddReader</display-name>
+    <servlet-name>LibrarianAddReader</servlet-name>
+    <servlet-class>controller.librarian.LibrarianAddReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrarianAddReader</servlet-name>
+    <url-pattern>/librarian/LibrarianAddReader</url-pattern>
   </servlet-mapping>
 </web-app>

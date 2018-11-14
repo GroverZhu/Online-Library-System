@@ -11,7 +11,7 @@
 <h1>Change Password</h1>
 
 
-<form method="post" action="controller/librarian/ChangePassword">
+<form method="post" action="ChangePassword">
 
 	<table>
 		<tr>
