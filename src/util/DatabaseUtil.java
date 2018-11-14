@@ -65,7 +65,7 @@ public class DatabaseUtil {
 	 * @param st
 	 * @param rs
 	 */
-	public static void closeConnection(Connection conn, Statement st, ResultSet rs) {
+	public void closeConnection(Connection conn, Statement st, ResultSet rs) {
 		try {
 			if (rs != null) {
 				rs.close();
