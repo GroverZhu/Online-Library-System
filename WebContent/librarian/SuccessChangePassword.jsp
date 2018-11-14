@@ -9,6 +9,6 @@
 <body>
 <h1>Congratulation!</h1>
 	<h1>Success Change Password!</h1>
-	<a href="LibrarianInformation.jsp">返回主页</a>
+	<a href="librarianHomepage.jsp">返回主页</a>
 </body>
 </html>

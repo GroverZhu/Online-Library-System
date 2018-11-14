@@ -13,24 +13,23 @@
 <table border="2">
 	<tr>
 		<td width="160">Librarian Name</td>
-		<td width="200">${librarianEntity.name}</td>
+		<td width="200">${sessionScope.librarianEntity.name}</td>
 	</tr>
 	<tr>
 		<td width="160">Librarian ID</td>
-		<td width="160">${librarianEntity.id}</td>
+		<td width="160">${sessionScope.librarianEntity.id}</td>
 	</tr>
 	<tr>
 		<td width="160">State</td>
-		<td width="160">${librarianEntity.state}</td>
+		<td width="160">${sessionScope.librarianEntity.state}</td>
 	</tr>
 </table>
 
 
-<a href="ChangePassword.jsp"><b>修改密码</b></a><br/>
-<form method="post" action="controller/librarian/OperateReader">
-<b>读者管理 :  </b> Reader 查询<input type="text" name="account" value="请输入Reader账号">
-<input type="submit" value="查找">
-</form>
+<a href="librarianModifyInfo.jsp"><b>修改密码</b></a><br/>
+<a href="searchReaderBeforeEdit.jsp">查询读者</a>
 
+<a href="librarianAddReader.jsp">增加读者</a>
+<a href="librarianDeleteReader.jsp">删除读者</a>
 </body>
 </html>

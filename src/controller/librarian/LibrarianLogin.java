@@ -46,8 +46,7 @@ public class LibrarianLogin extends HttpServlet {
 					System.out.println("登录成功");
 					HttpSession session =request.getSession();
 					session.setAttribute("librarianEntity", librarian);//设置session属性，以便后面使用
-					RequestDispatcher dispatcher=request.getRequestDispatcher("LibrarianInformation.jsp");
-					dispatcher.forward(request, response);//跳转到信息页面
+					response.sendRedirect("librarian/librarianHomepage.jsp");
 				}else {
 					System.out.println("账号被锁定");
 					response.sendRedirect("UserLogin.jsp");//跳转到登录界面
