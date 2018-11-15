@@ -136,8 +136,7 @@
 
 												<!-- 展示书籍信息 -->
 
-<c:set var="bookList" scope="session"
-		value="${bookList}" />
+                                              <c:set var="bookList" scope="session" value="${bookList}" />
 												<c:forEach var="book" items="${bookList }">
 													<tr>
 													<th>${book.ISBN }</th>

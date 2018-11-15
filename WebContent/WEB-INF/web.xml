@@ -94,4 +94,14 @@
     <servlet-name>SearchBookForReader</servlet-name>
     <url-pattern>/SearchBookForReader</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReaderModifyInformation</display-name>
+    <servlet-name>ReaderModifyInformation</servlet-name>
+    <servlet-class>controller.reader.ReaderModifyInformation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReaderModifyInformation</servlet-name>
+    <url-pattern>/ReaderModifyInformation</url-pattern>
+  </servlet-mapping>
 </web-app>

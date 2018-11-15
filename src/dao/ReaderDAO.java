@@ -3,8 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import entity.Book;
 import entity.Reader;
 import util.DatabaseUtil;
 
@@ -120,5 +124,31 @@ public class ReaderDAO {
 			return readerId;
 		}
 		
+	}
+	/**
+	 * @author Hu Yuxi
+	 * @date 2018-11-15
+	 * @param id
+	 * @param name
+	 * @param password
+	 * @param email
+	 * @return
+	 */
+	public int updateReaderInformation(int id,String name,String password,String email) {
+		int flag=0;
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs;
+		String sql = null;
+		sql="update reader set reader_name= \'"+name+"\' ,reader_password=\'"+password+"\', reader_email=\'"+email+"\' where reader_id="+String.valueOf(id);
+		System.out.println("update reader info sql:" + sql);
+		try {
+		conn = DatabaseUtil.getInstance().getConnection();
+		st = conn.createStatement();
+		rs = st.executeQuery(sql);
+		}catch(SQLException e1){
+			e1.printStackTrace();
+		}	
+		return flag;	
 	}
 }
