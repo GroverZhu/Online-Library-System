@@ -41,7 +41,7 @@ public class AdministratorLogin extends HttpServlet {
 		if (request.getParameter("userID") == null || request.getParameter("password") == null
 				|| request.getParameter("userID").equals("") || request.getParameter("password").equals("")) {
 			out.print(
-					"<script language='javascript'>alert('Admin ID or Password Can Not Be Empty!');window.location.href='UserLogin.jsp';</script>");
+					"<script language='javascript'>alert('Admin ID or Password Can Not Be Empty!');window.location.href='Login.jsp';</script>");
 		} else {
 			AdministratorDAO administratorDAO = new AdministratorDAO();
 			Administrator administrator = null;
@@ -52,15 +52,15 @@ public class AdministratorLogin extends HttpServlet {
 			if (administrator == null) {// 无法获取Administrator实体
 				System.out.println("用户不存在");
 				out.print(
-						"<script language='javascript'>alert('AdminID Not Exist!');window.location.href='UserLogin.jsp';</script>");
+						"<script language='javascript'>alert('AdminID Not Exist!');window.location.href='Login.jsp';</script>");
 			} else if (administrator.getPassword().equals(password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("AdministratorEntity", administrator);// 设置session属性，以便后面使用
-				RequestDispatcher dispatcher = request.getRequestDispatcher("adminHomepage.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("adminIndex.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				out.print(
-						"<script language='javascript'>alert('Your AdminID or Password is Wrong!');window.location.href='UserLogin.jsp';</script>");
+						"<script language='javascript'>alert('Your AdminID or Password is Wrong!');window.location.href='Login.jsp';</script>");
 			}
 		}
 	}

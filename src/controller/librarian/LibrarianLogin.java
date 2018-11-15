@@ -47,7 +47,7 @@ public class LibrarianLogin extends HttpServlet {
         System.out.println(password);
         if (request.getParameter("userID")==null || request.getParameter("password")==null
         		||request.getParameter("userID").equals("")||request.getParameter("password").equals("")) {
-           out.print("<script language='javascript'>alert('Librarian ID or Password Can Not Be Empty!');window.location.href='UserLogin.jsp';</script>");
+           out.print("<script language='javascript'>alert('Librarian ID or Password Can Not Be Empty!');window.location.href='Login.jsp';</script>");
         } else {
             LibrarianDAO librarianDAO = new LibrarianDAO();
             Librarian librarian = null;
@@ -56,7 +56,7 @@ public class LibrarianLogin extends HttpServlet {
 			}
             if (librarian == null) {//无法获取librarian实体
                 System.out.println("用户不存在");
-                out.print("<script language='javascript'>alert('LibrarianID Not Exist!');window.location.href='UserLogin.jsp';</script>");
+                out.print("<script language='javascript'>alert('LibrarianID Not Exist!');window.location.href='Login.jsp';</script>");
             } else {
             	password = SecurityUtil.md5(password);
                 if (librarian.getPassword().equals(password)) {//密码匹配
@@ -64,16 +64,16 @@ public class LibrarianLogin extends HttpServlet {
                         System.out.println("登录成功");
                         HttpSession session = request.getSession();
                         session.setAttribute("librarianEntity", librarian);//设置session属性，以便后面使用
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("LibrarianInformation.jsp");
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("librarianIndex.jsp");
                         dispatcher.forward(request, response);//跳转到信息页面
                     } else {
                         System.out.println("账号被锁定");
-                        out.print("<script language='javascript'>alert('Your LibrarianID has been locked!');window.location.href='UserLogin.jsp';</script>");
+                        out.print("<script language='javascript'>alert('Your LibrarianID has been locked!');window.location.href='Login.jsp';</script>");
                         //response.sendRedirect("UserLogin.jsp");//跳转到登录界面
                     }
                 } else {
                     System.out.println("密码不正确");
-                    out.print("<script language='javascript'>alert('Your LibrarianID or Password is Wrong!');window.location.href='UserLogin.jsp';</script>");
+                    out.print("<script language='javascript'>alert('Your LibrarianID or Password is Wrong!');window.location.href='Login.jsp';</script>");
 
                     //response.sendRedirect("UserLogin.jsp");//跳转到登录界面
                 }

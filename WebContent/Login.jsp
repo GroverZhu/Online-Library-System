@@ -44,19 +44,18 @@
 								<p class="lead">Login to your account</p>
 							</div>
 							<form class="form-auth-small" method="post"
-								action="LibrarianLogin">
+								action="LoginHandler">
 								<table align="center">
 									<tr>
 										<td width=150px height=64px>
 											<div class="form-group has-success has-feedback">
-												<label class="control-label" for="userID">Librarian
-													ID</label>
+												<label class="control-label" for="userID">User ID</label>
 											</div>
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" name="LibrarianID" class="form-control"
-													value="${librarian_id}" placeholder="Librarian ID"
+												<input type="text" name="userID" class="form-control"
+													placeholder="User ID"
 													onkeyup="this.value=this.value.replace(/\D/g,'')"
 													onafterpaste="this.value=this.value.replace(/\D/g,'')">
 											</div>
@@ -72,32 +71,32 @@
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
 												<input type="password" name="password" id="pw"
-													class="form-control" value="${librarian_password}"
-													placeholder="Password" maxlength="32">
+													class="form-control" placeholder="Password" maxlength="32">
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td></td>
 										<td>
-											<div class="form-group clearfix" align="center">
-												<label class="fancy-checkbox element-left"> <input
-													type="checkbox" name="ck"> <span>Remember me</span>
-												</label>
+											<div class="form-group clearfix" align="left">
+												<input type="radio" name="authority" value="reader" checked />I'm
+												Reader <br /><input type="radio" name="authority"
+													value="librarian" />I'm Librarian <br /><input type="radio"
+													name="authority" value="administrator" />I'm Administrator
+												<br />
 											</div>
 										</td>
 									</tr>
 								</table>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
 							</form>
-							<td>
-							</td>
+							<td></td>
 						</div>
 					</div>
 					<div class="right">
 						<div class="overlay"></div>
 						<div class="content text">
-							<h1 align="center" class="heading">Welcome , Librarian!</h1>
+							<h1 align="center" class="heading">Welcome To The Online Librarian System!</h1>
 						</div>
 					</div>
 					<div class="clearfix"></div>

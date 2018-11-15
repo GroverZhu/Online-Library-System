@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" class="fullscreen-bg">
-
+<html lang="en">
 <head>
-<title>Show Post</title>
+<title>Homepage</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -32,8 +31,7 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="brand">
 			<img src="assets/img/BiblioSoft Logo.png"
 				alt="BiblioSoft Logo" class="img-responsive logo">
@@ -42,48 +40,30 @@
 			<div id="navbar-menu">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a class="update-pro" href="home_page.jsp" title="Back To Home Page" ><i class="fa fa-rocket"></i> <span>Back To Home Page</span></a>
+						<a class="update-pro" href="Login.jsp" title="Login" ><i class="fa fa-rocket"></i> <span>Login</span></a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		</nav>
-		<!-- END NAVBAR -->
 		<!-- MAIN -->
 		<div>
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
+				<br/><br/><br/><br/>
 					<div class="panel">
 						<div class="panel-heading">
-							<h1 align="center" class="page-title"></h1>
+							<br />
+							<div class="logo text-center">
+									<img src="assets/img/logo-big.png" alt="BiblioSoft Logo">
+							</div>
 						</div>
-						<div class="panel-body">
-							<h1 align="center" class="page-title">${sessionScope.title}</h1>
-							<table align="center">
-								<tr>
-									<td align="center" width="350px">Writer:${sessionScope.writer}</td><td align="center" width="350px">Time:${sessionScope.time}</td>
-								</tr>
-							</table><hr />
-							<table align="center">
-								<tr>
-									<td width="800px">${sessionScope.body}</td>
-								</tr>
-							</table>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END MAIN CONTENT -->
-	<!-- END MAIN -->
-	<footer>
-	<div class="container-fluid">
-		<p class="copyright">Copyright &copy; 2018.BiblioSoft All rights
-			reserved.</p>
-	</div>
-	</footer>
+						</div>
+						</div>
+						</div>
+						
 </body>
 
 </html>

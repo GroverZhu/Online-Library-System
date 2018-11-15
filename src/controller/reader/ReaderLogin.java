@@ -54,7 +54,7 @@ public class ReaderLogin extends HttpServlet {
 		if (request.getParameter("userID") == null || request.getParameter("password") == null
 				|| request.getParameter("userID").equals("") || request.getParameter("password").equals("")) {
 			out.print(
-					"<script language='javascript'>alert('Reader ID or Password Can Not Be Empty!');window.location.href='UserLogin.jsp';</script>");
+					"<script language='javascript'>alert('Reader ID or Password Can Not Be Empty!');window.location.href='Login.jsp';</script>");
 		} else {
 			ReaderDAO readerDAO = new ReaderDAO();
 			entity.Reader reader = null;
@@ -63,7 +63,7 @@ public class ReaderLogin extends HttpServlet {
 			}
 			if (reader == null) {// 无法获取Reader实体
 				out.print(
-						"<script language='javascript'>alert('ReaderID Not Exist!');window.location.href='UserLogin.jsp';</script>");
+						"<script language='javascript'>alert('ReaderID Not Exist!');window.location.href='Login.jsp';</script>");
 			} else {
 				password = SecurityUtil.md5(password);
 				if (reader.getPassword().equals(password)) {
@@ -71,14 +71,14 @@ public class ReaderLogin extends HttpServlet {
 						System.out.println("unlock");
 						HttpSession session = request.getSession();
 						session.setAttribute("ReaderEntity", reader);// 设置session属性，以便后面使用
-						RequestDispatcher dispatcher = request.getRequestDispatcher("readerHomepage.jsp");
+						RequestDispatcher dispatcher = request.getRequestDispatcher("readerIndex.jsp");
 						dispatcher.forward(request, response);
 					} else
 						out.print(
-								"<script language='javascript'>alert('Your ReaderID has been locked!');window.location.href='UserLogin.jsp';</script>");
+								"<script language='javascript'>alert('Your ReaderID has been locked!');window.location.href='Login.jsp';</script>");
 				} else {
 					out.print(
-							"<script language='javascript'>alert('Your ReaderID or Password is Wrong!');window.location.href='UserLogin.jsp';</script>");
+							"<script language='javascript'>alert('Your ReaderID or Password is Wrong!');window.location.href='Login.jsp';</script>");
 				}
 			}
 		}

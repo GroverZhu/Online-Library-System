@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE HTML PUBLIC"-//W3C//DTD HTML 4.01Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Return History</title>
+	<title>Reader Index</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -15,7 +12,6 @@
 	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
-	<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -29,6 +25,7 @@
 
 <body>
 	<!-- WRAPPER -->
+	<form method="post" action="ChangeInformation.jsp">
 	<div id="wrapper">
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -47,7 +44,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <img src="assets/img/user.png"
-							class="img-circle" alt="Avatar"> <span>${sessionScope.Tele}</span></a></li>
+							class="img-circle" alt="Avatar"> <span>Tele</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,11 +55,14 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
+					
+			
 						<li><a href="elements.jsp" class=""><i class="lnr lnr-code"></i> <span>Modify Password</span></a></li>
-						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>Search</span></a></li>
+						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Search</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>Borrow History</span></a></li>
-						<li><a href="notifications.jsp" class="active"><i class="lnr lnr-alarm"></i> <span>Return History</span></a></li>
-						<li><a href="ReaderIndex.jsp" class=""><i class="lnr lnr-dice"></i> <span>Reader Index</span></a></li>
+						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Return History</span></a></li>
+					
+						<li><a href="ReaderIndex.jsp" class="active"><i class="lnr lnr-dice"></i> <span>Reader Index</span></a></li>
 						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>Fine</span></a></li>
 						<li><a href="icons.jsp" class=""><i class="lnr lnr-linearicons"></i> <span>Reserve</span></a></li>
 					</ul>
@@ -70,52 +70,50 @@
 			</div>
 		</div>
 		<!-- END LEFT SIDEBAR -->
-				
-	<!-- MAIN -->
-    <div class="main">
-        <!-- MAIN CONTENT -->
-        <div class="main-content">
-            <div class="container-fluid">
-                <h3 class="page-title">Return History</h3>
-                <div class="row">
-                  
-                    </div>
-                </div>
-
-                <div class="row">
-                
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Return History</h3>
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Book ID</th>
-                                        <th>Book Name</th>
-                                        <th>Start Time</th>
-                                        <th>DeadLine</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    
-                                    <!-- 展示Return History -->
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		<!-- MAIN -->
 		
-		
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<h3 class="page-title">Reader Index</h3>
+					<div class="row">
+							<!-- BASIC TABLE -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Reader Index
+									<input type="SUBMIT" value="Change Information" style="color:green"> 
+                                    </h3>
+									
+								</div>
+								<div class="panel-body">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Reader_id</th>
+												<th>Reader_name</th>
+												<th>sex</th>
+												<th>Tele</th>
+												<th>MaxBorrow</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-	
 	
 	</div>
 	<!-- END WRAPPER -->
@@ -123,12 +121,8 @@
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/vendor/toastr/toastr.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	</form>
 </body>
-
-</html>
-
-
 
 </html>
