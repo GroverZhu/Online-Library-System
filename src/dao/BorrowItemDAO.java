@@ -26,13 +26,18 @@ public class BorrowItemDAO {
 		try {
 			conn=DatabaseUtil.getInstance().getConnection();
 			st=conn.createStatement();
-			String sql="SELECT reader.reader_id,reader.`reader_name`,book.isbn,book.book_name,book_in_library.book_id,borrow_item.`borrow_time`,borrow_item.`return_time`,borrow_item.`borrow_id`,borrow_item.`borrow_librarian_id`,book_in_library.`state`\r\n" + 
-					"FROM book,reader,book_in_library,borrow_item\r\n" + 
-					"WHERE borrow_item.`reader_id`=reader.`reader_id` \r\n" + 
-					"	AND book_in_library.`book_id`=borrow_item.`book_id`\r\n" + 
-					"	AND book.isbn=book_in_library.`isbn`\r\n" + 
-					"	AND return_time IS NULL\r\n" + 
-					"	AND reader.reader_id="+readerId;
+			String sql="SELECT reader.reader_id,reader.`reader_name`," + 
+					"book.isbn,book.book_name," + 
+					"book_in_library.book_id,book_in_library.`state`," + 
+					"borrow_item.`borrow_time`,borrow_item.`return_time`,borrow_item.`borrow_id`,borrow_item.`borrow_librarian_id`," + 
+					"librarian.`librarian_name` " + 
+					"FROM book,reader,book_in_library,borrow_item,librarian " + 
+					"WHERE borrow_item.`reader_id`=reader.`reader_id`" + 
+					"AND book_in_library.`book_id`=borrow_item.`book_id`" + 
+					"AND book.isbn=book_in_library.`isbn`" + 
+					"AND librarian.`librarian_id`=borrow_item.`borrow_librarian_id`" + 
+					"AND return_time IS NULL " + 
+					"AND reader.reader_id="+readerId;
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
 				//获取参数
@@ -45,6 +50,9 @@ public class BorrowItemDAO {
 				Timestamp returnTime=rs.getTimestamp("borrow_time");
 				returnTime.setTime(returnTime.getTime() + 1000*60*60*24*15);
 				returnTime.setTime(returnTime.getTime() + 1000*60*60*24*15);
+				String readerName=rs.getString("reader_name");
+				String borrowLibrarianName=rs.getString("librarian_name");
+				
 				//实例化
 				BorrowItem borrowItem=new BorrowItem();
 				borrowItem.setBookId(bookId);
@@ -55,6 +63,8 @@ public class BorrowItemDAO {
 				borrowItem.setBorrowTime(borrowTime);
 				borrowItem.setReturnTime(returnTime);
 				borrowItem.setState(state);
+				borrowItem.setReaderName(readerName);
+				borrowItem.setBorrowLibrarianName(borrowLibrarianName);
 				//加入列表
 				list.add(borrowItem);				
 			}
@@ -79,13 +89,20 @@ public class BorrowItemDAO {
 		try {
 			conn=DatabaseUtil.getInstance().getConnection();
 			st=conn.createStatement();
-			String sql="SELECT reader.reader_id,reader.`reader_name`,book.isbn,book.book_name,book_in_library.book_id,borrow_item.`borrow_time`,borrow_item.`return_time`,borrow_item.`borrow_id`,borrow_item.`borrow_librarian_id`,borrow_item.`return_librarian_id`,book_in_library.`state`\r\n" + 
-					"FROM book,reader,book_in_library,borrow_item\r\n" + 
-					"WHERE borrow_item.`reader_id`=reader.`reader_id` \r\n" + 
-					"	AND book_in_library.`book_id`=borrow_item.`book_id`\r\n" + 
-					"	AND book.isbn=book_in_library.`isbn`\r\n" + 
-					"	AND return_time IS NOT NULL\r\n" + 
-					"	AND reader.reader_id="+readerId;
+			String sql="SELECT reader.reader_id,reader.`reader_name`," + 
+					"book.isbn,book.book_name," + 
+					"book_in_library.book_id," + 
+					"book_in_library.`state`," + 
+					"borrow_item.`borrow_time`,borrow_item.`return_time`,borrow_item.`borrow_id`,borrow_item.`borrow_librarian_id`,borrow_item.`return_librarian_id` ," + 
+					"lib1.`librarian_name` AS borrow_name,lib2.librarian_name AS return_name " + 
+					"FROM book,reader,book_in_library,borrow_item,librarian lib1,librarian lib2 " + 
+					"WHERE borrow_item.`reader_id`=reader.`reader_id` " + 
+					"AND book_in_library.`book_id`=borrow_item.`book_id`" + 
+					"AND book.isbn=book_in_library.`isbn`" + 
+					"AND lib1.librarian_id=borrow_item.`borrow_librarian_id`" + 
+					"AND lib2.librarian_id=borrow_item.`return_librarian_id`" + 
+					"AND return_time IS NOT NULL " + 
+					"AND reader.reader_id="+readerId;
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
 				//获取参数
@@ -95,8 +112,11 @@ public class BorrowItemDAO {
 				int borrowLibrarianId=rs.getInt("borrow_librarian_id");
 				int returnLibrarianId=rs.getInt("return_librarian_id");
 				String state=rs.getString("state");
+				String readerName=rs.getString("reader_name");
 				Timestamp borrowTime=rs.getTimestamp("borrow_time");
 				Timestamp returnTime=rs.getTimestamp("return_time");
+				String borrowLibrarianName=rs.getString("borrow_name");
+				String returnLibrarianName=rs.getString("return_name");
 				//实例化
 				BorrowItem borrowItem=new BorrowItem();
 				borrowItem.setBookId(bookId);
@@ -104,10 +124,13 @@ public class BorrowItemDAO {
 				borrowItem.setBorrowId(borrowId);
 				borrowItem.setBorrowLibrarianId(borrowLibrarianId);
 				borrowItem.setReaderId(readerId);
+				borrowItem.setReaderName(readerName);
 				borrowItem.setBorrowTime(borrowTime);
 				borrowItem.setReturnTime(returnTime);
 				borrowItem.setReturnLibrarianId(returnLibrarianId);
 				borrowItem.setState(state);
+				borrowItem.setBorrowLibrarianName(borrowLibrarianName);
+				borrowItem.setReturnLibrarianName(returnLibrarianName);
 				//加入列表
 				list.add(borrowItem);				
 			}
@@ -117,5 +140,9 @@ public class BorrowItemDAO {
 			return null;
 		}
 		
+	}
+	public static void main(String[] args) {
+		BorrowItemDAO b=new BorrowItemDAO();
+		b.getBorrowItemInHistory(1);
 	}
 }

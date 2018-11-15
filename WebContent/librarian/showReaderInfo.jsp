@@ -16,22 +16,26 @@
 		<tr>
 			<td>序号</td>
 			<td>用户id</td>
+			<td>用户名</td>
 			<td>书名</td>
 			<td>book id</td>
 			<td>借阅时间</td>
 			<td>应还时间</td>
-			<td>处理人</td>
+			<td>处理人ID</td>
+			<td>处理人姓名</td>
 			<td>状态</td>
 		</tr>
 		<c:forEach var="item" items="${currentList}" varStatus="i">
 		<tr>
 			<td>${i.count }</td>
 			<td>${item.readerId}</td>
+			<td>${item.readerName }</td>
 			<td>${item.bookName }</td>
 			<td>${item.bookId }</td>
 			<td>${item.borrowTime }</td>
 			<td>${item.returnTime }</td>
 			<td>${item.borrowLibrarianId }</td>
+			<td>${item.borrowLibrarianName }</td>
 			<td>${item.state }</td>
 		</tr>		
 		</c:forEach>
@@ -43,24 +47,30 @@
 		<tr>
 			<td>序号</td>
 			<td>用户id</td>
+			<td>用户名</td>
 			<td>书名</td>
 			<td>book id</td>
 			<td>借阅时间</td>
-			<td>借阅处理人</td>
+			<td>借阅处理人ID</td>
+			<td>借阅处理人姓名</td>
 			<td>还书时间</td>
-			<td>还书处理人</td>
+			<td>还书处理人ID</td>
+			<td>还书处理人姓名</td>
 			<td>状态</td>
 		</tr>
 		<c:forEach var="item" items="${historyList}" varStatus="i">
 		<tr>
 			<td>${i.count }</td>
 			<td>${item.readerId}</td>
+			<td>${item.readerName }</td>
 			<td>${item.bookName }</td>
 			<td>${item.bookId }</td>
 			<td>${item.borrowTime }</td>
 			<td>${item.borrowLibrarianId }</td>
+			<td>${item.borrowLibrarianName }</td>
 			<td>${item.returnTime }</td>
 			<td>${item.returnLibrarianId }</td>
+			<td>${item.returnLibrarianName }</td>
 			<td>${item.state }</td>
 		</tr>		
 		</c:forEach>
