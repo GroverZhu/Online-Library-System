@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +25,7 @@
 
 <body>
 	<!-- WRAPPER -->
-	<form method="post" action="readerChangeInformation.jsp">
+	<form method="post" action="ChangeInformation.jsp">
 	<div id="wrapper">
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -55,10 +55,13 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
+					
+			
 						<li><a href="elements.jsp" class=""><i class="lnr lnr-code"></i> <span>Modify Password</span></a></li>
 						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Search</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>Borrow History</span></a></li>
-						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Return History</span></a></li>				
+						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Return History</span></a></li>
+					
 						<li><a href="ReaderIndex.jsp" class="active"><i class="lnr lnr-dice"></i> <span>Reader Index</span></a></li>
 						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>Fine</span></a></li>
 						<li><a href="icons.jsp" class=""><i class="lnr lnr-linearicons"></i> <span>Reserve</span></a></li>
@@ -89,18 +92,16 @@
 											<tr>
 												<th>Reader_id</th>
 												<th>Reader_name</th>
-												<th>Password</th>
-												<th>email</th>											
+												<th>sex</th>
+												<th>Tele</th>
+												<th>MaxBorrow</th>
+												
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<!-- Reader Info¯ -->
-												<td>${ReaderEntity.id }</td>												
-												<td>${ReaderEntity.name }</td>
-												<td>${ReaderEntity.psssword }</td>
-												<td>${ReaderEntity.email }</td>
-											</tr>										
+											</tr>
+										
 										</tbody>
 									</table>
 								</div>
