@@ -78,4 +78,14 @@ public class Reader {
 		this.borrowHistory = borrowHistory;
 	}
 
+
+	@Override
+	/**
+	 * @author zengyaoNPU
+	 */
+	public String toString() {
+		return "Reader [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", state="
+				+ state + ", cartList=" + cartList + ", borrowHistory=" + borrowHistory + "]";
+	}
+
 }
