@@ -247,11 +247,4 @@ public class ReaderDAO {
 			return null;
 		}
 	}
-	public static void main(String[] args) {
-		ReaderDAO r=new ReaderDAO();
-		List<Reader> l=r.getReaderByName("zengyao");
-		for(Reader i:l) {
-			System.out.println(i.toString());
-		}
-	}
 }

@@ -12,6 +12,7 @@ import java.util.Date;
 public class BorrowItem {
 	private int borrowId;
 	private int bookId;
+	private int readerId;//zengyaoNPU添加于2018-11-15 17:04
 	private int borrowLibrarianId;
 	private int returnLibrarianId;
 	private String bookName;
@@ -113,4 +114,21 @@ public class BorrowItem {
 		this.state = state;
 	}
 
+	public int getReaderId() {
+		return readerId;
+	}
+
+	public void setReaderId(int readerId) {
+		this.readerId = readerId;
+	}
+
+	@Override
+	public String toString() {
+		return "BorrowItem [borrowId=" + borrowId + ", bookId=" + bookId + ", readerId=" + readerId
+				+ ", borrowLibrarianId=" + borrowLibrarianId + ", returnLibrarianId=" + returnLibrarianId
+				+ ", bookName=" + bookName + ", borrowTime=" + borrowTime + ", returnTime=" + returnTime + ", state="
+				+ state + "]";
+	}
+
+	
 }

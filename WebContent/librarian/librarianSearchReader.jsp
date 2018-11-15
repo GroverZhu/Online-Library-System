@@ -42,14 +42,18 @@
 			<td>用户名</td>
 			<td>email</td>
 			<td>state</td>
-			<td>详细</td>
+			<td>借阅车</td>
+			<td>借阅历史</td>
+			<td>当前借阅</td>
 		</tr>
 		<tr>
 			<td>${readerEntity.id }</td>
 			<td>${readerEntity.name }</td>
 			<td>${readerEntity.email }</td>
 			<td>${readerEntity.state }</td>
-			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }">查看详情</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=cart">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=history">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=current">查看</a></td>
 		</tr>
 	</table>
 </c:if>
@@ -61,7 +65,9 @@
 			<td>用户名</td>
 			<td>email</td>
 			<td>state</td>
-			<td>详细</td>
+			<td>借阅车</td>
+			<td>借阅历史</td>
+			<td>当前借阅</td>
 		</tr>
 		<c:forEach var="reader" items="${readerList }" varStatus="i">
 		<tr>
@@ -70,7 +76,9 @@
 			<td>${reader.name }</td>
 			<td>${reader.email }</td>
 			<td>${reader.state }</td>
-			<td><a href="ShowReaderInfo?reader_id=${reader.id}">查看详情</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=cart">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=history">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=current">查看</a></td>
 		</tr>
 		</c:forEach>
 	</table>
