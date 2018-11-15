@@ -1,60 +1,67 @@
 package controller.administrator;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import dao.AdministratorDAO;
+import entity.Administrator;
+import util.CharacterFilterUtil;
+import util.SecurityUtil;
 
-import util.DatabaseUtil;
 /**
  * 该类用于处理Administrator登录的业务逻辑
- * @author zengyaoNPU
  *
+ * @author zengyaoNPU 11.14基本全改了。Liu Zhuocheng
  */
 public class AdministratorLogin extends HttpServlet {
 	public void destroy() {
-		super.destroy(); 
+		super.destroy();
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
+
 	/**
 	 * 处理Administrator登录的业务逻辑
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//测试用：admin，710072
-		String userName=(String) request.getParameter("userName");
-		String password=(String) request.getParameter("password");
-//		System.out.println(userName);
-//		System.out.println(password);
-		try {
-			Connection conn=DatabaseUtil.getInstance().getConnection();
-			Statement st=conn.createStatement();
-			String sql="select * from administrator where administrator_name='"+userName+"'";
-			ResultSet rs=st.executeQuery(sql);
-			if(rs.next()) {
-				if(userName.equals(rs.getString("administrator_name"))) {
-					if(password.equals(rs.getString("administrator_password"))) {
-						System.out.println("登录成功");
-					}else {
-						System.out.println("密码错误");
-					}
-				}
-			}else {
-				System.out.println("该用户不存在");
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("utf-8");
+		String usersid = (String) request.getParameter("userID");
+		int userid = Integer.MAX_VALUE;
+		if (usersid != null && !usersid.isEmpty())
+			userid = Integer.valueOf(usersid);
+		String password = (String) request.getParameter("password");
+		if (request.getParameter("userID") == null || request.getParameter("password") == null
+				|| request.getParameter("userID").equals("") || request.getParameter("password").equals("")) {
+			out.print(
+					"<script language='javascript'>alert('Admin ID or Password Can Not Be Empty!');window.location.href='UserLogin.jsp';</script>");
+		} else {
+			AdministratorDAO administratorDAO = new AdministratorDAO();
+			Administrator administrator = null;
+			password = SecurityUtil.md5(password);
+			if (CharacterFilterUtil.isNumeric(usersid)) {
+				administrator = administratorDAO.getAdministratorById(userid);
 			}
-			
-		}catch(Exception e) {
-			
-		}finally {
-			
+			if (administrator == null) {// 无法获取Administrator实体
+				System.out.println("用户不存在");
+				out.print(
+						"<script language='javascript'>alert('AdminID Not Exist!');window.location.href='UserLogin.jsp';</script>");
+			} else if (administrator.getPassword().equals(password)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("AdministratorEntity", administrator);// 设置session属性，以便后面使用
+				RequestDispatcher dispatcher = request.getRequestDispatcher("adminHomepage.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				out.print(
+						"<script language='javascript'>alert('Your AdminID or Password is Wrong!');window.location.href='UserLogin.jsp';</script>");
+			}
 		}
 	}
 

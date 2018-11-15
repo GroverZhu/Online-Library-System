@@ -10,7 +10,7 @@
 
 	<h1>User Login</h1>
 	<form method="post" action="LoginHandler">
-		User Name<input type="text" name="userName" /><br /> Password <input
+		User Name<input type="text" name="userID" /><br /> Password <input
 			type="password" name="password" /><br /> <input type="radio"
 			name="authority" value="reader" checked />I'm Reader <input
 			type="radio" name="authority" value="librarian" />I'm Librarian <input
