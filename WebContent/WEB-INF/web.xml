@@ -94,4 +94,14 @@
     <servlet-name>SearchBookForReader</servlet-name>
     <url-pattern>/SearchBookForReader</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrarianDeleteReader</display-name>
+    <servlet-name>LibrarianDeleteReader</servlet-name>
+    <servlet-class>controller.librarian.LibrarianDeleteReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrarianDeleteReader</servlet-name>
+    <url-pattern>/librarian/LibrarianDeleteReader</url-pattern>
+  </servlet-mapping>
 </web-app>

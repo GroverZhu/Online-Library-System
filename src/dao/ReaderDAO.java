@@ -40,6 +40,7 @@ public class ReaderDAO {
 				rs.close();
 				st.close();
 				conn.close();
+				System.out.println(reader.toString());
 				return reader;
 			}else{
 				System.out.println("--ReaderDAO--,--getReaderById()--,Cannot find the Reader by id="+id);
@@ -120,5 +121,41 @@ public class ReaderDAO {
 			return readerId;
 		}
 		
+	}
+	/**
+	 * 根据id和name删除Reader，其中开启了事务
+	 * @author zengyaoNPU
+	 * @param id Reader的ID
+	 * @param name Reader的用户名
+	 * @return id与name不匹配或者id不存在返回false；删除成功返回true
+	 */
+	public boolean deleteReaderById(int id,String name) {
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs=null;
+		boolean tag=false;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			conn.setAutoCommit(false);
+			st=conn.createStatement();
+			String query="select * from reader where reader_id="+id+" and reader_name='"+name+"'";
+			rs=st.executeQuery(query);
+			if(rs.next()) {
+				String sql="delete from reader where reader_id="+id;
+				int row=st.executeUpdate(sql);
+				if(row==1) {
+					tag=true;
+				}
+			}else {
+				System.out.println("--ReaderDAO--,--deleteReaderById()--,id和nam不匹配");
+				tag=false;
+			}
+			conn.commit();
+			return tag;
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--ReaderDAO--,--deleteReaderById()--,suffers exception");
+			return false;
+		}
 	}
 }
