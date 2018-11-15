@@ -1,13 +1,17 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import entity.Reader;
 import util.DatabaseUtil;
-
+/**
+ * @author zengyaoNPU
+ *
+ */
 public class ReaderDAO {
 	/**
 	 * 根据Reader ID获取Reader实例
@@ -156,6 +160,98 @@ public class ReaderDAO {
 			e.printStackTrace();
 			System.out.println("--ReaderDAO--,--deleteReaderById()--,suffers exception");
 			return false;
+		}
+	}
+	/**
+	 * 根据reader_name获取读者列表（考虑到多个reader同一个name的情况）
+	 * @author zengyaoNPU
+	 * @param name
+	 * @return
+	 */
+	public List<Reader> getReaderByName(String name){
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs=null;
+		List<Reader> list=new ArrayList<Reader>();
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="select * from reader where reader_name like '%"+name+"%'";
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				Reader reader=getReaderById(rs.getInt("reader_id"));//根据reader_id获取一个reader实体
+				list.add(reader);//添加到列表中
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	/**
+	 * 根据state查询用户，返回用户列表
+	 * @author zengyaoNPU
+	 * @param state
+	 * @return
+	 */
+	public List<Reader> getReaderByState(String state){
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs=null;
+		List<Reader> list=new ArrayList<Reader>();
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="select * from reader where state ='"+state+"'";
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				Reader reader=getReaderById(rs.getInt("reader_id"));
+				list.add(reader);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	/**
+	 * 根据用户名和state获取读者列表
+	 * @author zengyaoNPU
+	 * @param name
+	 * @param state
+	 * @return
+	 */
+	public List<Reader> getReaderByName_State(String name,String state){
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs=null;
+		List<Reader> list=new ArrayList<Reader>();
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="select * from reader where state ='"+state+"' and name like '"+name+"'";
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				Reader reader=getReaderById(rs.getInt("reader_id"));
+				list.add(reader);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	public static void main(String[] args) {
+		ReaderDAO r=new ReaderDAO();
+		List<Reader> l=r.getReaderByName("zengyao");
+		for(Reader i:l) {
+			System.out.println(i.toString());
 		}
 	}
 }

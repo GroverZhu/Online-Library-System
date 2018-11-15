@@ -31,5 +31,6 @@
 
 <a href="librarianAddReader.jsp">增加读者</a>
 <a href="librarianDeleteReader.jsp">删除读者</a>
+<a href="librarianSearchReader.jsp">查看读者详细信息</a>
 </body>
 </html>

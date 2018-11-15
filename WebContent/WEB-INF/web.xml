@@ -104,4 +104,24 @@
     <servlet-name>LibrarianDeleteReader</servlet-name>
     <url-pattern>/librarian/LibrarianDeleteReader</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrarianSearchReader</display-name>
+    <servlet-name>LibrarianSearchReader</servlet-name>
+    <servlet-class>controller.librarian.LibrarianSearchReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrarianSearchReader</servlet-name>
+    <url-pattern>/librarian/LibrarianSearchReader</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowReaderInfo</display-name>
+    <servlet-name>ShowReaderInfo</servlet-name>
+    <servlet-class>controller.librarian.ShowReaderInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowReaderInfo</servlet-name>
+    <url-pattern>/librarian/ShowReaderInfo</url-pattern>
+  </servlet-mapping>
 </web-app>
