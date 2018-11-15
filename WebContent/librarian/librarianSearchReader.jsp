@@ -76,9 +76,9 @@
 			<td>${reader.name }</td>
 			<td>${reader.email }</td>
 			<td>${reader.state }</td>
-			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=cart">查看</a></td>
-			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=history">查看</a></td>
-			<td><a href="ShowReaderInfo?reader_id=${readerEntity.id }&param=current">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${reader.id }&param=cart">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${reader.id }&param=history">查看</a></td>
+			<td><a href="ShowReaderInfo?reader_id=${reader.id }&param=current">查看</a></td>
 		</tr>
 		</c:forEach>
 	</table>

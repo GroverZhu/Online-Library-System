@@ -4,18 +4,21 @@ import java.util.Date;
 
 /**
  * 显示借阅记录
- * 
- * @author GroverZhu
- * @date 2018-11-12 23:43:00
+ * 增加了readerName、borrowLibrarianName、returnLibrarianName
+ * @author zengyaoNPU
+ * @date 2018-11-15 20:25
  */
 
 public class BorrowItem {
 	private int borrowId;
 	private int bookId;
+	private String bookName;
+	private String readerName;
 	private int readerId;//zengyaoNPU添加于2018-11-15 17:04
 	private int borrowLibrarianId;
+	private String borrowLibrarianName;
 	private int returnLibrarianId;
-	private String bookName;
+	private String returnLibrarianName;
 	private Date borrowTime;
 	private Date returnTime;
 	private String state; // 状态为已还“returned”跟未还“unreturned”
@@ -122,13 +125,39 @@ public class BorrowItem {
 		this.readerId = readerId;
 	}
 
+	public String getReaderName() {
+		return readerName;
+	}
+
+	public void setReaderName(String readerName) {
+		this.readerName = readerName;
+	}
+
+	public String getBorrowLibrarianName() {
+		return borrowLibrarianName;
+	}
+
+	public void setBorrowLibrarianName(String borrowLibrarianName) {
+		this.borrowLibrarianName = borrowLibrarianName;
+	}
+
+	public String getReturnLibrarianName() {
+		return returnLibrarianName;
+	}
+
+	public void setReturnLibrarianName(String returnLibrarianName) {
+		this.returnLibrarianName = returnLibrarianName;
+	}
+
 	@Override
 	public String toString() {
-		return "BorrowItem [borrowId=" + borrowId + ", bookId=" + bookId + ", readerId=" + readerId
-				+ ", borrowLibrarianId=" + borrowLibrarianId + ", returnLibrarianId=" + returnLibrarianId
-				+ ", bookName=" + bookName + ", borrowTime=" + borrowTime + ", returnTime=" + returnTime + ", state="
-				+ state + "]";
+		return "BorrowItem [borrowId=" + borrowId + ", bookId=" + bookId + ", bookName=" + bookName + ", readerName="
+				+ readerName + ", readerId=" + readerId + ", borrowLibrarianId=" + borrowLibrarianId
+				+ ", borrowLibrarianName=" + borrowLibrarianName + ", returnLibrarianId=" + returnLibrarianId
+				+ ", returnLibrarianName=" + returnLibrarianName + ", borrowTime=" + borrowTime + ", returnTime="
+				+ returnTime + ", state=" + state + "]";
 	}
+
 
 	
 }
