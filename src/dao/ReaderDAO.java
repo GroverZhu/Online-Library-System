@@ -173,6 +173,7 @@ public class ReaderDAO {
 		return flag;
 	}
 
+		
 	/**
 	 * 根据id和name删除Reader，其中开启了事务
 	 * @author zengyaoNPU
@@ -299,5 +300,6 @@ public class ReaderDAO {
 		} catch (Exception e) {
 			return null;
 		}
+
 	}
 }
