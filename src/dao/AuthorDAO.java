@@ -18,7 +18,7 @@ import util.DatabaseUtil;
 public class AuthorDAO {
 	/**
 	 * 增加一个author
-	 * 
+	 * @author GroverZhu
 	 * @param name
 	 * @param decsription
 	 * @return 若增加成功，则返回author的ID，否则返回-1
