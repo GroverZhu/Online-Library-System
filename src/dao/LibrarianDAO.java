@@ -208,6 +208,7 @@ public class LibrarianDAO {
 
 	/**
 	 * 根据librarian的ID与name去删除一个librarian
+	 * 
 	 * @author GroverZhu
 	 * @param id
 	 * @param name
@@ -266,4 +267,20 @@ public class LibrarianDAO {
 		return librarians;
 	}
 
+	public int getTotal() {
+		int total = 0;
+		try {
+			Connection conn = DatabaseUtil.getInstance().getConnection();
+			String count = "select count(*) from librarian";
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(count);
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
 }
