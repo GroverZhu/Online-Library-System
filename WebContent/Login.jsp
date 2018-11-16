@@ -79,10 +79,9 @@
 										<td></td>
 										<td>
 											<div class="form-group clearfix" align="left">
-												<input type="radio" name="authority" value="reader" checked />I'm
-												Reader <br /><input type="radio" name="authority"
-													value="librarian" />I'm Librarian <br /><input type="radio"
-													name="authority" value="administrator" />I'm Administrator
+												<input type="radio" name="authority" value="reader" checked />I'm Reader <br />
+												<input type="radio" name="authority" value="librarian" />I'm Librarian <br />
+												<input type="radio" name="authority" value="administrator" />I'm Administrator
 												<br />
 											</div>
 										</td>

@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BorrowCartDAO;
 import dao.BorrowItemDAO;
 import entity.BorrowItem;
+import entity.Cart;
 
 /**
  * 该类用于展示reader信息，供librarian查看
@@ -28,7 +30,11 @@ public class ShowReaderInfo extends HttpServlet {
 		int readerId=Integer.parseInt(request.getParameter("reader_id"));
 		String param=request.getParameter("param");
 		if(param.equals("cart")) {
-			
+			BorrowCartDAO borrowCartDAO=new BorrowCartDAO();
+			List<Cart> list=borrowCartDAO.getBorrowCartByReaderId(readerId);
+			request.setAttribute("borrowCart", list);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("showReaderInfo.jsp");
+			dispatcher.forward(request, response);
 		}else if(param.equals("history")) {
 			BorrowItemDAO borrowItemDAO=new BorrowItemDAO();
 			List<BorrowItem> list=borrowItemDAO.getBorrowItemInHistory(readerId);

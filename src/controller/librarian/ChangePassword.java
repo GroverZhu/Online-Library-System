@@ -1,6 +1,7 @@
 package controller.librarian;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +31,7 @@ public class ChangePassword extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session =request.getSession();
+		PrintWriter out=response.getWriter();
 		Librarian librarian=(Librarian)session.getAttribute("librarianEntity");
 		LibrarianDAO librarianDAO=new LibrarianDAO();
 		//获取表单数据
@@ -40,15 +42,27 @@ public class ChangePassword extends HttpServlet {
 		if(newPw.equals(confirm)) {
 			if(librarianDAO.changePasswordByOldPassword_NewPassword(librarian.getName(), oldPw,newPw)) {
 				System.out.println("--Librarian--, 修改密码成功");
-				response.sendRedirect("SuccessChangePassword.jsp");
+				out.print(
+						"<script language='javascript'>"
+						+ "alert('Congratulation! You have modify password Successfully!');"
+						+ "window.location.href='librarianHomepage.jsp';"
+						+ "</script>");
 			}else {
 				System.out.println("旧密码错误");
-				response.sendRedirect("librarianModifyInfo.jsp");
+				out.print(
+						"<script language='javascript'>"
+						+ "alert('Old Password is error, please input again!');"
+						+ "window.location.href='librarianModifyInfo.jsp';"
+						+ "</script>");
 				
 			}
 		}else {
 			System.out.println("新密码和确认密码不相同");
-			response.sendRedirect("librarianModifyInfo.jsp");
+			out.print(
+					"<script language='javascript'>"
+					+ "alert('Comfirm password is different from new Password');"
+					+ "window.location.href='librarianModifyInfo.jsp';"
+					+ "</script>");
 		}
 		
 	}
