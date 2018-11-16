@@ -62,7 +62,7 @@ public class AdministratorDAO {
 	 * @param id
 	 * @param name
 	 * @param password
-	 * @return 若更新成功的话就放回1，否则更新失败
+	 * @return 若更新成功的话就返回1，否则更新失败
 	 */
 	public int updateAdmin(int id, String name, String password) {
 		int flag = 0;
@@ -74,8 +74,12 @@ public class AdministratorDAO {
 			sql.setString(2, password);
 			sql.setInt(3, id);
 			flag = sql.executeUpdate();
+			conn.close();
+			sql.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			
 		}
 		return flag;
 
