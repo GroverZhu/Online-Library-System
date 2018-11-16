@@ -267,6 +267,12 @@ public class LibrarianDAO {
 		return librarians;
 	}
 
+	/**
+	 * 获取所有的librarian的数量
+	 * 
+	 * @author GroverZhu
+	 * @return librarian中存储的所有的数量
+	 */
 	public int getTotal() {
 		int total = 0;
 		try {
@@ -277,7 +283,9 @@ public class LibrarianDAO {
 			if (rs.next()) {
 				total = rs.getInt(1);
 			}
-
+			conn.close();
+			st.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
