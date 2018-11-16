@@ -76,6 +76,28 @@
 		</c:forEach>
 	</table>
 </c:if>
-
+<c:if test="${not empty borrowCart }">
+	<h1>Show History Borrow</h1>
+	<table border="2">
+		<tr>
+			<td>序号</td>
+			<td>用户id</td>
+			<td>用户名</td>
+			<td>书名</td>
+			<td>book id</td>
+			<td>提交时间</td>
+		</tr>
+		<c:forEach var="item" items="${borrowCart}" varStatus="i">
+		<tr>
+			<td>${i.count }</td>
+			<td>${item.readerId}</td>
+			<td>${item.readerName }</td>
+			<td>${item.bookName }</td>
+			<td>${item.bookId }</td>
+			<td>${item.submitTime }</td>
+		</tr>		
+		</c:forEach>
+	</table>
+</c:if>
 </body>
 </html>

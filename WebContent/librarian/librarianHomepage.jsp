@@ -3,34 +3,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Librarian Information</title>
+<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="../assets/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
 </head>
+
 <body>
-
-<h1>Librarian Information</h1>
-<!-- 展示librarian的信息 -->
-<table border="2">
-	<tr>
-		<td width="160">Librarian Name</td>
-		<td width="200">${sessionScope.librarianEntity.name}</td>
-	</tr>
-	<tr>
-		<td width="160">Librarian ID</td>
-		<td width="160">${sessionScope.librarianEntity.id}</td>
-	</tr>
-	<tr>
-		<td width="160">State</td>
-		<td width="160">${sessionScope.librarianEntity.state}</td>
-	</tr>
-</table>
-
-
-<a href="librarianModifyInfo.jsp"><b>修改密码</b></a><br/>
-<a href="searchReaderBeforeEdit.jsp">查询读者</a>
-
-<a href="librarianAddReader.jsp">增加读者</a>
-<a href="librarianDeleteReader.jsp">删除读者</a>
-<a href="librarianSearchReader.jsp">查看读者详细信息</a>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<%@ include file="navbar.jsp" %>
+		<%@ include file="sidebar.jsp" %>
+		<!-- MAIN -->
+		
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<h3 class="page-title">Librarian Index</h3>
+					<div class="row">
+							<!-- BASIC TABLE -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Librarian Information</h3>
+								</div>
+								<div class="panel-body">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Librarian ID</th>
+												<th>Librarian Name</th>
+												<th>Librarian State</th>
+											</tr>
+											<tr>
+												<td>${sessionScope.librarianEntity.id}</td>
+												<td>${sessionScope.librarianEntity.name}</td>
+												<td>${sessionScope.librarianEntity.state}</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<div class="clearfix">
+		
+		</div>
+	
+	<!-- END WRAPPER -->
 </body>
 </html>
