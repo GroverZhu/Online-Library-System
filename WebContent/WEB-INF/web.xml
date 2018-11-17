@@ -102,8 +102,8 @@
   <servlet-mapping>
     <servlet-name>ReaderModifyInformation</servlet-name>
     <url-pattern>/ReaderModifyInformation</url-pattern>
-    </servlet-mapping>
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <display-name>LibrarianDeleteReader</display-name>
     <servlet-name>LibrarianDeleteReader</servlet-name>
     <servlet-class>controller.librarian.LibrarianDeleteReader</servlet-class>
@@ -131,5 +131,15 @@
   <servlet-mapping>
     <servlet-name>ShowReaderInfo</servlet-name>
     <url-pattern>/librarian/ShowReaderInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddLibrarian</display-name>
+    <servlet-name>AddLibrarian</servlet-name>
+    <servlet-class>controller.administrator.AddLibrarian</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddLibrarian</servlet-name>
+    <url-pattern>/AddLibrarian</url-pattern>
   </servlet-mapping>
 </web-app>
