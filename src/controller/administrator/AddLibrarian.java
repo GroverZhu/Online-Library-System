@@ -2,7 +2,6 @@ package controller.administrator;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import dao.LibrarianDAO;
 
 /**
- * Servlet implementation class AddLibrarian
+ * 增加一个librarian，根据name跟password，添加成功后，则返回数据库自动生成的ID
+ * 
+ * @author GroverZhu
+ *
  */
 public class AddLibrarian extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,8 +32,10 @@ public class AddLibrarian extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 设置编码格式
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
 		String name = request.getParameter("librarianName");
 		String password = request.getParameter("password");
 		LibrarianDAO lib = new LibrarianDAO();

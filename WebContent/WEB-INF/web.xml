@@ -142,4 +142,14 @@
     <servlet-name>AddLibrarian</servlet-name>
     <url-pattern>/AddLibrarian</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminUpdateInfo</display-name>
+    <servlet-name>AdminUpdateInfo</servlet-name>
+    <servlet-class>controller.administrator.AdminUpdateInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateInfo</servlet-name>
+    <url-pattern>/AdminUpdateInfo</url-pattern>
+  </servlet-mapping>
 </web-app>
