@@ -1,12 +1,16 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
-import util.DatabaseUtil;
+
 import entity.Book;
 import entity.Publisher;
 import util.DatabaseUtil;
@@ -214,7 +218,7 @@ public class BookDAO {
 					+" left join publisher on publisher.publisher_id=book.publisher_id) "+
 					" left join writes on writes.isbn=book.isbn "+
 			        " left join author on author.author_id=writes.author_id) "+	             
-					" where book_in_library.book_id=" + id + "group by book_id ";
+					" where book_in_library.book_id=" + id + " group by book_id ";
 		
 		System.out.println("SearchByID sql:" + sql);
 		try {
@@ -295,5 +299,42 @@ public class BookDAO {
 		}
 		return book;
 	}
-
+	/**
+	 * 将bookID的书借给读者
+	 * @author zengyaoNPU
+	 * @param bookId 
+	 * @param readerId 
+	 * @param librarianId 在数据库borrow_item表中对应为borrow_librarian_id
+	 * @return
+	 */
+	public boolean borrowBook(int bookId,int readerId,int librarianId) {
+		Connection conn = null;
+		Statement st = null;
+		PreparedStatement pstmt=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			conn.setAutoCommit(false);
+			//改变book_in_library中 state
+			String sql="update book_in_library set state='borrowed' where book_id="+bookId;
+			st=conn.createStatement();
+			st.executeUpdate(sql);
+			//在borrow_item中添加一条数据
+			Timestamp time = new Timestamp(Calendar.getInstance().getTimeInMillis());
+			sql="insert into borrow_item(reader_id,book_id,borrow_librarian_id,borrow_time) values (?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,readerId);
+			pstmt.setInt(2,bookId);
+			pstmt.setInt(3, librarianId);
+			pstmt.setTimestamp(4, time);
+			pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			st.close();
+			conn.close();
+			return true;
+		}catch(Exception e) {
+			System.out.println("--BookDAO--,--borrowBook()--, suffers exception");
+			return false;
+		}
+	}
 }

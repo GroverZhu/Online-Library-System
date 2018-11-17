@@ -1,11 +1,13 @@
 package test;
 
-import dao.ReaderDAO;
+import dao.BookDAO;
+import entity.Book;
 
 public class Test {
 	public static void main(String[] args) {
-		ReaderDAO r=new ReaderDAO();
-		r.addReaderByName_Passowrd_State("hahhahaha", "123456", "unlock");
-		
+		BookDAO b = new BookDAO();
+		Book book = b.searchByID(2);
+		System.out.println(2);
+
 	}
 }
