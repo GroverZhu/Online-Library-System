@@ -16,7 +16,7 @@ public class DatabaseUtil {
 
 	// ?useUnicode=true&characterEncoding=UTF-8是解决后面存取数据库时中文乱码问题,
 	// &serverTimezone=GMT解决数据库连接出现时区错误问题
-	private String url = "jdbc:mysql://localhost:3306/librarysystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT";
+	private String url = "jdbc:mysql://localhost:3306/librarysystem?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8";
 	private String userName = "root";
 	private String password = "123456";
 	private static DatabaseUtil instance = null;// 单一实例模式

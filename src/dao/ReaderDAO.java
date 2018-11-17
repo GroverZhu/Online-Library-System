@@ -293,4 +293,36 @@ public class ReaderDAO {
 			return null;
 		}
 	}
+	/**
+	 * 根据readerID获取该reader借阅图书的总数
+	 * @author zengyaoNPU
+	 * @param readerId
+	 * @return
+	 */
+	public int getBorrowTotal(int readerId) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		int total=0;
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "SELECT COUNT(*) AS borrowTotal  " + 
+					"FROM borrow_item " + 
+					"WHERE return_time IS NULL "
+					+ "AND reader_id="+readerId; 
+			rs = st.executeQuery(sql);
+			if (rs.next()) {
+				total=rs.getInt("borrowTotal");
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return total;
+		} catch (Exception e) {
+			System.out.println("--ReaderDAO--,getBorrowTotal(),suffers exception");
+			return -1;
+		}
+		
+	}
 }

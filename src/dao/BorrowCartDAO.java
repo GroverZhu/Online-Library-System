@@ -10,6 +10,12 @@ import entity.Cart;
 import util.DatabaseUtil;
 
 public class BorrowCartDAO {
+	/**
+	 * 根据readerID获取该reader的borrowCart
+	 * @author zengyaoNPU
+	 * @param readerId
+	 * @return
+	 */
 	public List<Cart> getBorrowCartByReaderId(int readerId) {
 		Connection conn=null;
 		Statement st=null;
@@ -47,8 +53,7 @@ public class BorrowCartDAO {
 			return null;
 		}
 	}
-	public static void main(String[] args) {
-		BorrowCartDAO borrowCartDAO=new BorrowCartDAO();
-		List<Cart> list=borrowCartDAO.getBorrowCartByReaderId(1);
-	}
+
+	
+	
 }
