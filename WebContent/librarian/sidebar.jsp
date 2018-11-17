@@ -25,6 +25,7 @@
 									<li><a href="searchReaderBeforeEdit.jsp" class="">Edit Reader</a></li>
 									<li><a href="librarianSearchReader.jsp" class="">Search Reader</a></li>
 									<li><a href="librarianLendBook.jsp" class="">Lend Book To Reader</a></li>
+									<li><a href="ShowCart?start=0" class="">Show Borrow Cart</a></li>
 									<li><a href="borrowAndReturnRecord.jsp" class="">Borrow and Return Record</a></li>
 									<li><a href="borrowAndReturn.jsp" class="">Book Borrow and Return</a></li>
 									

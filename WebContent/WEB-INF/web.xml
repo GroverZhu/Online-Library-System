@@ -166,4 +166,14 @@
 		<servlet-name>AdminUpdateInfo</servlet-name>
 		<url-pattern>/AdminUpdateInfo</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ShowCart</display-name>
+		<servlet-name>ShowCart</servlet-name>
+		<servlet-class>controller.librarian.ShowCart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowCart</servlet-name>
+		<url-pattern>/librarian/ShowCart</url-pattern>
+	</servlet-mapping>
 </web-app>
