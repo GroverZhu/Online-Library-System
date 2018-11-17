@@ -1,6 +1,7 @@
 package controller.librarian;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ReaderDAO;
 
 /**
- * Servlet implementation class LibrarianAddReader
+ * librarian添加reader
  */
 public class LibrarianAddReader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,7 @@ public class LibrarianAddReader extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
 		request.setCharacterEncoding("utf-8");
 		//获取参数
 		String name=request.getParameter("readerName");//用户名
@@ -33,10 +35,16 @@ public class LibrarianAddReader extends HttpServlet {
 		int readerId=readerDAO.addReaderByName_Passowrd_State(name, password, state);
 		if(readerId==-1) {
 			System.out.println("添加Reader失败");
-			response.sendRedirect("errorAddReader.jsp");//添加失败，跳转到错误页面
+			out.print("<script language='javascript'>"
+					+ "alert('Sorry! Fail to Add Reader!');"
+					+ "window.location.href='librarianAddReader.jsp';"
+					+ "</script>");
 		}else {
 			System.out.println("添加Reader成功，新的reader id="+readerId);
-			response.sendRedirect("successAddReader.jsp");//添加成功，跳转到成功页面
+			out.print("<script language='javascript'>"
+					+ "alert('Succeed to Add Reader!');"
+					+ "window.location.href='librarianAddReader.jsp';"
+					+ "</script>");
 		}
 	}
 	

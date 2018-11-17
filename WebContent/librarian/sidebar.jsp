@@ -9,7 +9,7 @@
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-cog"></i> <span>Books Management</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
 								<ul class="nav">
-									<li><a href="addBook.jsp" class="">Add Book</a></li>
+									<li><a href="librarianAddBook.jsp" class="">Add Book</a></li>
 								    <li><a href="deleteBook.jsp" class="">Delete Book</a></li>
 									<li><a href="searchEditBook.jsp" class="">Search and Edit Book</a></li>
 								</ul>

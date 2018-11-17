@@ -1,6 +1,7 @@
 package controller.librarian;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,6 +41,7 @@ public class LibrarianModifyReader extends HttpServlet {
 	 * @author zengyaoNPU
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
 		System.out.println("--LibrarianModifyReader--doPost()");
 		request.setCharacterEncoding("utf-8");
 		//获取参数
@@ -52,7 +54,10 @@ public class LibrarianModifyReader extends HttpServlet {
 		if(readerDAO.updateData(id, name, password, email,state)) {
 			response.sendRedirect("SearchReaderBeforeEdit?reader_id="+id);//转发到该页面
 		}else {
-			System.out.println("修改Reader的信息失败");
+			out.print("<script language='javascript'>"
+					+ "alert('Fail to Modify Reader!');"
+					+ "window.location.href='librarianModifyReader.jsp';"
+					+ "</script>");
 		}
 		
 		

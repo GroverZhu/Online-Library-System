@@ -75,8 +75,6 @@
                                     <br>
                                     <input type="text" class="form-control" placeholder="Password"  name="password">
                                     <br>
-                                    <input type="text" class="form-control" placeholder="Email"     name="email">
-									<br>
 									<label class="fancy-radio">
 										<input name="state" value="unlock" type="radio" checked>
 										<span><i></i>Unlock</span>
