@@ -50,14 +50,13 @@ public class AdministratorLogin extends HttpServlet {
 				administrator = administratorDAO.getAdministratorById(userid);
 			}
 			if (administrator == null) {// 无法获取Administrator实体
-				System.out.println("用户不存在");
+				System.out.println("the administrator not exsit");
 				out.print(
 						"<script language='javascript'>alert('AdminID Not Exist!');window.location.href='Login.jsp';</script>");
 			} else if (administrator.getPassword().equals(password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("AdministratorEntity", administrator);// 设置session属性，以便后面使用
-				RequestDispatcher dispatcher = request.getRequestDispatcher("adminIndex.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect("adminHomepage.jsp");
 			} else {
 				out.print(
 						"<script language='javascript'>alert('Your AdminID or Password is Wrong!');window.location.href='Login.jsp';</script>");
