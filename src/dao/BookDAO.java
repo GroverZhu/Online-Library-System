@@ -204,6 +204,7 @@ public class BookDAO {
 	/**
 	 * Search book by id
 	 * @author Hu Yuxi
+	 * @author zengyaoNPU 修改
 	 * @param id
 	 * @return book
 	 */
@@ -226,6 +227,7 @@ public class BookDAO {
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
 				book = new Book();
+				book.setId(rs.getInt("book_id"));//zengyaoNPU添加
 				book.setISBN(rs.getString("isbn"));
 				book.setName(rs.getString("book_name"));
 				book.setPrice(rs.getBigDecimal("book_price"));
@@ -489,10 +491,56 @@ public class BookDAO {
 			return false;
 		}
 	}
+	public int deleteBookById(int bookId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			conn.setAutoCommit(false);
+			//在book_in_library中搜索该书（判断有无），获取状态
+			String sql="SELECT * FROM book_in_library where book_id="+bookId;
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {//该书存在
+				String state=rs.getString("state");
+				if(state.equals("inlib")) {//状态为inlib
+					sql="DELETE FROM book_in_library\r\n" + 
+							"WHERE book_id="+bookId;
+					pstmt=conn.prepareStatement(sql);
+					pstmt.executeUpdate();
+					conn.commit();
+					rs.close();
+					pstmt.close();
+					conn.close();
+					return 1;
+				}else {//状态不是inlib
+					conn.commit();
+					rs.close();
+					pstmt.close();
+					conn.close();
+					return 2;
+				}
+			}else {//该书不存在（不会进入该分支）
+				conn.commit();
+				rs.close();
+				pstmt.close();
+				conn.close();
+				return 3;
+			}
+			
+		}catch(Exception e) {
+			System.out.println("--BookDAO--,--deleteBookById()--,suffers exception");
+			return 4;
+		}
+		
+	}
 	public static void main(String[] args) {
 		BookDAO bookdao = new BookDAO();
 		
-		bookdao.addBookInLib("9787115380999", "东馆", 3);
+		Book book=bookdao.searchByID(12);
+		System.out.println(book.toString());
+		
 	}
 	
 	

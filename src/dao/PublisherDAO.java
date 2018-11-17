@@ -13,6 +13,7 @@ public class PublisherDAO {
 	/**
 	 * 增加一个publisher
 	 * @author GroverZhu
+	 * @author zengyaoNPU 修改
 	 * @param name
 	 * @param decsription
 	 * @return 若增加成功，则返回publisher的ID，否则返回-1
@@ -21,18 +22,27 @@ public class PublisherDAO {
 		int publisherId = -1;
 		try {
 			Connection conn = DatabaseUtil.getInstance().getConnection();
+			//修改 @ZengyaoNPU
+			String query="select * from publisher where publisher_name='"+name+"'";
+			PreparedStatement pstmt=conn.prepareStatement(query);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int id=rs.getInt("publisher_id");
+				rs.close();
+				pstmt.close();
+				conn.close();
+				return id;
+			}//修改 @ZengyaoNPU
 			String add = "insert into publisher(publisher_name, publisher_description) values(?, ?)";
 			PreparedStatement sql = conn.prepareStatement(add, Statement.RETURN_GENERATED_KEYS);
 			sql.setString(1, name);
 			sql.setString(2, decsription);
 			sql.executeUpdate();
-			ResultSet rs = sql.getGeneratedKeys();
+			rs = sql.getGeneratedKeys();
 			if (rs.next()) {
 				publisherId = rs.getInt(1);
 			}
-
 			DatabaseUtil.getInstance().closeConnection(conn, sql, rs);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

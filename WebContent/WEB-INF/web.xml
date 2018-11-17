@@ -192,4 +192,24 @@
     <servlet-name>LibrarianAddBook</servlet-name>
     <url-pattern>/librarian/LibrarianAddBook</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchBookById</display-name>
+    <servlet-name>SearchBookById</servlet-name>
+    <servlet-class>controller.librarian.SearchBookById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchBookById</servlet-name>
+    <url-pattern>/librarian/SearchBookById</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrarianDeleteBook</display-name>
+    <servlet-name>LibrarianDeleteBook</servlet-name>
+    <servlet-class>controller.librarian.LibrarianDeleteBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrarianDeleteBook</servlet-name>
+    <url-pattern>/librarian/LibrarianDeleteBook</url-pattern>
+  </servlet-mapping>
 </web-app>
