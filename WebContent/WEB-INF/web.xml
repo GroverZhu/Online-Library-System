@@ -172,4 +172,14 @@
     <servlet-name>SearchLibrarian</servlet-name>
     <url-pattern>/SearchLibrarian</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteLibrarian</display-name>
+    <servlet-name>DeleteLibrarian</servlet-name>
+    <servlet-class>controller.administrator.DeleteLibrarian</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteLibrarian</servlet-name>
+    <url-pattern>/DeleteLibrarian</url-pattern>
+  </servlet-mapping>
 </web-app>
