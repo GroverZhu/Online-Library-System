@@ -309,7 +309,7 @@ public class BookDAO {
 	 * @param librarianId 在数据库borrow_item表中对应为borrow_librarian_id
 	 * @return
 	 */
-	public boolean borrowBook(int bookId,int readerId,int librarianId) {
+	public boolean lendBook(int bookId,int readerId,int librarianId) {
 		Connection conn = null;
 		Statement st = null;
 		PreparedStatement pstmt=null;

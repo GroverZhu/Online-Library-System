@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
+import dao.BorrowCartDAO;
 import dao.ReaderDAO;
 import entity.Book;
 import entity.Librarian;
@@ -18,7 +19,7 @@ import entity.Reader;
 /**
  * 该serlvet获取librarianLendBook.jsp的请求，查询reader的状态，并将book借给reader。
  * @author zengyaoNPU
- * @date 2018-11-17 11:29
+ * @date 2018-11-17 17:38
  */
 public class LibrarianLendBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,9 +28,30 @@ public class LibrarianLendBook extends HttpServlet {
         super();
     }
 
+    /**
+     * 处理showCart.jsp发来的请求，同意将borrow_cart中的书借给读者
+     * @author zengyaoNPU
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//获取参数
+		String operate=request.getParameter("operate");
+		int readerId=Integer.parseInt(request.getParameter("readerId"));
+		int bookId=Integer.parseInt(request.getParameter("bookId"));
+		HttpSession session =request.getSession();
+		Librarian librarian=(Librarian)session.getAttribute("librarianEntity");
+		BorrowCartDAO bDAO=new BorrowCartDAO();	
+		if(operate.equals("agree")) {//同意将书借出
+			bDAO.agreeBorrowBook(readerId, bookId, librarian.getId());//同意借书
+		}else if(operate.equals("disagree")) {//不同意将书借出
+			bDAO.disagreeBorrowBook(readerId, bookId, librarian.getId());//拒绝借书
+		}
+		//重定向到ShowCart页面
+		response.sendRedirect("ShowCart");
 	}
-
+	/**
+	 * 接收从librarianLendBook.jsp发来的请求，将书借给读者
+	 * @author zengyaoNPU
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
@@ -64,7 +86,7 @@ public class LibrarianLendBook extends HttpServlet {
 				System.out.println("--LibrarianLendBook--,success branch");
 				HttpSession session=request.getSession();
 				Librarian librarian=(Librarian)session.getAttribute("librarianEntity");
-				bookDAO.borrowBook(bookId, readerId, librarian.getId());
+				bookDAO.lendBook(bookId, readerId, librarian.getId());
 				out.print("<script language='javascript'>"
 						+ "alert('Congratulation! Borrow Successfully!');"
 						+ "window.location.href='librarianLendBook.jsp';"

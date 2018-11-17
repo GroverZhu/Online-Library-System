@@ -25,7 +25,10 @@
 			<td>${item.bookId }</td>
 			<td>${item.bookName }</td>
 			<td>${item.submitTime }</td>
-			<td><a href="">Agree</a>/<a href="">Disagree</a></td>
+			<td>
+				<a href="LibrarianLendBook?operate=agree&readerId=${item.readerId}&bookId=${item.bookId}">Agree</a> or 
+				<a href="LibrarianLendBook?operate=disagree&readerId=${item.readerId}&bookId=${item.bookId}">Disagree</a>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
