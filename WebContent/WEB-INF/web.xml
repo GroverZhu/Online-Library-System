@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>OnLineLibrarySystem</display-name>
   <welcome-file-list>
     <welcome-file>homepage.jsp</welcome-file>
   </welcome-file-list>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>simpleTag</taglib-uri>
+      <taglib-location>/WEB-INF/tld/stateTag.tld</taglib-location>
+    </taglib>
+  </jsp-config>
   <servlet>
     <description></description>
     <display-name>LoginHandler</display-name>
@@ -181,5 +187,25 @@
   <servlet-mapping>
     <servlet-name>DeleteLibrarian</servlet-name>
     <url-pattern>/DeleteLibrarian</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminModify</display-name>
+    <servlet-name>AdminModify</servlet-name>
+    <servlet-class>controller.administrator.AdminModify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminModify</servlet-name>
+    <url-pattern>/AdminModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminModifyBefore</display-name>
+    <servlet-name>AdminModifyBefore</servlet-name>
+    <servlet-class>controller.administrator.AdminModifyBefore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminModifyBefore</servlet-name>
+    <url-pattern>/AdminModifyBefore</url-pattern>
   </servlet-mapping>
 </web-app>

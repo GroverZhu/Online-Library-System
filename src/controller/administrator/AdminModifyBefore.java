@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.LibrarianDAO;
+import entity.Librarian;
 
 /**
- * 通过Librarian的名字与密码删除一个librarian
+ * 先输入Librarian的ID，先判断是否存在该Librarian，若存在则跳转到AdminModifyLibrarian.jsp页面
  * 
  * @author GroverZhu
  *
  */
-public class DeleteLibrarian extends HttpServlet {
+public class AdminModifyBefore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeleteLibrarian() {
+	public AdminModifyBefore() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,24 +33,22 @@ public class DeleteLibrarian extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
-		int librarianId = Integer.valueOf(request.getParameter("librarianId"));
-		String librarianName = request.getParameter("librarianName");
+		int id = Integer.valueOf(request.getParameter("librarianId"));
+		Librarian librarian = new LibrarianDAO().getLibrarianById(id);
 
-		LibrarianDAO libDao = new LibrarianDAO();
-
-		int flag = libDao.deleteLibrarianByIdName(librarianId, librarianName);
-
-		if (flag == 1) {
-			String msg = "Delete the Librarian Successfully!";
-			request.setAttribute("message", msg);
-			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
+		if (librarian != null) {
+			String name = librarian.getName();
+			request.setAttribute("id", id);
+			request.setAttribute("name", name);
+			request.getRequestDispatcher("adminModifyLibrarian.jsp").forward(request, response);
 		} else {
-			String msg = "Delete the Librarian Failed! Please Check The Librarian Name & ID";
+			String msg = "Not Found This Librarian, Please Try Again!";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
 		}
+
 	}
 
 }

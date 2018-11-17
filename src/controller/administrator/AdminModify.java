@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.LibrarianDAO;
+import entity.Librarian;
 
 /**
- * 通过Librarian的名字与密码删除一个librarian
+ * 在把指定的Librarian的所有信息显示出来后将修改Librarian的信息
  * 
  * @author GroverZhu
  *
  */
-public class DeleteLibrarian extends HttpServlet {
+public class AdminModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeleteLibrarian() {
+	public AdminModify() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,23 +33,32 @@ public class DeleteLibrarian extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
-		int librarianId = Integer.valueOf(request.getParameter("librarianId"));
-		String librarianName = request.getParameter("librarianName");
+		int id = Integer.valueOf(request.getParameter("librarianId"));
+		String name = request.getParameter("librarianName");
+		String password = request.getParameter("password");
+		String state = request.getParameter("state");
 
-		LibrarianDAO libDao = new LibrarianDAO();
+		Librarian librarian = new LibrarianDAO().getLibrarianById(id);
+		// 判断密码是否被更改
+		if (password == null || password.equals("")) {
+			password = librarian.getPassword();
+		} else {
+			password = util.SecurityUtil.md5(password);
+		}
 
-		int flag = libDao.deleteLibrarianByIdName(librarianId, librarianName);
+		int flag = new LibrarianDAO().updateLibrarian(id, name, password, state);
 
 		if (flag == 1) {
-			String msg = "Delete the Librarian Successfully!";
+			String msg = "Modify The Librarian Successfully!";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
 		} else {
-			String msg = "Delete the Librarian Failed! Please Check The Librarian Name & ID";
+			String msg = "Modify the Librarian Failed!, Please Try Again!";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
+
 		}
 	}
 
