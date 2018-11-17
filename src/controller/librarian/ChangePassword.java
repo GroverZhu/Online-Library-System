@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.LibrarianDAO;
 import entity.Librarian;
+import util.SecurityUtil;
 
 /**
  * 该Servlet用于接收Librarian修改密码的请求
@@ -35,9 +36,9 @@ public class ChangePassword extends HttpServlet {
 		Librarian librarian=(Librarian)session.getAttribute("librarianEntity");
 		LibrarianDAO librarianDAO=new LibrarianDAO();
 		//获取表单数据
-		String oldPw=request.getParameter("old");
-		String newPw=request.getParameter("new");
-		String confirm=request.getParameter("confirm");
+		String oldPw=SecurityUtil.md5(request.getParameter("old"));
+		String newPw=SecurityUtil.md5(request.getParameter("new"));
+		String confirm=SecurityUtil.md5(request.getParameter("confirm"));
 		//检查“新密码”和“确认密码”是否相同
 		if(newPw.equals(confirm)) {
 			if(librarianDAO.changePasswordByOldPassword_NewPassword(librarian.getName(), oldPw,newPw)) {

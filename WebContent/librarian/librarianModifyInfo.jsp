@@ -57,7 +57,7 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" name="old" class="form-control"
+												<input type="password" name="old" class="form-control"
 													placeholder="Old Password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
 										</td>
