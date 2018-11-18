@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.*;
-import entity.*;
-
+import dao.BookDAO;
+import dao.BorrowCartDAO;
+import entity.Book;
+import entity.Reader;
 
 /**
- * Servlet implementation class SearchBookForReader
- * @author Hu Yuxi
- * @date 2018-11-14 20:00
+ * Servlet implementation class AddBookToCart
+ * @author Huyuxi
  */
-public class SearchBookForReader extends HttpServlet {
+public class AddBookToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchBookForReader() {
+    public AddBookToCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,39 +43,20 @@ public class SearchBookForReader extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out=response.getWriter();
-		BookDAO  bookDAO =new BookDAO();
+		BorrowCartDAO borrowcartdao=new BorrowCartDAO();
 		HttpSession session = request.getSession();  
+		Reader reader=(Reader) session.getAttribute("ReaderEntity");
+		int reader_id=reader.getId();
 		Collection<Book> books =new  ArrayList<Book>();
-		int i = 0;
-
-		String style = request.getParameter("style");
-		String name = request.getParameter("name");
-		name = name.trim();
-		name=name.toLowerCase();
-		if(name == ""||name.isEmpty()) {
-			out.print("<script>alert('Please enter the full keyword, the keyword cannot null!');window.location='readerSearchBook.jsp';</script>");
-		}
-		if(style.equals("bookName")) {
-			books = bookDAO.getBookByAlikeTitle(name);
-		}else if(style.equals("author")) {
-			books = bookDAO.getBookByAuthor(name);
-		}else if(style.equals("publisher")) {
-			books = bookDAO.getBookByPublisher(name);
-		}else {
-			out.print("<script>alert('Please select a search type!');window.location='readerSearchBook.jsp';</script>");
-		}
-		System.out.println(books.size());
-
-		if(books.isEmpty()) {
-			out.print("<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
-		}else {
-			session.setAttribute("bookList", books);
-			request.getRequestDispatcher("readerSearchBook.jsp").forward(request,response);
-		}
+		
+		int id = Integer.valueOf(request.getParameter("id"));
+		borrowcartdao.addBorrowCart(id,reader_id);
+		
+		request.getRequestDispatcher("readerShowBookInLib.jsp").forward(request,response);
 	}
+	
 
 }

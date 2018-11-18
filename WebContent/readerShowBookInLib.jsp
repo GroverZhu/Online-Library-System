@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!--Created by Hu Yuxi on 2018-11-14  -->
+<!--Created by Hu Yuxi on 2018-11-18  -->
 <!doctype html>
 <html lang="en">
 
@@ -125,33 +125,36 @@
 										<table class="table">
 											<thead>
 												<tr>
+												    <th>ID</th>
 													<th>ISBN</th>
 													<th>Book_name</th>
 													<th>Author</th>
 													<th>Publisher</th>													
-													<th>Price</th>
+													<th>Location</th>
+													<th>Status</th>
 
 												</tr>
 
 												<!-- 展示书籍信息 -->
 
-                                              <c:set var="bookList" scope="session" value="${bookList}" />
-												<c:forEach var="book" items="${bookList }">
+                                              <c:set var="bookInfoList" scope="session" value="${bookInfoList}" />
+												<c:forEach var="book" items="${bookInfoList }">
 													<tr>
+													<th>${book.id }</th>
 													<th>${book.ISBN }</th>
 													<th>${book.name }</th>
 													<th>${book.authors }</th>
 													<th>${book.publisher.name }</th>													
-													<th>${book.price }</th>	
-											<th><form class="navbar-form navbar-left" role="search" align="center" method="post" action="ShowBookInLib">
-											<input type="hidden" name="isbn" value='${book.ISBN}'></input>
-											<button type="submit" name="bookInfo" class="btn btn-success">More Information</button>
-											</form>	
-											</th>								
+													<th>${book.location }</th>
+													<th>${book.state }</th>	
+													<th><form class="navbar-form navbar-left" role="search" align="center" method="post" action="AddBookToCart">
+											<input type="hidden" name="id" value='${book.id}'></input>
+											<button type="submit" name="addtocart" class="btn btn-success">Add To Cart</button>
+											</form>													
 													</tr>
 												</c:forEach>
-											
 											</thead>
+
 										</table>
 									</div>
 								</div>
@@ -159,6 +162,8 @@
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 			<!-- END MAIN -->
 			<div class="clearfix"></div>
