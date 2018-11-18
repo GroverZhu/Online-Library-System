@@ -208,4 +208,14 @@
     <servlet-name>AdminModifyBefore</servlet-name>
     <url-pattern>/AdminModifyBefore</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminViewLibrarian</display-name>
+    <servlet-name>AdminViewLibrarian</servlet-name>
+    <servlet-class>controller.administrator.AdminViewLibrarian</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminViewLibrarian</servlet-name>
+    <url-pattern>/AdminViewLibrarian</url-pattern>
+  </servlet-mapping>
 </web-app>

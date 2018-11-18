@@ -39,7 +39,7 @@
 					<!-- OVERVIEW -->
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">Search Librarian</h3>
+							<h3 class="panel-title">View Librarian</h3>
 						</div>
 						<div class="panel-body">
 							<form class="navbar-form navbar-left" role="search"
@@ -48,17 +48,8 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp; <select id="input" name="style">
-
-									<option value="librarianId" selected="selected">Librarian
-										ID</option>
-									<option value="librarianName">Librarian Name</option>
-								</select>
-								<div class="form-group" align="center">
-									<input type="text" name="name" placeholder="begin to search..."
-										class="form-control" style="width: 400px;" />
-								</div>
-								<button type="submit" name="submit" class="btn btn-success">Search</button>
+								&nbsp;&nbsp;&nbsp; 
+								
 
 							</form>
 
@@ -81,8 +72,6 @@
 											<th></th>
 											<th></th>
 											<th></th>
-											<th>${book.location }</th>
-											<th>${book.state }</th>
 										</tr>
 									</c:forEach>
 								</thead>
@@ -113,28 +102,7 @@
 			src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="assets/scripts/klorofil-common.js"></script>
-		<!-- 判断输入的正确性 -->
-		<script type="text/javascript">
-			// librarian的姓名不可超过45个字符
-			var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
-			// 读者的密码不可超过45个字符
-			var isPassword = /^\w{1,50}$/;
 
-			function inputCheck(form) {
-				if (!isName.test(form.Name.value)) {
-					alert("Librarian name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
-					form.Name.focus();
-					return false;
-				}
-
-				if (!isPassword.test(form.Password.value)) {
-					alert("Password must less than 50 letters and cannot be empty, please enter again!");
-					form.Password.focus();
-					return false;
-				}
-
-			}
-		</script>
 </body>
 
 </html>
