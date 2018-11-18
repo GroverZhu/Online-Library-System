@@ -19,6 +19,7 @@ public class AuthorDAO {
 	/**
 	 * 增加一个author
 	 * @author GroverZhu
+	 * @author zengyaoNPU 修改
 	 * @param name
 	 * @param decsription
 	 * @return 若增加成功，则返回author的ID，否则返回-1
@@ -27,12 +28,21 @@ public class AuthorDAO {
 		int authorId = -1;
 		try {
 			Connection conn = DatabaseUtil.getInstance().getConnection();
+			//修改 @zengyaoNPU
+			String query="select * from author where author_name='"+name+"'";
+			Statement st=conn.createStatement();
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next()) {
+				int id=rs.getInt("author_id");
+				DatabaseUtil.getInstance().closeConnection(conn, st, rs);
+				return id;
+			}//修改 @zengyaoNPU
 			String add = "insert into author(author_name, author_description) values(?, ?)";
 			PreparedStatement sql = conn.prepareStatement(add, Statement.RETURN_GENERATED_KEYS);
 			sql.setString(1, name);
 			sql.setString(2, decsription);
 			sql.executeUpdate();
-			ResultSet rs = sql.getGeneratedKeys();
+			rs = sql.getGeneratedKeys();
 			if (rs.next()) {
 				authorId = rs.getInt(1);
 			}

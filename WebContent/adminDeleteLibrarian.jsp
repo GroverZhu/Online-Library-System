@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Update Information</title>
+<title>Delete Librarian</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -38,56 +38,39 @@
 					<!-- OVERVIEW -->
 					<div class="panel">
 						<div class="panel-heading">
-							<h1 align="center" class="page-title">Update Information</h1>
+							<h1 align="center" class="page-title">Delete Librarian</h1>
 						</div>
 						<form onsubmit="return inputCheck(this)" method="post"
-							action="AdminUpdateInfo">
+							action="DeleteLibrarian">
 							<div class="panel-body">
 								<table align="center">
 									<tr>
 										<td width=250px height=64px>
 											<div class="form-group has-success has-feedback">
-												<label class="control-label" for="librarianName">Administrator
+												<label class="control-label" for="librarianName">Librarian
 													ID</label>
 											</div>
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" id="adminId" name="AdminID"
+												<input type="text" id="librarianID" name="librarianId"
 													class="form-control"
-													value="${sessionScope.AdministratorEntity.id}"
-													readonly="readonly">
+													placeholder="Please enter the Librarian ID">
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td width=250px height=64px>
 											<div class="form-group has-success has-feedback">
-												<label class="control-label" for="librarianName">New
-													Administrator Name</label>
+												<label class="control-label" for="Password">
+													Librarian Name</label>
 											</div>
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" id="adminName" name="AdminName"
+												<input type="text" id="LibrarianName" name="librarianName"
 													class="form-control"
-													value="${sessionScope.AdministratorEntity.name}"
-													placeholder="Please enter the Librarian name">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width=250px height=64px>
-											<div class="form-group has-success has-feedback">
-												<label class="control-label" for="Password"> New
-													Password</label>
-											</div>
-										</td>
-										<td width=350px height=64px>
-											<div class="form-group has-success has-feedback">
-												<input type="password" id="Password" name="password"
-													class="form-control"
-													placeholder="please enter new password or be empty">
+													placeholder="please enter the librarian name">
 											</div>
 										</td>
 									</tr>
@@ -127,18 +110,19 @@
 		<script type="text/javascript">
 			// librarian的姓名不可超过45个字符
 			var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
-			// 读者的密码不可超过45个字符
-			var isPassword = /^\w{1,50}$|^$/;
+			// librarian的ID不会超过10位数
+			var isId = /^\d{1,10}$/;
 
 			function inputCheck(form) {
-				if (!isName.test(form.adminName.value)) {
-					alert("Librarian name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
-					form.adminName.focus();
+				if (!isId.test(form.librarianID.value)) {
+					alert("Librarian must less than 10 positive digitals and cannot be empty, please enter again!");
+					form.librarianID.focus();
 					return false;
 				}
-				if (!isPassword.test(form.Password.value)) {
-					alert("Password must less than 50 letters or be empty, please enter again!");
-					form.Password.focus();
+
+				if (!isName.test(form.LibrarianName.value)) {
+					alert("Librarian name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+					form.LibrarianName.focus();
 					return false;
 				}
 

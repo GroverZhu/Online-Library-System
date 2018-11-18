@@ -20,12 +20,6 @@
                 <div class="row">
                     <!-- BASIC TABLE -->
                     <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Reader Index
-                                <input type="SUBMIT" name="cis1" value="Return"
-                                       onclick="javascript:this.form.action='readerIndex.jsp';">
-                            </h3>
-                        </div>
                         <div class="panel-body">
                             <table class="table">
                                 <thead>

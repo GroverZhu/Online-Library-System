@@ -1,15 +1,16 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 import entity.Book;
 import entity.Publisher;
@@ -203,6 +204,7 @@ public class BookDAO {
 	/**
 	 * Search book by id
 	 * @author Hu Yuxi
+	 * @author zengyaoNPU 修改
 	 * @param id
 	 * @return book
 	 */
@@ -225,6 +227,7 @@ public class BookDAO {
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
 				book = new Book();
+				book.setId(rs.getInt("book_id"));//zengyaoNPU添加
 				book.setISBN(rs.getString("isbn"));
 				book.setName(rs.getString("book_name"));
 				book.setPrice(rs.getBigDecimal("book_price"));
@@ -398,50 +401,147 @@ public class BookDAO {
 	
 	
 	/**
-	 * @author Huyuxi
+	 * 添加书籍
+	 * @author zengyaoNPU
 	 * @date 2018-11-17
 	 * @param isbn
 	 * @param location
-	 * @param copy
-	 * @return
+	 * @param number 书本的数量
+	 * @return bookID的一个列表
 	 */
-	public int addBookInLib(String isbn,String location,int copy) {
-		int flag=0;
+	public List<Integer> addBookInLib(String isbn,String location,int number) {
 		Connection conn = null;
-		Statement st = null;
-		ResultSet rs;
-		Book book = null;
-		String sql = null;
-		if(isbn!="all"||isbn!=null||isbn!="") {
-			
-		sql = "insert into bookinlib (isbn,book_location,state) values (" + "\'"
-					+ isbn + "\'" + " , " + "\'" + location + "\'" + " , " + "\'"
-					+ "inlib\'" + ") returning book_id";
-		}else {	
-			return flag;		
-		}
-		
-		System.out.println("add book_in_library sql:" + sql);
-		
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		List<Integer> bookIdList=new ArrayList<Integer>();
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
-			st = conn.createStatement();		
-			ArrayList<Integer> idList=new ArrayList<Integer>();		
-			
-			for (int i = 0; i < copy; i++) {
-				rs=st.executeQuery(sql);
-				if(rs.next()) {
-					int id=rs.getInt("book_id");
-					idList.add(id);
-				}			
-			conn.close();
+			conn.setAutoCommit(false);
+			//往book_in_library添加书本
+			String sql="INSERT INTO book_in_library (isbn,book_location,state) \r\n" + 
+					"VALUES (?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, isbn);
+			pstmt.setString(2, location);
+			pstmt.setString(3, "inlib");
+			for(int i=0;i<number;i++) {
+				pstmt.executeUpdate();
+				System.out.println("in");
 			}
+			//返回新添加的书本的book_Id
+			sql="SELECT * FROM book_in_library ORDER BY book_id DESC LIMIT "+number;
+			rs=pstmt.executeQuery(sql);
+			while(rs.next()) {
+				bookIdList.add(rs.getInt("book_id"));
+			}
+			conn.commit();
+			return bookIdList;
+			
 		} catch (SQLException e) {
+			System.out.println("--BookDAO--,--addBookInLib()--,suffers exception");
 			e.printStackTrace();
+			return null;
 		}
-		return flag;
 	}
-	
+	public boolean addNewBook(String ISBN,BigDecimal price,String name,String description,String publisher,String author) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			//查询book表是否存在同一个isbn的书籍
+			String sql="select * from book where isbn='"+ISBN+"'";
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}else {
+				//不存在同isbn的书籍，则添加
+				sql="insert into book(isbn,book_price,book_name,book_description,publisher_id) "
+						+ "values(?,?,?,?,?)";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, ISBN);
+				System.out.println("OK");
+				pstmt.setBigDecimal(2,price);
+				pstmt.setString(3, name);
+				pstmt.setString(4, description);
+				PublisherDAO publisherDAO=new PublisherDAO();
+				int publisherID=publisherDAO.searchPublisherByName(publisher).getId();
+				System.out.println("publisherID="+publisherID);
+				pstmt.setInt(5, publisherID);
+				pstmt.executeUpdate();
+				//在writes表中添加新的关系（先判断是否存在该关系）
+				AuthorDAO authorDAO=new AuthorDAO();
+				int authorId=authorDAO.searchAuthorByName(author).getId();
+				sql="SELECT * FROM writes WHERE author_id="+authorId+" AND is|bn='"+ISBN+"'";
+				pstmt=conn.prepareStatement(sql);
+				if(rs.next()) {
+					return true;
+				}else {
+					sql="insert into writes(isbn,author_id) values(?,?)";
+					pstmt=conn.prepareStatement(sql);
+					pstmt.setString(1, ISBN);
+					pstmt.setInt(2, authorId);
+					pstmt.executeUpdate();
+					return true;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("--BookDAO--,--addNewBook()--,suffers exception");
+			return false;
+		}
+	}
+	public int deleteBookById(int bookId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			conn.setAutoCommit(false);
+			//在book_in_library中搜索该书（判断有无），获取状态
+			String sql="SELECT * FROM book_in_library where book_id="+bookId;
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {//该书存在
+				String state=rs.getString("state");
+				if(state.equals("inlib")) {//状态为inlib
+					sql="DELETE FROM book_in_library\r\n" + 
+							"WHERE book_id="+bookId;
+					pstmt=conn.prepareStatement(sql);
+					pstmt.executeUpdate();
+					conn.commit();
+					rs.close();
+					pstmt.close();
+					conn.close();
+					return 1;
+				}else {//状态不是inlib
+					conn.commit();
+					rs.close();
+					pstmt.close();
+					conn.close();
+					return 2;
+				}
+			}else {//该书不存在（不会进入该分支）
+				conn.commit();
+				rs.close();
+				pstmt.close();
+				conn.close();
+				return 3;
+			}
+			
+		}catch(Exception e) {
+			System.out.println("--BookDAO--,--deleteBookById()--,suffers exception");
+			return 4;
+		}
+		
+	}
+	public static void main(String[] args) {
+		BookDAO bookdao = new BookDAO();
+		
+		Book book=bookdao.searchByID(12);
+		System.out.println(book.toString());
+		
+	}
 	
 	
 }

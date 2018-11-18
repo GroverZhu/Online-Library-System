@@ -1,6 +1,7 @@
 package controller.librarian;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +33,7 @@ public class SearchReaderBeforeEdit extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
 		try {
 			int readerId=Integer.parseInt(request.getParameter("account"));//获取参数
 			ReaderDAO readerDAO=new ReaderDAO();
@@ -41,7 +43,10 @@ public class SearchReaderBeforeEdit extends HttpServlet {
 			dispatcher.forward(request, response);//转发
 		}catch(Exception e) {
 			System.out.println("--SearchReaderBeforeEdit--doPost(),传参错误：很有可能是reader账号没有写对");
-			
+			out.print("<script language='javascript'>"
+					+ "alert('Reader ID may be invalid, please input again!');"
+					+ "window.location.href='searchReaderBeforeEdit.jsp';"
+					+ "</script>");
 		}
 	}
 
