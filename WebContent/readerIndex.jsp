@@ -3,75 +3,14 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-	<title>Reader Index</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
-	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="assets/css/main.css">
-	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="assets/css/demo.css">
-	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
-</head>
-
+<jsp:include page="readerNavbar.jsp" />
 <body>
 	<!-- WRAPPER -->
-	<form method="post" action="ChangeInformation.jsp">
-	<div id="wrapper">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="brand">
-			<a href="index.jsp"><img src="assets/img/BiblioSoft Logo.png"
-				alt="BiblioSoft Logo" class="img-responsive logo"></a>
-		</div>
-		<div class="container-fluid">
-			<div class="navbar-btn">
-				<button type="button" class="btn-toggle-fullwidth">
-					<i class="lnr lnr-arrow-left-circle"></i>
-				</button>
-			</div>
-			<form class="navbar-form navbar-left"></form>
-			<div id="navbar-menu">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <img src="assets/img/user.png"
-							class="img-circle" alt="Avatar"> <span>Tele</span></a></li>
-				</ul>
-			</div>
-		</div>
-		</nav>
-		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
-				<nav>
-					<ul class="nav">
-					
-			
-						<li><a href="elements.jsp" class=""><i class="lnr lnr-code"></i> <span>Modify Password</span></a></li>
-						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Search</span></a></li>
-						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>Borrow History</span></a></li>
-						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Return History</span></a></li>
-					
-						<li><a href="ReaderIndex.jsp" class="active"><i class="lnr lnr-dice"></i> <span>Reader Index</span></a></li>
-						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>Fine</span></a></li>
-						<li><a href="icons.jsp" class=""><i class="lnr lnr-linearicons"></i> <span>Reserve</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+	<form method="post" action="readerChangeInformation.jsp">
+	<jsp:include page="readerLeftSlider.jsp"/>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-		
+
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -82,9 +21,9 @@
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Reader Index
-									<input type="SUBMIT" value="Change Information" style="color:green"> 
+									<input type="SUBMIT" value="Change Information" style="color:green">
                                     </h3>
-									
+
 								</div>
 								<div class="panel-body">
 									<table class="table">
@@ -95,13 +34,13 @@
 												<th>sex</th>
 												<th>Tele</th>
 												<th>MaxBorrow</th>
-												
+
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 											</tr>
-										
+
 										</tbody>
 									</table>
 								</div>
@@ -114,7 +53,7 @@
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-	
+
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
