@@ -207,5 +207,36 @@ public class BorrowCartDAO {
 		}
 		
 	}
-	
+	public boolean returnBook(int bookId,int librarianId) {
+		Connection conn=null;
+		Statement st=null;
+		PreparedStatement pstmt=null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			conn.setAutoCommit(false);
+			st=conn.createStatement();
+			//将book_in_library的state改为inlib
+			String sql="UPDATE book_in_library\r\n" + 
+					"SET state='inlib'\r\n" + 
+					"WHERE book_id="+bookId;
+			st.executeUpdate(sql);
+			//将borrow_item中的return_librarian_id填上，并加上return_time
+			sql="UPDATE borrow_item SET return_librarian_id=?, return_time=? WHERE book_id=? AND return_time IS NULL";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, librarianId);
+			pstmt.setInt(3, bookId);
+			Timestamp time = new Timestamp(Calendar.getInstance().getTimeInMillis());
+			pstmt.setTimestamp(2,time);
+			pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			st.close();
+			conn.close();
+			return true;
+		}catch(Exception e){
+			System.out.println("--BorrowCartDAO--,--returnBook()--,suffers exception");
+			return false;
+		}
+		
+	}
 }
