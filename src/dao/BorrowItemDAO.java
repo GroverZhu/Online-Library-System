@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.BorrowItem;
+import entity.Reader;
 import util.DatabaseUtil;
 
 public class BorrowItemDAO {
@@ -141,8 +142,49 @@ public class BorrowItemDAO {
 		}
 		
 	}
+	/**
+	 * 根据bookID，找到相应的readerID，并获取reader信息，展示给librarian看
+	 * @param bookID
+	 * @return
+	 */
+	public Reader getReaderInBorrowItemByBookID(int bookID) {
+		Connection conn=null;
+		Statement st=null;
+		ResultSet rs;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="SELECT reader.reader_id,reader.`reader_name`,reader.`reader_email`,reader.`state`\r\n" + 
+					"FROM borrow_item,reader \r\n" + 
+					"WHERE borrow_item.`reader_id`=reader.`reader_id`\r\n" + 
+					"AND return_time IS NULL \r\n" + 
+					"AND book_id="+bookID;
+			rs=st.executeQuery(sql);
+			if(rs.next()) {
+				int Id=rs.getInt("reader_id");
+				String name=rs.getString("reader_name");
+				String email=rs.getString("reader_email");
+				String state=rs.getString("state");
+				Reader reader=new Reader();
+				reader.setEmail(email);
+				reader.setId(Id);;
+				reader.setName(name);
+				reader.setState(state);
+				return reader;
+			}else {
+				return null;
+			}
+		}catch(Exception e) {
+			System.out.println("--BorrowItemDAO--,--getReaderInBorrowItemByBookID()--,suffers exception");
+			return null;
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		BorrowItemDAO b=new BorrowItemDAO();
-		b.getBorrowItemInHistory(1);
+		Reader reader=b.getReaderInBorrowItemByBookID(2);
+		System.out.println(reader.toString());
 	}
 }

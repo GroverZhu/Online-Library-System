@@ -3,33 +3,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Librarian Search Book</title>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <!-- VENDOR CSS -->
 <link rel="stylesheet"
-	href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+	href="assets/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="../assets/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+	href="assets/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
 <link rel="stylesheet"
-	href="../assets/vendor/chartist/css/chartist-custom.css">
+	href="assets/vendor/chartist/css/chartist-custom.css">
 <!-- MAIN CSS -->
-<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css">
 <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-<link rel="stylesheet" href="../assets/css/demo.css">
+<link rel="stylesheet" href="assets/css/demo.css">
 <!-- GOOGLE FONTS -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
 	rel="stylesheet">
 <!-- ICONS -->
 <link rel="apple-touch-icon" sizes="76x76"
-	href="../assets/img/apple-icon.png">
+	href="assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
-	href="../assets/img/favicon.png">
+	href="assets/img/favicon.png">
 </head>
 <body>
 	<div id="wrapper">
@@ -81,14 +77,12 @@
 												<th>Publisher</th>
 												<th>Author(s)</th>
 												<th>Price</th>
-												<th>Location</th>
-												<th>Book ID</th>
 												<th>Operate</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:if test="${not empty bookList }">
-											<c:forEach var="item" items="${bookList }" varStatus="i">
+											<c:if test="${not empty sessionScope.bookList }">
+											<c:forEach var="item" items="${sessionScope.bookList }" varStatus="i">
 												<tr>
 													<td>1</td>
 													<td>${item.ISBN }</td>
@@ -96,10 +90,8 @@
 													<td>${item.publisher.name }</td>
 													<td>${item.authors }</td>
 													<td>${item.price }</td>
-													<td>${item.location }</td>
-													<td>${item.id }</td>
 													<th>
-														<a href="Details">
+														<a href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
 														<button type="button" class="btn btn-primary">
 															<i class="fa fa-refresh"></i> Details
 														</button>
@@ -108,21 +100,19 @@
 												</tr>
 											</c:forEach>
 											</c:if>
-											<c:if test="${not empty bookEntity }">
+											<c:if test="${not empty sessionScope.bookEntity }">
 												<tr>
 													<td>1</td>
-													<td>${bookEntity.ISBN }</td>
-													<td>${bookEntity.name }</td>
-													<td>${bookEntity.publisher.name }</td>
-													<td>${bookEntity.authors }</td>
-													<td>${bookEntity.price }</td>
-													<td>${bookEntity.location }</td>
-													<td>${bookEntity.id }</td>
+													<td>${sessionScope.bookEntity.ISBN }</td>
+													<td>${sessionScope.bookEntity.name }</td>
+													<td>${sessionScope.bookEntity.publisher.name }</td>
+													<td>${sessionScope.bookEntity.authors }</td>
+													<td>${sessionScope.bookEntity.price }</td>
+													<td>${sessionScope.bookEntity.location }</td>
+													<td>${sessionScope.bookEntity.id }</td>
 													<th>
-														<a href="Details">
-														<button type="button" class="btn btn-primary" onclick="update()">
-															<i class="fa fa-refresh"></i> Details
-														</button>
+														<a href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
+															Details
 														</a>
 													</th>
 												</tr>
@@ -145,7 +135,7 @@
 		<footer>
 		<div class="container-fluid">
 			<p class="copyright">
-				Copyright &copy; 2018.Company name All rights reserved. <a
+				Copyright &copy; 2018.Company name All 中文rights reserved. <a
 					target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
 					title="BiblioSoft" target="_blank">Software</a>
 			</p>

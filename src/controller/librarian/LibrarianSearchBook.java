@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
 import entity.Book;
@@ -18,12 +19,22 @@ import entity.Book;
  */
 public class LibrarianSearchBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private BookDAO bookDAO=new BookDAO();
     public LibrarianSearchBook() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String isbn=request.getParameter("isbn");
+		//转发到页面，展示图书详细信息
+		List<Book> list=(List<Book>) bookDAO.getBookListByIsbn(isbn);
+		Book book=bookDAO.getBookByIsbn(isbn);
+		request.setAttribute("information", book);
+		request.setAttribute("library", list);
+		request.getRequestDispatcher("details.jsp").forward(request, response);
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,43 +42,52 @@ public class LibrarianSearchBook extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String searchBy=request.getParameter("searchBy");
 		String keyword=request.getParameter("keyword");
-		BookDAO bookDAO=new BookDAO();
+		System.out.println("关键词keyword="+keyword);
+		System.out.println(request.getCharacterEncoding());
 		if(searchBy.equals("Book Name")) {
 			System.out.println("By Book Name");
-			List<Book> list=(List<Book>) bookDAO.searchByTitle(keyword);
-			request.setAttribute("bookList", list);
+			List<Book> list=(List<Book>) bookDAO.getBookByAlikeTitle(keyword);
 			if(list==null||list.isEmpty()) {
 				out.print("<script language='javascript'>"
 						+ "alert('There is no such book in the library!');"
 						+ "window.location.href='librarianSearchBook.jsp';"
 						+ "</script>");
 			}else {
-				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
+				//不知道为什么，这里用requestDispatcher的时候，第二次进入jsp页面会中文乱码
+				HttpSession session=request.getSession();
+				session.setAttribute("bookList", list);
+				session.setMaxInactiveInterval(1);
+				response.sendRedirect("librarianSearchBook.jsp");
 			}
 		}else if(searchBy.equals("ISBN")) {
 			System.out.println("By ISBN");
-			Book book=bookDAO.searchByIsbn(keyword);
-			request.setAttribute("bookEntity",book);
-			System.out.println(book.toString());
+			Book book=bookDAO.getBookByIsbn(keyword);
 			if(book==null) {
 				out.print("<script language='javascript'>"
 						+ "alert('There is no such book in the library!');"
 						+ "window.location.href='librarianSearchBook.jsp';"
 						+ "</script>");
 			}else {
-				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
+				HttpSession session=request.getSession();
+				session.setAttribute("bookEntity", book);
+				session.setMaxInactiveInterval(1);
+				response.sendRedirect("librarianSearchBook.jsp");
+//				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
 			}
 		}else if(searchBy.equals("Author")) {
 			System.out.println("By Author");
-			List<Book> list=(List<Book>) bookDAO.searchByAuthor(keyword);
-			request.setAttribute("bookList", list);
+			List<Book> list=(List<Book>) bookDAO.getBookByAuthor(keyword);
 			if(list==null||list.isEmpty()) {
 				out.print("<script language='javascript'>"
 						+ "alert('There is no such book in the library!');"
 						+ "window.location.href='librarianSearchBook.jsp';"
 						+ "</script>");
 			}else {
-				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
+				HttpSession session=request.getSession();
+				session.setAttribute("bookList", list);
+				session.setMaxInactiveInterval(1);
+				response.sendRedirect("librarianSearchBook.jsp");
+//				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
 			}
 		}
 	}
