@@ -255,6 +255,7 @@ public class BookDAO {
 	/**
 	 * Search by ISBN
 	 * @author Hu Yuxi
+	 * @author zengyaoNPU 修改
 	 * @param isbn
 	 * @return search book information by isbn
 	 */
@@ -269,7 +270,7 @@ public class BookDAO {
 					+" left join publisher on publisher.publisher_id=book.publisher_id) "+
 					" left join writes on writes.isbn=book.isbn "+
 			        " left join author on author.author_id=writes.author_id) "+	             
-					" where book_in_library.isbn=" + isbn + "group by book_id ";
+					" where book_in_library.isbn='" + isbn + "' group by book_id ";
 		}else {
 			return book;
 		}
