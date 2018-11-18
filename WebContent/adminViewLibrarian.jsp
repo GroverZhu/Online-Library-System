@@ -48,10 +48,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp; 
-								
-
-							</form>
+								&nbsp;&nbsp;&nbsp;</form>
 
 							<br /> <br /> <br />
 							<table class="table">
@@ -63,20 +60,34 @@
 										<th>Operation</th>
 									</tr>
 
-									<!-- 展示书籍信息 -->
+									<!-- 展示Librarian信息 -->
 
 
-									<c:forEach var="book" items="">
+									<c:forEach var="lib" items="${libs}">
 										<tr>
-											<th></th>
-											<th></th>
-											<th></th>
-											<th></th>
+											<th>${lib.id}</th>
+											<th>${lib.name}</th>
+											<th>${lib.state}</th>
+											<th>
+												<button
+													onclick="window.location.href='adminDeleteLibrarian.jsp?id=${lib.id}&name=${lib.name}'">Delete</button>
+												<button
+													onclick="window.location.href='adminModifyLibrarianBefore.jsp?id=${lib.id}'">Modify</button>
+											</th>
 										</tr>
 									</c:forEach>
+
 								</thead>
 
 							</table>
+							<nav>
+							<ul class="pager">
+								<li><a href="?start=0">First Page</a></li>
+								<li><a href="?start=${pre}">Preview</a></li>
+								<li><a href="?start=${next}">Next</a></li>
+								<li><a href="?start=${last}">Last Page</a></li>
+							</ul>
+							</nav>
 						</div>
 					</div>
 				</div>
@@ -102,7 +113,7 @@
 			src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="assets/scripts/klorofil-common.js"></script>
-
+		
 </body>
 
 </html>
