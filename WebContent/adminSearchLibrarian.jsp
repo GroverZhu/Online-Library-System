@@ -123,7 +123,7 @@
 				// 书的名字不可超过50个字符
 				var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
 				// 书的ID不可超过10个数字
-				var isId = /^\w{1,10}$/;
+				var isId = /^\d{1,10}$/;
 
 				var myselect = document.getElementById("input");
 				var index = myselect.selectedIndex;

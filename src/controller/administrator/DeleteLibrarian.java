@@ -36,9 +36,9 @@ public class DeleteLibrarian extends HttpServlet {
 
 		int librarianId = Integer.valueOf(request.getParameter("librarianId"));
 		String librarianName = request.getParameter("librarianName");
-
+		
 		LibrarianDAO libDao = new LibrarianDAO();
-
+		
 		int flag = libDao.deleteLibrarianByIdName(librarianId, librarianName);
 
 		if (flag == 1) {
@@ -46,7 +46,7 @@ public class DeleteLibrarian extends HttpServlet {
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
 		} else {
-			String msg = "Delete the Librarian Failed! Please Check The Librarian Name & ID";
+			String msg = "Delete the Librarian Failed! The Librarian May Has Some Operations In this Library Or the Name & ID Not Correct!";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
 		}
