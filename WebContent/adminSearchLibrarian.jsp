@@ -43,20 +43,21 @@
 						</div>
 						<div class="panel-body">
 							<form class="navbar-form navbar-left" role="search"
-								align="center" method="post" action="SearchLibrarian">
+								onsubmit="return inputCheck(this)" align="center" method="post"
+								action="SearchLibrarian">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp; <select id="input" name="style">
-
 									<option value="librarianId" selected="selected">Librarian
 										ID</option>
 									<option value="librarianName">Librarian Name</option>
 								</select>
 								<div class="form-group" align="center">
-									<input type="text" name="name" placeholder="begin to search..."
-										class="form-control" style="width: 400px;" />
+									<input type="text" id="inputText" name="name"
+										placeholder="begin to search..." class="form-control"
+										style="width: 400px;" />
 								</div>
 								<button type="submit" name="submit" class="btn btn-success">Search</button>
 
@@ -75,14 +76,17 @@
 									<!-- 展示书籍信息 -->
 
 
-									<c:forEach var="book" items="">
+									<c:forEach var="lib" items="${libs}">
 										<tr>
-											<th></th>
-											<th></th>
-											<th></th>
-											<th></th>
-											<th>${book.location }</th>
-											<th>${book.state }</th>
+											<th>${lib.id}</th>
+											<th>${lib.name}</th>
+											<th>${lib.state}</th>
+											<th>
+												<button
+													onclick="window.location.href='adminDeleteLibrarian.jsp?id=${lib.id}&name=${lib.name}'">Delete</button>
+												<button
+													onclick="window.location.href='adminModifyLibrarianBefore.jsp?id=${lib.id}'">Modify</button>
+											</th>
 										</tr>
 									</c:forEach>
 								</thead>
@@ -115,22 +119,28 @@
 		<script src="assets/scripts/klorofil-common.js"></script>
 		<!-- 判断输入的正确性 -->
 		<script type="text/javascript">
-			// librarian的姓名不可超过45个字符
-			var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
-			// 读者的密码不可超过45个字符
-			var isPassword = /^\w{1,50}$/;
-
 			function inputCheck(form) {
-				if (!isName.test(form.Name.value)) {
-					alert("Librarian name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
-					form.Name.focus();
-					return false;
-				}
+				// 书的名字不可超过50个字符
+				var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
+				// 书的ID不可超过10个数字
+				var isId = /^\d{1,10}$/;
 
-				if (!isPassword.test(form.Password.value)) {
-					alert("Password must less than 50 letters and cannot be empty, please enter again!");
-					form.Password.focus();
-					return false;
+				var myselect = document.getElementById("input");
+				var index = myselect.selectedIndex;
+				var value = myselect.options[index].value;
+				if (myselect.options[index].value == "librarianId") {
+					if (!isId.test(form.inputText.value)) {
+						alert("Librarian ID must less than 10 postive digitals and cannot be empty, please enter again!");
+						form.inputText.focus();
+						return false;
+					}
+				}
+				if (value == "librarianName") {
+					if (!isName.test(form.inputText.value)) {
+						alert("Librarian name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+						form.inputText.focus();
+						return false;
+					}
 				}
 
 			}

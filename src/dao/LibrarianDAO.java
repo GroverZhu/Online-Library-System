@@ -291,4 +291,76 @@ public class LibrarianDAO {
 		}
 		return total;
 	}
+
+	/**
+	 * 为方便使用administrator查询librarian，考虑到librarian的名字会有重复
+	 * 为了统一在界面上显示，查询的返回值均为ArrayList<Librarian>，便于在界面上统一显示
+	 * 将getLibrarianByName()与getLibrarianById()的方法重写
+	 * 
+	 * @author GroverZhu
+	 */
+
+	public ArrayList<Librarian> getLibrarianListByName(String name) {
+		ArrayList<Librarian> libs = new ArrayList<Librarian>();
+		try {
+			Connection conn = DatabaseUtil.getInstance().getConnection();
+			String query = "select * from librarian where librarian_name like ?";
+			PreparedStatement sql = conn.prepareStatement(query);
+			sql.setString(1, "%" + name + "%");
+			ResultSet rs = sql.executeQuery();
+			while (rs.next()) {
+				Librarian lib = new Librarian();
+				int id = rs.getInt("librarian_id");
+				String nameDiff = rs.getString("librarian_name");
+				String state = rs.getString("state");
+				lib.setId(id);
+				lib.setName(nameDiff);
+				lib.setState(state);
+				libs.add(lib);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return libs;
+	}
+
+	public ArrayList<Librarian> getLibrarianListById(int id) {
+		ArrayList<Librarian> lib = new ArrayList<Librarian>();
+		Librarian librarian = new Librarian();
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "select * from librarian where librarian_id=" + id;
+			rs = st.executeQuery(sql);
+			if (rs.next()) {
+				// 获取数据
+				String name = rs.getString("librarian_name");
+				String password = rs.getString("librarian_password");
+				String state = rs.getString("state");
+				// 封装实体
+				librarian.setId(id);
+				librarian.setName(name);
+				librarian.setPassword(password);
+				librarian.setState(state);
+				rs.close();
+				st.close();
+				conn.close();
+				lib.add(librarian);
+				return lib;
+			} else {
+				System.out.println("--Librarian--,--getLibrarianById()--,Cannot find the librarian by id=" + id);
+				rs.close();
+				st.close();
+				conn.close();
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("--Librarian--,--getLibrarianById()--,suffers exception");
+			return null;
+		}
+	}
 }

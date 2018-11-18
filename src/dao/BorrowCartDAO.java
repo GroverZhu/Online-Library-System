@@ -330,6 +330,7 @@ public class BorrowCartDAO {
 				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
+
 			}
 			carts = getAllBorrowCartByReaderID(readerID);
 			for (Cart cart : carts) {

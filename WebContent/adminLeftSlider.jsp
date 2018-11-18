@@ -32,7 +32,7 @@
 			</a>
 				<div id="subPages" class="collapse">
 					<ul class="nav">
-						<li><a href="adminViewLibrarian.jsp" class="">View Librarian</a></li>
+						<li><a href="AdminViewLibrarian" class="">View Librarian</a></li>
 						<li><a href="adminSearchLibrarian.jsp" class="">Search Librarian</a></li>
 						<li><a href="adminModifyLibrarianBefore.jsp" class="">Modify Librarian</a></li>
 						<li><a href="adminDeleteLibrarian.jsp" class="">Delete Librarian</a></li>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-<title>Add Reader</title>
+<title>Book Details</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -58,35 +58,27 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Add a New Reader</h3>
+					<h3 class="page-title">Information</h3>
 					<div class="row">
 						<div class="col-md-12" >
 							
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3  class="panel-title"><b>Please Input Here to Add a new Reader</b></h3>
 								</div>
 								
-								<form method="post" action="LibrarianAddReader">
 								<div class="panel-body">
-									<input type="text" class="form-control" placeholder="Reader Name 由字符、空格、中文组成" name="readerName">
+									<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.ISBN }"/>
                                     <br>
-                                    <input type="text" class="form-control" placeholder="Password"  name="password">
+                                    <input type="text" class="form-control" name="password" readonly="readonly" value="${information.name}"/>
                                     <br>
-									<label class="fancy-radio">
-										<input name="state" value="unlock" type="radio" checked>
-										<span><i></i>Unlock</span>
-									</label>
-									<label class="fancy-radio">
-										<input name="state" value="blockade" type="radio">
-										<span><i></i>Blockade</span>
-                                    </label>
-                                    <p class="demo-button">
-                                            <button id="submit" type="submit"  class="btn btn-success">Add</button>
-                                    </p>
+									<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.publisher.name }"/>
+                                    <br>
+                                    <input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.authors }"/>
+                                    <br>
+                                    <input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.price }"/>
+                                    <br>
 								</div>
-								</form>
 							</div>
 							<!-- END INPUTS -->
 							<!-- INPUT SIZING -->

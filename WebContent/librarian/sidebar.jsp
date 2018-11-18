@@ -11,6 +11,8 @@
 								<ul class="nav">
 									<li><a href="librarianAddBook.jsp" class="">Add Book</a></li>
 								    <li><a href="librarianDeleteBook.jsp" class="">Delete Book</a></li>
+								    <li><a href="librarianSearchBook.jsp" class="">Search Book</a></li>
+								    <li><a href="librarianReturnBook.jsp" class="">Return Book</a></li>
 									<li><a href="searchEditBook.jsp" class="">Search and Edit Book</a></li>
 								</ul>
 							</div>

@@ -1,10 +1,15 @@
 package controller.administrator;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.LibrarianDAO;
+import entity.Librarian;
 
 /**
  * Servlet implementation class SearchLibrarian
@@ -21,23 +26,41 @@ public class SearchLibrarian extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
+		String option = request.getParameter("style");
+		if (option.equals("librarianId")) {
+			int id = Integer.valueOf(request.getParameter("name"));
+			ArrayList<Librarian> libs = new LibrarianDAO().getLibrarianListById(id);
+			if (libs != null && libs.size() != 0) {
+				request.setAttribute("libs", libs);
+				request.getRequestDispatcher("adminSearchLibrarian.jsp").forward(request, response);
+			} else {
+				String msg = "The Librarian ID Not Exist, Please Try Other Librarian ID!";
+				request.setAttribute("message", msg);
+				request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
+			}
+
+		}
+
+		if (option.equals("librarianName")) {
+			String name = request.getParameter("name");
+			ArrayList<Librarian> libs = new LibrarianDAO().getLibrarianListByName(name);
+			if (libs != null && libs.size() != 0) {
+				request.setAttribute("libs", libs);
+				request.getRequestDispatcher("adminSearchLibrarian.jsp").forward(request, response);
+			} else {
+				String msg = "The Librarian Name Not Exist, Please Try Other Librarian Name!";
+				request.setAttribute("message", msg);
+				request.getRequestDispatcher("adminOperateResult.jsp").forward(request, response);
+			}
+
+		}
+	}
 }

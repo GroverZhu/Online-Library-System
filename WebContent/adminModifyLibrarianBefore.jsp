@@ -54,7 +54,7 @@
 
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" id="LibrarianID" name="librarianId"
+												<input type="text" id="LibrarianID" name="librarianId" value="${param.id}"
 													class="form-control" placehold="please enter librarian ID">
 											</div>
 										</td>
