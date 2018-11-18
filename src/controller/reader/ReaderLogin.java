@@ -71,8 +71,7 @@ public class ReaderLogin extends HttpServlet {
 						System.out.println("unlock");
 						HttpSession session = request.getSession();
 						session.setAttribute("ReaderEntity", reader);// 设置session属性，以便后面使用
-						RequestDispatcher dispatcher = request.getRequestDispatcher("readerIndex.jsp");
-						dispatcher.forward(request, response);
+						response.sendRedirect("readerIndex.jsp");
 					} else
 						out.print(
 								"<script language='javascript'>alert('Your ReaderID has been locked!');window.location.href='Login.jsp';</script>");
