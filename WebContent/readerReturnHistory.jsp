@@ -36,18 +36,25 @@
                             <th>Librarian ID</th>
                             <th>Return Time</th>
                         </tr>
-                        <c:forEach items="${returnHistory}" var="returnhistory" varStatus="num">
-                            <th>${num.count}</th>
+                        <c:forEach items="${borrowitems}" var="returnhistory" varStatus="num" >
+                        <tr>
+                            <th>${num.count+nums}</th>
                             <th>${returnhistory.bookId}</th>
                             <th>${returnhistory.bookName}</th>
                             <th>${returnhistory.borrowLibrarianId}</th>
                             <th>${returnhistory.returnTime}</th>
-                        </c:forEach>
-                        <tr>
-
                         </tr>
+                        </c:forEach>
                         </thead>
                     </table>
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="?start=0">First Page</a></li>
+                            <li><a href="?start=${pre}">Preview</a></li>
+                            <li><a href="?start=${next}">Next</a></li>
+                            <li><a href="?start=${last}">Last Page</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
