@@ -66,7 +66,7 @@
 
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Borrower Information</h3>
+									<h3 class="panel-title">Book Information</h3>
 								</div>
 								<div class="panel-body no-padding">
 									<table class="table">
@@ -95,6 +95,14 @@
 											</c:if>
 										</tbody>
 									</table>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Borrower</h3>
+								</div>
+								<div class="panel-body no-padding">
 									<table class="table">
 										<thead>
 											<tr>
@@ -105,20 +113,18 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:if test="${not empty borrowerEntity }">
-													<tr>
-														<td>${borrowerEntity.id }</td>
-														<td>${borrowerEntity.name }</td>
-														<td>${borrowerEntity.email }</td>
-														<td>${borrowerEntity.state }</td>
-													</tr>
+											<c:if test="${not empty borrowerEntity}">
+												<tr>
+													<td>${borrowerEntity.id}</td>
+													<td>${borrowerEntity.name}</td>
+													<td>${borrowerEntity.email}</td>
+													<td>${borrowerEntity.state}</td>
+												</tr>
 											</c:if>
 										</tbody>
 									</table>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
 				</div>

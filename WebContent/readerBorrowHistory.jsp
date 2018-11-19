@@ -24,7 +24,7 @@
 
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Borrow History</h3>
+                    <h3 class="panel-title">Your Borrow History</h3>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">

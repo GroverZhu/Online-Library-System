@@ -23,6 +23,9 @@ public class SearchReaderBeforeEdit extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
 		int readerId=Integer.parseInt(request.getParameter("reader_id"));
 		ReaderDAO readerDAO=new ReaderDAO();
 		Reader reader=readerDAO.getReaderById(readerId);//实例化Reader
@@ -33,6 +36,9 @@ public class SearchReaderBeforeEdit extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
 		PrintWriter out=response.getWriter();
 		try {
 			int readerId=Integer.parseInt(request.getParameter("account"));//获取参数

@@ -16,7 +16,7 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Reader Index</h3>
+                <h3 class="page-title">Modify Information</h3>
                 <div class="row">
                     <!-- BASIC TABLE -->
                     <div class="panel">
@@ -44,11 +44,13 @@
                                                    style="height:23px;width:100px"></td>
                                     </form>
                                 </tr>
-                                <tr>
-                                    <td><input type="SUBMIT" name="cis2" value="Modify"></td>
-                                </tr>
                                 </tbody>
                             </table>
+                            <div>
+									<div style="width: 300px; margin: auto">
+										<button type="submit"  name="cis2" class="btn btn-primary btn-block">Modify</button>
+									</div>
+								</div>
                         </div>
                     </div>
                 </div>

@@ -29,14 +29,28 @@
 	href="../assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
 	href="../assets/img/favicon.png">
+
+<!--  pay the deposit to submit the registration information  -->
+<script>
+	function check() {
+		var checkbox = document.getElementByID("paid"); //checkbox's id
+		if (checkbox.checked == true) { //selected
+			document.getElementByID("submit").style.backgroundColor = "red";
+			document.getElementByID("submit").removeAttribute = "disabled"; //remove disabled
+		} else {
+			document.getElementByID("submit").disabled = "disabled";
+		}
+	}
+</script>
+
 </head>
 
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
-		<%@ include file="sidebar.jsp" %>
-		
+		<%@ include file="sidebar.jsp"%>
+
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -44,105 +58,105 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Information</h3>
 					<div class="row">
-						<div class="col-md-12" >
-							
+						<div class="col-md-12">
+
 							<!-- INPUTS -->
 							<div class="panel">
-								<div class="panel-heading">
-								</div>
-								
+								<div class="panel-heading"></div>
+
 								<div class="panel-body">
-									ISBN:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.ISBN }"/>
-                                    <br>
-                                    Book Name:<input type="text" class="form-control" name="password" readonly="readonly" value="${information.name}"/>
-                                    <br>
-									Publisher:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.publisher.name }"/>
-                                    <br>
-                                    Authors:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.authors }"/>
-                                    <br>
-                                    Price:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.price }"/>
-                                    <br>
-                                    Description:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.description }"/>
-                                    <br>
+									ISBN:<input type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.ISBN }" /> <br>
+									Book Name:<input type="text" class="form-control"
+										name="password" readonly="readonly"
+										value="${information.name}" /> <br> Publisher:<input
+										type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.publisher.name }" />
+									<br> Authors:<input type="text" class="form-control"
+										name="readerName" readonly="readonly"
+										value="${information.authors }" /> <br> Price:<input
+										type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.price }" /> <br>
+									Description:<textarea  class="form-control"
+										name="readerName" readonly="readonly"
+										>${information.description }</textarea> <br>
 								</div>
 							</div>
 							<!-- END INPUTS -->
 							<table class="table">
-										<thead>
-											<tr>
-												<th>Number</th>
-												<th>Book ID</th>
-												<th>Book Location</th>
-												<th>State</th>
-												<th>Operate</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="item" items="${library }" varStatus="i">
-												<tr>
-													<td>${i.count }</td>
-													<td>${item.id }</td>
-													<td>${item.location }</td>
-													<td>${item.state }</td>
-													<th>
-														<a href="LibrarianEditBook?book_id=${item.id}">
-														<button type="button" class="btn btn-primary">
-															<i class="fa fa-refresh"></i> Edit
-														</button>
-														</a>
-													</th>
-												</tr>
-											</c:forEach>
-										</tbody>
+								<thead>
+									<tr>
+										<th>Number</th>
+										<th>Book ID</th>
+										<th>Book Location</th>
+										<th>State</th>
+										<th>Operate</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="item" items="${library }" varStatus="i">
+										<tr>
+											<td>${i.count }</td>
+											<td>${item.id }</td>
+											<td>${item.location }</td>
+											<td>${item.state }</td>
+											<th><a href="LibrarianEditBook?book_id=${item.id}">
+													<button type="button" class="btn btn-primary">
+														<i class="fa fa-refresh"></i> Edit
+													</button>
+											</a></th>
+										</tr>
+									</c:forEach>
+								</tbody>
 							</table>
-							
-							<!-- END INPUT SIZING -->
+
+
 						</div>
-						
 					</div>
+					<!-- END INPUTS -->
+					<!-- INPUT SIZING -->
+
 				</div>
+
 			</div>
-			<!-- END MAIN CONTENT -->
 		</div>
-		<!-- END MAIN -->
+	</div>
+	<!-- END MAIN CONTENT -->
+	</div>
+	<!-- END MAIN -->
 
 	<div class="clearfix"></div>
 	<footer>
-	<div class="container-fluid">
-		<p class="copyright">
-			Copyright &copy; 2018.Company name All rights reserved. <a
-				 target="_blank" title="BiblioSoft">BiblioSoft</a>
-			- Collect from <a  title="BiblioSoft"
-				target="_blank">Software</a>
-		</p>
+		<div class="container-fluid">
+			<p class="copyright">
+				Copyright &copy; 2018.Company name All rights reserved. <a
+					target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
+					title="BiblioSoft" target="_blank">Software</a>
+			</p>
 
-	</div>
+		</div>
 	</footer>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="../assets/vendor/jquery/jquery.min.js"></script>
 	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script
 		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="../assets/scripts/klorofil-common.js"></script>
-	
+
 	<script>
+		function logout() {
+			var result = confirm("Please make sure.Logout?");
+			if (result == true) {
+				window.location.href = "DestroyLibSession";
+			} else {
 
-
-	function logout(){
-		var result = confirm("Please make sure.Logout?");  
-	    if (result == true) {  
-	    	window.location.href="DestroyLibSession"; 
-	    } else {  
-	        
-	    }
-	}
-	
+			}
+		}
 	</script>
-	
-
 </body>
 
 </html>

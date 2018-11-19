@@ -33,8 +33,8 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		<%@ include file="navbar.jsp" %>
-		<%@ include file="sidebar.jsp" %>
+		<%@ include file="navbar.jsp"%>
+		<%@ include file="sidebar.jsp"%>
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -42,82 +42,83 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Delete a book</h3>
 					<div class="row">
-						<div class="col-md-12" >
-							
+						<div class="col-md-12">
+
 							<!-- INPUTS -->
 							<form method="POST" action="SearchBookById">
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title">Input Book ID</h3>
+									</div>
+									<div class="panel-body">
+										<div class="col-md-12">
+											<div class="input-group">
+												<!-- 在此输入book_ID -->
+												<input class="form-control" type="text" name="book_id"
+													placeholder="Book ID"> <span
+													class="input-group-btn"><button
+														class="btn btn-primary" type="SUBMIT">Search</button></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Input Book ID</h3>
+									<h3 class="panel-title">Result Of Finding</h3>
 								</div>
-								<div class="panel-body">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                        <!-- 在此输入book_ID -->
-                                            <input class="form-control" type="text" name="book_id" placeholder="Book ID">
-                                            <span class="input-group-btn"><button class="btn btn-primary" type="SUBMIT">GO!</button></span>
-                                        </div>
-                                    </div>
+								<div class="panel-body no-padding">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>ISBN</th>
+												<th>Book Name</th>
+												<th>Publisher</th>
+												<th>Author(s)</th>
+												<th>BookID</th>
+												<th>operate</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>${bookEntity.ISBN }</td>
+												<td>${bookEntity.name}</td>
+												<td>${bookEntity.publisher.name }</td>
+												<td>${bookEntity.authors}</td>
+												<td>${bookEntity.id }</td>
+												<form method="POST" action="LibrarianDeleteBook">
+													<input class="form-control" type="hidden" name="book_id"
+														value="${bookEntity.id}">
+													<th>
+														<button type="SUBMIT" class="btn btn-danger">
+															<i class="fa fa-trash-o"></i> Delete
+														</button>
+													</th>
+												</form>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-                            </div>
-                            </form>
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Result Of Finding</h3>
-                                </div>
-                                <div class="panel-body no-padding">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>ISBN</th>
-                                                <th>Book Name</th>
-                                                <th>Publisher</th>
-                                                <th>Author(s)</th>
-                                                <th>BookID</th>
-                                                <th>operate</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>${bookEntity.ISBN }</td>
-                                                <td>${bookEntity.name}</td>
-                                                <td>${bookEntity.publisher.name }</td>
-                                                <td>${bookEntity.authors}</td>
-                                                <td>${bookEntity.id }</td>
-                                                <form method="POST" action="LibrarianDeleteBook">
-                                              	  	<input class="form-control" type="hidden" name="book_id" value="${bookEntity.id}">
-                                               	 	<th>
-                                               	 		<button type="SUBMIT" class="btn btn-danger">
-                                               	 		<i class="fa fa-trash-o"></i> Delete</button>
-                                               	 	</th>
-                                                </form>                                               
-                                            </tr>    
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- END TABLE NO PADDING -->
-                        </div>
-                      </div>
+							</div>
+							<!-- END TABLE NO PADDING -->
+						</div>
 					</div>
 				</div>
 			</div>
-			<!-- END MAIN CONTENT -->
 		</div>
-		<!-- END MAIN -->
+		<!-- END MAIN CONTENT -->
+	</div>
+	<!-- END MAIN -->
 	<div class="clearfix"></div>
 	<footer>
-	<div class="container-fluid">
-		<p class="copyright">
-			Copyright &copy; 2018.Company name All rights reserved. <a
-				 target="_blank" title="BiblioSoft">BiblioSoft</a>
-			- Collect from <a  title="BiblioSoft"
-				target="_blank">Software</a>
-		</p>
+		<div class="container-fluid">
+			<p class="copyright">
+				Copyright &copy; 2018.Company name All rights reserved. <a
+					target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
+					title="BiblioSoft" target="_blank">Software</a>
+			</p>
 
-	</div>
+		</div>
 	</footer>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
@@ -128,8 +129,8 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
-	
-		<script>
+
+	<script>
 
 	function logout(){
 		var result = confirm("Please make sure.Logout?");  

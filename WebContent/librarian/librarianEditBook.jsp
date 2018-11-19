@@ -62,7 +62,7 @@
 	                                    <br>
 	                                    Price:<input type="text" class="form-control" readonly="readonly" name="price"  value="${bookEdit.price }"/>
 	                                    <br>
-	                                    Description:<input type="text" class="form-control" readonly="readonly" name="description"  value="${bookEdit.description }"/>
+	                                    Description:<textarea class="form-control" readonly="readonly" name="description" >${bookEdit.description }</textarea>
 	                                    <br>
 								</div>
 							</div>
