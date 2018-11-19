@@ -8,33 +8,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Show New Book</title>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!-- VENDOR CSS -->
-<link rel="stylesheet"
-	href="assets/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="assets/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
-<link rel="stylesheet"
-	href="assets/vendor/chartist/css/chartist-custom.css">
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-<link rel="stylesheet" href="assets/css/demo.css">
-<!-- GOOGLE FONTS -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
-	rel="stylesheet">
-<!-- ICONS -->
-<link rel="apple-touch-icon" sizes="76x76"
-	href="assets/img/apple-icon.png">
-<link rel="icon" type="image/png" sizes="96x96"
-	href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+			<!-- VENDOR CSS -->
+			<link rel="stylesheet"
+				href="assets/vendor/bootstrap/css/bootstrap.min.css">
+				<link rel="stylesheet"
+					href="assets/vendor/font-awesome/css/font-awesome.min.css">
+					<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+						<link rel="stylesheet"
+							href="assets/vendor/chartist/css/chartist-custom.css">
+							<!-- MAIN CSS -->
+							<link rel="stylesheet" href="assets/css/main.css">
+								<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+								<link rel="stylesheet" href="assets/css/demo.css">
+									<!-- GOOGLE FONTS -->
+									<link
+										href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
+										rel="stylesheet">
+										<!-- ICONS -->
+										<link rel="apple-touch-icon" sizes="76x76"
+											href="assets/img/apple-icon.png">
+											<link rel="icon" type="image/png" sizes="96x96"
+												href="assets/img/favicon.png">
 </head>
 <body>
-<!-- WRAPPER -->
+	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
 		<%@ include file="sidebar.jsp"%>
@@ -44,79 +44,84 @@
 			<div class="main-content">
 				<div class="container-fluid">
 					<!-- OVERVIEW -->
-						<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">New Book Item</h3>
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">New Book Item</h3>
+						</div>
+						<div class="panel-body no-padding">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>New Book ID</th>
+										<th>Book Name</th>
+										<th>ISBN</th>
+										<th>Author</th>
+										<th>Publisher</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+
+								<c:forEach var="bookid" items="${bookIdList }" varStatus="i">
+									<tbody>
+										<tr>
+											<td>${i.count}</td>
+											<td>${bookid}</td>
+											<td>${newBookName}</td>
+											<td>${newISBN}</td>
+											<td>${newAuthor}</td>
+											<td>${newPublisher }</td>
+											<td>${newLocation }</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+
+							</table>
+							<br?>
+								<div style="width: 550px; margin: 0 auto" align="center">
+									<a href="librarianAddBook.jsp" class="demo-button">
+										<button class="btn btn-success btn-block">confirm</button>
+									</a>
 								</div>
-								<div class="panel-body no-padding">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>New Book ID</th>
-												<th>Book Name</th>
-												<th>ISBN</th>
-												<th>Author</th>
-												<th>Publisher</th>
-												<th>Location</th>
-											</tr>
-										</thead>
-										
-										<c:forEach var="bookid" items="${bookIdList }" varStatus="i">
-											<tbody>
-												<tr>
-													<td>${i.count}</td>
-													<td>${bookid}</td>
-													<td>${newBookName}</td>
-													<td>${newISBN}</td>
-													<td>${newAuthor}</td>
-													<td>${newPublisher }</td>
-													<td>${newLocation }</td>
-												</tr>
-											</tbody>
-										</c:forEach>
-										
-									</table>
-									
-								
-									<a href="librarianAddBook.jsp" class="demo-button" >
-                                            <button  class="btn btn-success">confirm</button>
-                                    </a>
-									
-									<div class="qrcode"></div>
-									</div>
-							</div>	
+								<div class="qrcode"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->
-	<div class="clearfix"></div>
-		
+		<div class="clearfix"></div>
+
 	</div>
 	<!-- END WRAPPER -->
-	
-		<script>
-		
-		
-			$("#qrcode").qrcode({
-				text : "1234567891",
-				size : 100
-			});
+	<!-- Javascript -->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+		$("#qrcode").qrcode({
+			text : "1234567891",
+			size : 100
+		});
 
-			function logout() {
-				var result = confirm("Please make sure.Logout?");
-				if (result == true) {
-					window.location.href = "DestroyLibSession";
-				} else {
+		function logout() {
+			var result = confirm("Please make sure.Logout?");
+			if (result == true) {
+				window.location.href = "DestroyLibSession";
+			} else {
 
-				}
 			}
-			function add() {
+		}
+		function add() {
 
-				window.location.href = "addBook.jsp";
+			window.location.href = "addBook.jsp";
 
-			}
-		</script>
+		}
+	</script>
 </body>
 </html>

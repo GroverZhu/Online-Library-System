@@ -65,7 +65,7 @@
 								</table>
 								<div>
 									<div style="width: 300px; margin: auto">
-										<button type="submit" class="btn btn-primary btn-block">Submit</button>
+										<button type="submit" class="btn btn-primary btn-block">Modify</button>
 									</div>
 								</div>
 							</div>

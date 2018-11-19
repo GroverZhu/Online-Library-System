@@ -28,9 +28,9 @@
 	href="../assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
 	href="../assets/img/favicon.png">
-	
-	<!--  pay the deposit to submit the registration information  -->
-	<script>
+
+<!--  pay the deposit to submit the registration information  -->
+<script>
 	function check(){
 		var checkbox = document.getElementByID("paid");   //checkbox's id
 		if(checkbox.checked == true ){  //selected
@@ -51,8 +51,8 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
-		<%@ include file="sidebar.jsp" %>
-		
+		<%@ include file="sidebar.jsp"%>
+
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -60,32 +60,32 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Information</h3>
 					<div class="row">
-						<div class="col-md-12" >
-							
+						<div class="col-md-12">
+
 							<!-- INPUTS -->
 							<div class="panel">
-								<div class="panel-heading">
-								</div>
-								
+								<div class="panel-heading"></div>
+
 								<div class="panel-body">
-									<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.ISBN }"/>
-                                    <br>
-                                    <input type="text" class="form-control" name="password" readonly="readonly" value="${information.name}"/>
-                                    <br>
-									<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.publisher.name }"/>
-                                    <br>
-                                    <input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.authors }"/>
-                                    <br>
-                                    <input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.price }"/>
-                                    <br>
+									<input type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.ISBN }" /> <br>
+									<input type="text" class="form-control" name="password"
+										readonly="readonly" value="${information.name}" /> <br>
+									<input type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.publisher.name }" />
+									<br> <input type="text" class="form-control"
+										name="readerName" readonly="readonly"
+										value="${information.authors }" /> <br> <input
+										type="text" class="form-control" name="readerName"
+										readonly="readonly" value="${information.price }" /> <br>
 								</div>
 							</div>
 							<!-- END INPUTS -->
 							<!-- INPUT SIZING -->
-							
+
 							<!-- END INPUT SIZING -->
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -93,29 +93,29 @@
 		</div>
 		<!-- END MAIN -->
 
-	<div class="clearfix"></div>
-	<footer>
-	<div class="container-fluid">
-		<p class="copyright">
-			Copyright &copy; 2018.Company name All rights reserved. <a
-				 target="_blank" title="BiblioSoft">BiblioSoft</a>
-			- Collect from <a  title="BiblioSoft"
-				target="_blank">Software</a>
-		</p>
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">
+					Copyright &copy; 2018.Company name All rights reserved. <a
+						target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
+						title="BiblioSoft" target="_blank">Software</a>
+				</p>
 
-	</div>
-	</footer>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="../assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script
-		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-	<script src="../assets/scripts/klorofil-common.js"></script>
-	
-	<script>
+			</div>
+		</footer>
+		<!-- END WRAPPER -->
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script
+			src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script
+			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+
+		<script>
 
 
 	function logout(){
@@ -128,8 +128,6 @@
 	}
 	
 	</script>
-	
-
 </body>
 
 </html>

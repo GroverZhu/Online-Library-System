@@ -26,7 +26,7 @@
 					class="lnr lnr-home"></i> <span>Administrator Homepage</span></a></li>
 			<li><a href="adminRegisterLibrarian.jsp" class=""><i
 					class="lnr lnr-code"></i> <span>Register Librarian</span></a></li>
-			<li><a href="#subPages" data-toggle="collapse" class=""> <i
+			<li><a href="#subPages" data-toggle="collapse" class="collapsed"> <i
 					class=""></i> <span>Manage Librarian</span> <i
 					class="icon-submenu lnr lnr-chevron-left"></i>
 			</a>

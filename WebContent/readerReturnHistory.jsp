@@ -14,7 +14,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
         <div class="container-fluid">
-            <h3 class="page-title">Return History</h3>
+            <h3 class="page-title">Your Return History</h3>
             <div class="row">
 
             </div>

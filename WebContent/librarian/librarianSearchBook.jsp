@@ -30,7 +30,7 @@
 <body>
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
-		<%@ include file="sidebar.jsp" %>
+		<%@ include file="sidebar.jsp"%>
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -44,19 +44,32 @@
 							<form method="post" action="LibrarianSearchBook">
 								<div class="panel">
 									<div class="panel-heading">
-										<h3 class="panel-title">Search By:</h3>
-										<select name="searchBy" size="1">
-												<option>Book Name</option>
-												<option>Author</option>
-												<option>ISBN</option>
-										</select>
+										<table>
+											<tr>
+												<td width=150px height=64px>
+													<div class="form-group has-success has-feedback">
+														<label class="control-label" for="searchBy">
+															Search By</label>
+													</div>
+												</td>
+												<td width=350px height=64px><select name="searchBy"
+													size="1">
+														<option>Book Name</option>
+														<option>Author</option>
+														<option>ISBN</option>
+												</select></td>
+											</tr>
+										</table>
+
 									</div>
 									<div class="panel-body">
 										<div class="col-md-12">
 											<div class="input-group">
-												<input class="form-control" type="text" name="keyword" placeholder="Input Keywords:中文 Book Name, Author or ISBN">
+												<input class="form-control" type="text" name="keyword"
+													placeholder="Input Keywords:中文 Book Name, Author or ISBN">
 												<span class="input-group-btn">
-												<button class="btn btn-primary" type="submit">Search!</button></span>
+													<button class="btn btn-primary" type="submit">Search</button>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -71,7 +84,6 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>#</th>
 												<th>ISBN</th>
 												<th>Book Name</th>
 												<th>Publisher</th>
@@ -82,23 +94,22 @@
 										</thead>
 										<tbody>
 											<c:if test="${not empty sessionScope.bookList }">
-											<c:forEach var="item" items="${sessionScope.bookList }" varStatus="i">
-												<tr>
-													<td>1</td>
-													<td>${item.ISBN }</td>
-													<td>${item.name }</td>
-													<td>${item.publisher.name }</td>
-													<td>${item.authors }</td>
-													<td>${item.price }</td>
-													<th>
-														<a href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
-														<button type="button" class="btn btn-primary">
-															<i class="fa fa-refresh"></i> Details
-														</button>
-														</a>
-													</th>
-												</tr>
-											</c:forEach>
+												<c:forEach var="item" items="${sessionScope.bookList }"
+													varStatus="i">
+													<tr>
+														<td>${item.ISBN }</td>
+														<td>${item.name }</td>
+														<td>${item.publisher.name }</td>
+														<td>${item.authors }</td>
+														<td>${item.price }</td>
+														<th><a
+															href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
+																<button type="button" class="btn btn-primary">
+																	<i class="fa fa-refresh"></i> Details
+																</button>
+														</a></th>
+													</tr>
+												</c:forEach>
 											</c:if>
 											<c:if test="${not empty sessionScope.bookEntity }">
 												<tr>
@@ -110,11 +121,9 @@
 													<td>${sessionScope.bookEntity.price }</td>
 													<td>${sessionScope.bookEntity.location }</td>
 													<td>${sessionScope.bookEntity.id }</td>
-													<th>
-														<a href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
-															Details
-														</a>
-													</th>
+													<th><a
+														href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
+															Details </a></th>
 												</tr>
 											</c:if>
 										</tbody>
@@ -122,7 +131,7 @@
 								</div>
 							</div>
 
-                           
+
 						</div>
 					</div>
 				</div>
@@ -133,26 +142,23 @@
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
-		<div class="container-fluid">
-			<p class="copyright">
-				Copyright &copy; 2018.Company name All 中文rights reserved. <a
-					target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
-					title="BiblioSoft" target="_blank">Software</a>
-			</p>
+			<div class="container-fluid">
+				<p class="copyright">
+					Copyright &copy; 2018.Company name All 中文rights reserved. <a
+						target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
+						title="BiblioSoft" target="_blank">Software</a>
+				</p>
 
-		</div>
+			</div>
 		</footer>
-	<!-- Javascript -->
-	<script src="../assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script
-		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-	<script src="../assets/scripts/klorofil-common.js"></script>
-	
-
-
-
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script
+			src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script
+			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
 </body>
 </html>

@@ -34,8 +34,8 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		<%@ include file="navbar.jsp" %>
-		<%@ include file="sidebar.jsp" %>
+		<%@ include file="navbar.jsp"%>
+		<%@ include file="sidebar.jsp"%>
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -58,7 +58,8 @@
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
 												<input type="password" name="old" class="form-control"
-													placeholder="Old Password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+													placeholder="Old Password"
+													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
 										</td>
 									</tr>
@@ -71,8 +72,9 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="password" name="new"
-													class="form-control" placeholder="New Password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+												<input type="password" name="new" class="form-control"
+													placeholder="New Password"
+													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
 										</td>
 									</tr>
@@ -85,8 +87,9 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="password" name="confirm"
-													class="form-control" placeholder="Confirm New Password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+												<input type="password" name="confirm" class="form-control"
+													placeholder="Confirm New Password"
+													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
 										</td>
 									</tr>
@@ -114,6 +117,14 @@
 	</div>
 	</footer>
 	<!-- END WRAPPER -->
+	<!-- Javascript -->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="assets/scripts/klorofil-common.js"></script>
 </body>
 
 </html>

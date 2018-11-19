@@ -81,8 +81,7 @@
 										<td>
 											<div class="form-group clearfix" align="center">
 												<label class="fancy-checkbox element-left"> <input
-													type="checkbox" name="ck"> <span>Remember
-														me</span>
+													type="checkbox" name="ck"> <span>Remember me</span>
 
 
 												</label>
@@ -90,16 +89,18 @@
 										</td>
 									</tr>
 									<tr>
-										
+
 									</tr>
 								</table>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
 							</form>
 							<td>
-										<div class="form-group clearfix" align="center">
-										<input type = "button" class="btn btn-link btn-block" value = "Forget password" onclick = "window.location.href = 'ReaderRetrievePassword.jsp'">
-										</div>
-										</td>
+								<div class="form-group clearfix" align="center">
+									<input type="button" class="btn btn-link btn-block"
+										value="Forget password"
+										onclick="window.location.href = 'ReaderRetrievePassword.jsp'">
+								</div>
+							</td>
 						</div>
 					</div>
 					<div class="right">
