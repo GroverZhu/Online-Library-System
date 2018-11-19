@@ -15,7 +15,7 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Reader Index</h3>
+                <h3 class="page-title">Reader Home</h3>
                 <div class="row">
                     <!-- BASIC TABLE -->
                     <div class="panel">

@@ -42,13 +42,11 @@
                                 <th>${borrowcart.readerId}</th>
                                 <th>${borrowcart.bookId}</th>
                                 <th>${borrowcart.bookName}</th>
-                                <c:set scope="session" var="bookid" value="${borrowcart.bookId}"/>
-                                <form class="form-auth-small" method="post"
-                                      action="ReaderSubmitBorrowCart">
-                                    <th>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </th>
-                                </form>
+                                <th>
+                                    <button class="btn btn-primary"
+                                            onclick="window.location.href='ReaderSubmitBorrowCart?bookid=${borrowcart.bookId}'">Submit</button>
+
+                                </th>
                             </tr>
                         </c:forEach>
                         </thead>

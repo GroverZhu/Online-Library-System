@@ -44,7 +44,7 @@ public class ReaderBorrowCart extends HttpServlet {
         }
         List<Cart>carts = new ArrayList<>();
         BorrowCartDAO borrowCartDAO = new BorrowCartDAO();
-        carts = borrowCartDAO.getAllBorrowCartByReaderID(userid);
+        carts = borrowCartDAO.getNullBorrowCartByReaderId(userid);
         session.setAttribute("borrowCart", carts);// 设置session属性，以便后面使用
         response.sendRedirect("readerBorrowCart.jsp");
     }

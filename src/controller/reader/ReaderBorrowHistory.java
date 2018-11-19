@@ -40,7 +40,7 @@ public class ReaderBorrowHistory extends HttpServlet {
         }
         List<BorrowItem> borrowItems = new ArrayList<>();
         BorrowItemDAO borrowItemDAO = new BorrowItemDAO();
-        borrowItems = borrowItemDAO.getBorrowItemInHistory(userid);
+        borrowItems = borrowItemDAO.getBorrowItemInCurrent(userid);
         session.setAttribute("borrowHistory", borrowItems);// 设置session属性，以便后面使用
         response.sendRedirect("readerBorrowHistory.jsp");
     }

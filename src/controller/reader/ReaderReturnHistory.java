@@ -36,9 +36,9 @@ public class ReaderReturnHistory extends HttpServlet {
         }
         List<BorrowItem> borrowItems = new ArrayList<>();
         BorrowItemDAO borrowItemDAO = new BorrowItemDAO();
-        borrowItems = borrowItemDAO.getBorrowItemInCurrent(userid);
+        borrowItems = borrowItemDAO.getBorrowItemInHistory(userid);
         session.setAttribute("returnHistory", borrowItems);// 设置session属性，以便后面使用
-        response.sendRedirect("readerReturnHistory.jsp");
+        response.sendRedirect("ReaderViewReturnRecord ");
     }
 
 }

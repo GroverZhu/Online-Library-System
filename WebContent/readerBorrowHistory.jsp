@@ -37,15 +37,14 @@
                             <th>Start Time</th>
                         </tr>
                         <c:forEach items="${borrowHistory}" var="borrowhistory" varStatus="num">
+                         <tr>
                             <th>${num.count}</th>
                             <th>${borrowhistory.bookId}</th>
                             <th>${borrowhistory.bookName}</th>
                             <th>${borrowhistory.borrowLibrarianId}</th>
                             <th>${borrowhistory.borrowTime}</th>
+                         </tr>
                         </c:forEach>
-                        <tr>
-
-                        </tr>
                         </thead>
                     </table>
                 </div>
