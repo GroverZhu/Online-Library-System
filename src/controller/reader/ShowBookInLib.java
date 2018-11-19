@@ -19,45 +19,62 @@ import entity.Book;
  * @author Huyuxi
  */
 public class ShowBookInLib extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowBookInLib() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		BookDAO  bookDAO =new BookDAO();
 		HttpSession session = request.getSession();  
 		Collection<Book> books =new  ArrayList<Book>();
 		
+		//分页功能
+		int start = 0;
+		int count = 10;
+
+		try {
+			start = Integer.parseInt(request.getParameter("start"));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		int next = start + count;
+		int pre = start - count;
+		
 		String isbn = request.getParameter("isbn");
-		System.out.println(isbn);
+		if (isbn==null) {
+			isbn=(String) session.getAttribute("bookInfoISBN");			
+		}
+		int total = bookDAO.getTotal(isbn);
+		
+		System.out.println("TTTTTTTTTTTTTTTTTTT"+total);
+		
+		int last;
+		if (0 == total % count)
+			last = total - count;
+		else
+			last = total - total % count;
+
+		pre = pre < 0 ? 0 : pre;
+		next = next > last ? last : next;
+
+//		request.setAttribute("next", next);
+//		request.setAttribute("pre", pre);
+//		request.setAttribute("last", last);
+		
+		session.setAttribute("next", next);
+		session.setAttribute("pre", pre);
+		session.setAttribute("last", last);
+	
 		session.removeAttribute("bookList");
-		session.removeAttribute("isbn");
 		session.removeAttribute("bookInfoList");
-		isbn = isbn.trim();
+		session.setAttribute("bookInfoISBN", isbn);
+		
 		if(isbn == ""||isbn.isEmpty()) {
 			out.print("<script>alert('Please enter the full keyword, the keyword cannot null!');window.location='readerSearchBook.jsp';</script>");
 		}
-		books=bookDAO.getBookListByIsbnForCart(isbn);
+		books=bookDAO.getBookListByIsbnForCart(isbn,start,count);
 		if(books.isEmpty()) {
 			out.print("<script>alert('Sorry, there is no book in library right now!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
 		}else {

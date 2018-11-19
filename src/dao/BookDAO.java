@@ -1148,7 +1148,7 @@ public class BookDAO {
 	 * @param isbn
 	 * @return book list with ID
 	 */
-	public Collection<Book> getBookListByIsbnForCart(String isbn) {
+	public Collection<Book> getBookListByIsbnForCart(String isbn,int start,int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs;
@@ -1161,15 +1161,18 @@ public class BookDAO {
 			+	" left join writes on writes.isbn=book.isbn "
 			+	" left join author on author.author_id=writes.author_id) "
              +    " where state='inlib' and book.isbn=\'"+isbn+
-				"\' group by book_id";
+				"\' group by book_id desc limit ?,?";
+			
 		} else {
 			return bookColle;
 		}
 
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, start);
+			ps.setInt(2, count);
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				book = new Book();
 				book.setId(rs.getInt("book_id"));
@@ -1190,11 +1193,50 @@ public class BookDAO {
 				book.setState(rs.getString("state"));
 				bookColle.add(book);
 			}
+			ps.close();
+			rs.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return bookColle;
+	}
+	
+	/**
+	 * 馆藏书籍分页功能
+	 * @author Huyuxi
+	 * @return total 
+	 */
+	public int getTotal(String isbn) {
+		int total = 0;
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs;
+		Book book = null;
+		Collection bookColle = new ArrayList();
+		String sql = null;
+		try {
+
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			sql = "select count(*),GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
+					+ " left join publisher on publisher.publisher_id=book.publisher_id) "
+					+ " left join writes on writes.isbn=book.isbn "
+					+ " left join author on author.author_id=writes.author_id) " + " where book.isbn = " + "\'" + isbn
+					+ "\' and  state='inlib' group by book_id";
+            rs = st.executeQuery(sql);
+			while (rs.next()) {
+				total = total+rs.getInt(1);
+			}
+
+			System.out.println("total:" + total);
+            st.close();
+            rs.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
 	}
 	
 }
