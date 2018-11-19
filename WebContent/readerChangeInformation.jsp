@@ -32,20 +32,21 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <!-- Reader信息 -->
+                                    <!-- Reader change information -->
 
                                     <td>${ReaderEntity.id }</td>
                                     <form method="post" action="ReaderModifyInformation">
                                         <td><input type="text" name="newName" maxlength="15"
                                                    style="height:23px;width:100px"></td>
-                                        <td><input type="text" name="newPassword" maxlength="15"
+                                        <td><input type="password" name="newPassword" maxlength="15"
                                                    style="height:23px;width:100px"></td>
                                         <td><input type="text" name="newEmail" maxlength="15"
                                                    style="height:23px;width:100px"></td>
+                                         <td><input type="SUBMIT" name="cis2" value="Modify"></td>
                                     </form>
                                 </tr>
                                 <tr>
-                                    <td><input type="SUBMIT" name="cis2" value="Modify"></td>
+                                                                   
                                 </tr>
                                 </tbody>
                             </table>

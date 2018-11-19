@@ -77,7 +77,7 @@ public class ReaderDAO {
 		int flag = 0;
 		Connection conn = null;
 		Statement st = null;
-		ResultSet rs;
+		boolean rs;
 		String sql = null;
 		sql = "update reader set reader_name= \'" + name + "\' ,reader_password=\'" + password + "\', reader_email=\'"
 				+ email + "\' where reader_id=" + String.valueOf(id);
@@ -85,7 +85,7 @@ public class ReaderDAO {
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
 			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+			rs = st.execute(sql);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

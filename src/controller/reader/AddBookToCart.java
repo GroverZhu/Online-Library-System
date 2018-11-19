@@ -53,9 +53,8 @@ public class AddBookToCart extends HttpServlet {
 		Collection<Book> books =new  ArrayList<Book>();
 		
 		int id = Integer.valueOf(request.getParameter("id"));
-		borrowcartdao.addBorrowCart(id,reader_id);
-		
-		request.getRequestDispatcher("readerShowBookInLib.jsp").forward(request,response);
+		borrowcartdao.addBorrowCart(id,reader_id);		
+		out.print("<script>alert('Add successfully');window.history.back();</script>");
 	}
 	
 
