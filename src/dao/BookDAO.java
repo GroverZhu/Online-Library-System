@@ -25,6 +25,37 @@ import util.DatabaseUtil;
  *
  */
 public class BookDAO {
+	/**
+	 * 更新书的信息
+	 * @author zengyaoNPU
+	 * @param bookId
+	 * @param location
+	 * @param state
+	 * @return
+	 */
+	public boolean updateBookInfoById(int bookId,String location,String state) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			String sql="UPDATE book_in_library SET book_location=?,state=? WHERE book_id=?" ; 
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, location);
+			pstmt.setString(2, state);
+			pstmt.setInt(3, bookId);
+			int row=pstmt.executeUpdate();
+			if(row==0) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		}catch(Exception e) {
+			System.out.println("--BookDAO--,--updateBookInfoById--,suffers exception");
+			return false;
+		}
+		
+	}
 
 	/**
 	 * Search book by title

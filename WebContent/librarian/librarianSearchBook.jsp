@@ -91,7 +91,7 @@
 													<td>${item.authors }</td>
 													<td>${item.price }</td>
 													<th>
-														<a href="LibrarianSearchBook?isbn=${sessionScope.bookEntity.ISBN}">
+														<a href="LibrarianSearchBook?isbn=${item.ISBN}">
 														<button type="button" class="btn btn-primary">
 															<i class="fa fa-refresh"></i> Details
 														</button>

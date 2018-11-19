@@ -26,9 +26,11 @@ public class LibrarianSearchBook extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String isbn=request.getParameter("isbn");
+		System.out.println(isbn);
 		//转发到页面，展示图书详细信息
-		List<Book> list=(List<Book>) bookDAO.getBookListByIsbn(isbn);
+		List<Book> list=(List<Book>) bookDAO.getBookListByIsbn(isbn);//通过ISBN获取书籍信息，不区分ID
 		Book book=bookDAO.getBookByIsbn(isbn);
+		
 		request.setAttribute("information", book);
 		request.setAttribute("library", list);
 		request.getRequestDispatcher("details.jsp").forward(request, response);

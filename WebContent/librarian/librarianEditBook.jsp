@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
-<title>Book Details</title>
+<title>Librarian Edit Book</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -52,23 +52,24 @@
 								</div>
 								
 								<div class="panel-body">
-									ISBN:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.ISBN }"/>
-                                    <br>
-                                    Book Name:<input type="text" class="form-control" name="password" readonly="readonly" value="${information.name}"/>
-                                    <br>
-									Publisher:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.publisher.name }"/>
-                                    <br>
-                                    Authors:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.authors }"/>
-                                    <br>
-                                    Price:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.price }"/>
-                                    <br>
-                                    Description:<input type="text" class="form-control" name="readerName" readonly="readonly" value="${information.description }"/>
-                                    <br>
+										ISBN:<input type="text" class="form-control" readonly="readonly" name="ISBN"  value="${bookEdit.ISBN }"/>
+	                                    <br>
+	                                    Book Name:<input type="text" class="form-control" readonly="readonly" name="name"  value="${bookEdit.name}"/>
+	                                    <br>
+										Publisher:<input type="text" class="form-control" readonly="readonly" name="publisher"  value="${bookEdit.publisher.name }"/>
+	                                    <br>
+	                                    Authors:<input type="text" class="form-control" readonly="readonly" name="authors"  value="${bookEdit.authors }"/>
+	                                    <br>
+	                                    Price:<input type="text" class="form-control" readonly="readonly" name="price"  value="${bookEdit.price }"/>
+	                                    <br>
+	                                    Description:<input type="text" class="form-control" readonly="readonly" name="description"  value="${bookEdit.description }"/>
+	                                    <br>
 								</div>
 							</div>
 							<!-- END INPUTS -->
+							<form method="post" action="LibrarianEditBook">
 							<table class="table">
-										<thead>
+									<thead>
 											<tr>
 												<th>Number</th>
 												<th>Book ID</th>
@@ -77,25 +78,44 @@
 												<th>Operate</th>
 											</tr>
 										</thead>
-										<tbody>
-											<c:forEach var="item" items="${library }" varStatus="i">
-												<tr>
-													<td>${i.count }</td>
-													<td>${item.id }</td>
-													<td>${item.location }</td>
-													<td>${item.state }</td>
-													<th>
-														<a href="LibrarianEditBook?book_id=${item.id}">
-														<button type="button" class="btn btn-primary">
-															<i class="fa fa-refresh"></i> Edit
-														</button>
-														</a>
-													</th>
-												</tr>
+									<tbody>
+											<c:forEach var="item" items="${bookEditList }" varStatus="i">
+												<c:if test="${item.id != bookEditId }">
+													<tr>
+														<td>${i.count }</td>
+														<td>${item.id }</td>
+														<td>${item.location }</td>
+														<td>${item.state }</td>
+														<th>
+															<a href="LibrarianEditBook?book_id=${item.id}">
+															<button type="button" class="btn btn-primary">
+																<i class="fa fa-refresh"></i> Edit
+															</button>
+															</a>
+														</th>
+													</tr>
+												</c:if>
+												<c:if test="${item.id == bookEditId }">
+													<tr>
+														<td>${i.count }</td>
+														<td>${item.id }</td>
+														<input type="hidden" name="Book ID"  value="${item.id }" />
+														<td><input type="text" name="Location" value="${item.location }"/></td>
+														<td><input type="text" name="State" value="${item.state }"></td>
+														<th>
+															<a href="LibrarianEditBook?book_id=${item.id}">
+															<button type="button" class="btn btn-primary">
+																<i class="fa fa-refresh"></i> Edit
+															</button>
+															</a>
+														</th>
+													</tr>
+													
+												</c:if>
 											</c:forEach>
 										</tbody>
 							</table>
-							
+							</form>
 							<!-- END INPUT SIZING -->
 						</div>
 						
@@ -128,19 +148,6 @@
 	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="../assets/scripts/klorofil-common.js"></script>
 	
-	<script>
-
-
-	function logout(){
-		var result = confirm("Please make sure.Logout?");  
-	    if (result == true) {  
-	    	window.location.href="DestroyLibSession"; 
-	    } else {  
-	        
-	    }
-	}
-	
-	</script>
 	
 
 </body>

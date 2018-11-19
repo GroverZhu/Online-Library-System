@@ -343,7 +343,7 @@
     <servlet-name>AddBookToCart</servlet-name>
     <url-pattern>/AddBookToCart</url-pattern>
   </servlet-mapping>
-<filter>
+  <filter>
     <filter-name>URLFilter</filter-name>
     <filter-class>filter.URLFilter</filter-class>
     <init-param>
@@ -364,4 +364,14 @@
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibrarianEditBook</display-name>
+    <servlet-name>LibrarianEditBook</servlet-name>
+    <servlet-class>controller.librarian.LibrarianEditBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrarianEditBook</servlet-name>
+    <url-pattern>/librarian/LibrarianEditBook</url-pattern>
+  </servlet-mapping>
 </web-app>
