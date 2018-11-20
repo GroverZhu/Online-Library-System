@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ReaderDAO;
 import entity.Reader;
+import util.SecurityUtil;
 
 /**
  *	该Servlet的doGet方法将请求转发到Reader信息的修改界面
@@ -33,6 +34,7 @@ public class LibrarianModifyReader extends HttpServlet {
 		ReaderDAO readerDAO=new ReaderDAO();
 		Reader reader=readerDAO.getReaderById(readerId);//实例化Reader
 		//设置属性
+		request.setAttribute("pwToString", SecurityUtil.md5(reader.getPassword()));//显示字符串密码
 		request.setAttribute("readerEntity", reader);//新的request，request属性与之前的request对象相同不会影响
 		RequestDispatcher dispatcher=request.getRequestDispatcher("librarianModifyReader.jsp");
 		dispatcher.forward(request, response);//转发

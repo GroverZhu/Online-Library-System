@@ -5,10 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import entity.Book;
 import entity.Reader;
 import util.DatabaseUtil;
 
@@ -17,6 +15,98 @@ import util.DatabaseUtil;
  *
  */
 public class ReaderDAO {
+	/**
+	 * 获取reader总数
+	 * @author zengyaoNPU
+	 * @return
+	 */
+	public int getTotal() {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="SELECT COUNT(*) AS total FROM reader";
+			System.out.println(sql);
+			rs=st.executeQuery(sql);
+			int total=0;
+			while(rs.next()) {
+				total=rs.getInt("total");
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return total;
+		}catch(Exception e) {
+			System.out.println("--ReaderDAO--,--getTotal--,suffers exception");
+			return 0;
+		}
+	}
+	/**
+	 * 获取所有的reader，分页显示
+	 * @author zengyaoNPU
+	 * @param start
+	 * @param count
+	 * @return
+	 */
+	public List<Reader> getAllReaders(int start,int count){
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		List<Reader> list=new ArrayList<>();
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="SELECT * FROM reader LIMIT "+start+","+count;
+			System.out.println(sql);
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				Reader reader=getReaderById(rs.getInt("reader_id"));
+				list.add(reader);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		}catch(Exception e) {
+			System.out.println("--ReaderDAO--,--getAllReaders--,suffers exception");
+			return null;
+		}
+		
+	}
+	/**
+	 * 获取所有的reader，分页显示
+	 * @author zengyaoNPU
+	 * @param start
+	 * @param count
+	 * @return
+	 */
+	public List<Reader> getAllReaders(){
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		List<Reader> list=new ArrayList<>();
+		try {
+			conn=DatabaseUtil.getInstance().getConnection();
+			st=conn.createStatement();
+			String sql="SELECT * FROM reader";
+			System.out.println(sql);
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				Reader reader=getReaderById(rs.getInt("reader_id"));
+				list.add(reader);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		}catch(Exception e) {
+			System.out.println("--ReaderDAO--,--getAllReaders--,suffers exception");
+			return null;
+		}
+		
+	}
 	/**
 	 * librarian添加reader的信息
 	 * 
@@ -233,7 +323,35 @@ public class ReaderDAO {
 			return null;
 		}
 	}
-
+	/**
+	 * 根据reader_name获取读者列表（考虑到多个reader同一个name的情况）,分页展示
+	 * 
+	 * @author zengyaoNPU
+	 * @param name
+	 * @return
+	 */
+	public List<Reader> getReaderByName(String name,int start,int count) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		List<Reader> list = new ArrayList<Reader>();
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "select * from reader where reader_name like '%" + name + "%' LIMIT "+start+","+count;
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Reader reader = getReaderById(rs.getInt("reader_id"));// 根据reader_id获取一个reader实体
+				list.add(reader);// 添加到列表中
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	/**
 	 * 根据state查询用户，返回用户列表
 	 * 
@@ -273,6 +391,38 @@ public class ReaderDAO {
 	 * @return
 	 */
 	public List<Reader> getReaderByName_State(String name, String state) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		List<Reader> list = new ArrayList<Reader>();
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "select * from reader where state ='" + state + "' and name like '" + name + "'";
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Reader reader = getReaderById(rs.getInt("reader_id"));
+				list.add(reader);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+			return list;
+		} catch (Exception e) {
+			return null;
+		}
+
+
+	}
+	/**
+	 * 根据用户名和state获取读者列表，分页展示
+	 * 
+	 * @author zengyaoNPU
+	 * @param name
+	 * @param state
+	 * @return
+	 */
+	public List<Reader> getReaderByName_State(String name, String state,int start, int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;

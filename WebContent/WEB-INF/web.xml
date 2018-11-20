@@ -394,4 +394,15 @@
     <servlet-name>DestorySession</servlet-name>
     <url-pattern>/DestorySession</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowNewReader</display-name>
+    <servlet-name>ShowNewReader</servlet-name>
+    <servlet-class>controller.librarian.ShowNewReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowNewReader</servlet-name>
+    <url-pattern>/librarian/ShowNewReader</url-pattern>
+  </servlet-mapping>
+
 </web-app>

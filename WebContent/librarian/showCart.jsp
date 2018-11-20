@@ -45,6 +45,7 @@
 							<table align="center" class="table">
 								<thead>
 									<tr>
+										<th>Number</th>
 										<th>Reader ID</th>
 										<th>Reader Name</th>
 										<th>Book ID</th>
@@ -54,6 +55,7 @@
 									</tr>
 									<c:forEach var="item" items="${cartList }" varStatus="i">
 										<tr>
+											<td>${i.count+current }</td>
 											<td>${item.readerId }</td>
 											<td>${item.readerName }</td>
 											<td>${item.bookId }</td>

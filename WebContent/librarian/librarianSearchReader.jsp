@@ -90,8 +90,8 @@
 											</td>
 											<td width=350px height=64px><input type="radio"
 												name="state" value="unlock" />Unlock <input type="radio"
-												name="state" value="blockade" /> Blockade <input type="radio"
-												name="state" value="unknown" checked />Unspecified</td>
+												name="state" value="blockade" /> Blockade <input
+												type="radio" name="state" value="unknown" checked />Unspecified</td>
 										</tr>
 									</table>
 									<div style="width: 300px; margin: auto">
@@ -125,7 +125,7 @@
 									</table>
 								</c:if>
 								<c:if test="${not empty readerList }">
-									<table  align="center" class="table">
+									<table align="center" class="table">
 										<tr>
 											<td>Number</td>
 											<td>ID</td>
@@ -138,7 +138,7 @@
 										</tr>
 										<c:forEach var="reader" items="${readerList }" varStatus="i">
 											<tr>
-												<td>${i.count }</td>
+												<td>${i.count}</td>
 												<td>${reader.id }</td>
 												<td>${reader.name }</td>
 												<td>${reader.email }</td>
@@ -152,7 +152,6 @@
 											</tr>
 										</c:forEach>
 									</table>
-
 								</c:if>
 							</div>
 						</div>

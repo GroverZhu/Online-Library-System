@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ReaderDAO;
+import util.SecurityUtil;
 
 /**
  * librarian添加reader
@@ -30,6 +31,7 @@ public class LibrarianAddReader extends HttpServlet {
 		String name=request.getParameter("readerName");//用户名
 		String password=request.getParameter("password");//密码
 		String state=request.getParameter("state");//状态
+		password=SecurityUtil.md5(password);//将reader的密码转换成密文
 		//数据库操作
 		ReaderDAO readerDAO=new ReaderDAO();
 		int readerId=readerDAO.addReaderByName_Passowrd_State(name, password, state);
@@ -43,7 +45,7 @@ public class LibrarianAddReader extends HttpServlet {
 			System.out.println("添加Reader成功，新的reader id="+readerId);
 			out.print("<script language='javascript'>"
 					+ "alert('Succeed to Add Reader!');"
-					+ "window.location.href='librarianAddReader.jsp';"
+					+ "window.location.href='ShowNewReader?reader_id="+readerId+"';"
 					+ "</script>");
 		}
 	}

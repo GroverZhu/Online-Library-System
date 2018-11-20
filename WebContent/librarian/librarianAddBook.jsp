@@ -29,22 +29,6 @@
 <link rel="icon" type="image/png" sizes="96x96"
 	href="../assets/img/favicon.png">
 
-<!--  pay the deposit to submit the registration information  -->
-<script>
-	function check(){
-		var checkbox = document.getElementByID("paid");   //checkbox's id
-		if(checkbox.checked == true ){  //selected
-			document.getElementByID("submit").style.backgroundColor="red";
-			document.getElementByID("submit").removeAttribute="disabled";  //remove disabled
-		}
-		else
-		{
-			document.getElementByID("submit").disabled="disabled";
-		}
-	}
-	
-	</script>
-
 </head>
 
 <body>
@@ -73,13 +57,12 @@
 									<div class="col-md-12">
 										<form method="post" action="ValidateISBN">
 											<div class="input-group">
-												<input class="form-control" name="ISBN" type="text"
-													placeholder="ISBN" v-model="pfincome"
-													onkeyup="value=value.replace(/[^\d]/g,'') "
-													ng-pattern="/[^a-zA-Z]/" maxlength=13 /> <span
-													class="input-group-btn"><button
-														class="btn btn-primary" type="submit">Validate
-														and GO!</button></span>
+												<input class="form-control" name="ISBN" type="text" placeholder="ISBN" v-model="pfincome" onkeyup="value=value.replace(/[^\d]/g,'') " ng-pattern="/[^a-zA-Z]/" maxlength=13 /> 
+														<span class="input-group-btn">
+														<button class="btn btn-primary" type="submit">
+													 	Validate and GO!
+													 	</button>
+													</span>
 											</div>
 										</form>
 									</div>

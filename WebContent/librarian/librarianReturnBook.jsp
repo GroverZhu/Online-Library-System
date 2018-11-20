@@ -123,6 +123,9 @@
 											</c:if>
 										</tbody>
 									</table>
+									<a href="LibrarianReturnBook?bookId=${bookEntity.id }">
+									Return
+									</a>
 								</div>
 							</div>
 						</div>

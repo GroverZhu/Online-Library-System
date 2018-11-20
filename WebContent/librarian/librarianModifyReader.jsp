@@ -83,21 +83,6 @@
 										<tr>
 											<td width=150px height=64px>
 												<div class="form-group has-success has-feedback">
-													<label class="control-label" for="readerPassword">Reader
-														Password</label>
-												</div>
-											</td>
-											<td width=350px height=64px>
-												<div class="form-group has-success has-feedback">
-													<input type="text" name="password" class="form-control"
-														value="${readerEntity.password }"
-														placeholder="Reader Password">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td width=150px height=64px>
-												<div class="form-group has-success has-feedback">
 													<label class="control-label" for="email">Email</label>
 												</div>
 											</td>
@@ -114,15 +99,17 @@
 													<label class="control-label" for="state">State</label>
 												</div>
 											</td>
-											<td width=350px height=64px><label class="control-label"
-												for="state">${readerEntity.state }</label> <c:if
-													test="${readerEntity.state eq 'unlock'}">
-													<input type="radio" name="state" value="blockade" />锁定用户
-					<input type="radio" name="state" value="unlock" checked />解锁用户
-				</c:if> <c:if test="${readerEntity.state eq 'blockade'}">
-													<input type="radio" name="state" value="blockade" checked />锁定用户
-					<input type="radio" name="state" value="unlock" />解锁用户
-				</c:if></td>
+											<td width=350px height=64px>
+												<!--  label class="control-label" for="state">${readerEntity.state }</label --> 
+												<c:if test="${readerEntity.state eq 'unlock'}">
+													<input type="radio" name="state" value="blockade" />Blockade
+													<input type="radio" name="state" value="unlock" checked />Unlock
+												</c:if> 
+												<c:if test="${readerEntity.state eq 'blockade'}">
+													<input type="radio" name="state" value="blockade" checked />Blockade
+													<input type="radio" name="state" value="unlock" />Unlock
+												</c:if>
+											</td>
 										</tr>
 									</table>
 									<div style="width: 300px; margin: auto">

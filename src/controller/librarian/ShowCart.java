@@ -50,6 +50,7 @@ public class ShowCart extends HttpServlet {
 		request.setAttribute("next", next);
 		request.setAttribute("pre", pre);
 		request.setAttribute("last", last);
+		request.setAttribute("current", start);
 		//获取数据库中所有的borrow_cart，分页展示
 		List<Cart> list=bDAO.getAllBorrowCartOrderByTime(start, count);
 		//设置request属性

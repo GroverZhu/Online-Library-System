@@ -29,22 +29,34 @@ public class ShowReaderInfo extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int readerId=Integer.parseInt(request.getParameter("reader_id"));
 		String param=request.getParameter("param");
+		
+		//查看购物车
 		if(param.equals("cart")) {
 			BorrowCartDAO borrowCartDAO=new BorrowCartDAO();
 			List<Cart> list=borrowCartDAO.getBorrowCartByReaderId(readerId);
-			request.setAttribute("borrowCart", list);
+			if(list!=null&&!list.isEmpty()) {
+				request.setAttribute("borrowCart", list);
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("showReaderInfo.jsp");
 			dispatcher.forward(request, response);
+			
 		}else if(param.equals("history")) {
+			//查询借阅历史
 			BorrowItemDAO borrowItemDAO=new BorrowItemDAO();
 			List<BorrowItem> list=borrowItemDAO.getBorrowItemInHistory(readerId);
-			request.setAttribute("historyList", list);
+			if(list!=null&&!list.isEmpty()) {
+				request.setAttribute("historyList", list);
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("showReaderInfo.jsp");
 			dispatcher.forward(request, response);
+			
 		}else if(param.equals("current")) {
+			//查看当前借阅
 			BorrowItemDAO borrowItemDAO=new BorrowItemDAO();
 			List<BorrowItem> list=borrowItemDAO.getBorrowItemInCurrent(readerId);
-			request.setAttribute("currentList", list);
+			if(list!=null&&!list.isEmpty()) {
+				request.setAttribute("currentList", list);
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("showReaderInfo.jsp");
 			dispatcher.forward(request, response);
 			
