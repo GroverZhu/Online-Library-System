@@ -68,6 +68,7 @@
 
 </div>
 <!-- END WRAPPER -->
+<jsp:include page="Footer.jsp" />
 <!-- Javascript -->
 <script src="assets/vendor/jquery/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>

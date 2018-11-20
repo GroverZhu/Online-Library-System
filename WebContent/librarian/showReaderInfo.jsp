@@ -52,18 +52,18 @@
 							<div class="panel-body">
 								<c:if test="${not empty currentList }">
 									<h1>Show Current Borrow</h1>
-									<table align="center">
+									<table align="center" class="table">
 										<tr>
-											<td>序号</td>
-											<td>用户id</td>
-											<td>用户名</td>
-											<td>书名</td>
-											<td>book id</td>
-											<td>借阅时间</td>
-											<td>应还时间</td>
-											<td>处理人ID</td>
-											<td>处理人姓名</td>
-											<td>状态</td>
+											<td>Number</td>
+											<td>Reader ID</td>
+											<td>Reader Name</td>
+											<td>Book Name</td>
+											<td>Book ID</td>
+											<td>Borrow Time</td>
+											<td>Due Return Time</td>
+											<td>Librarian ID</td>
+											<td>Librarian Name</td>
+											<td>State</td>
 										</tr>
 										<c:forEach var="item" items="${currentList}" varStatus="i">
 											<tr>
@@ -83,20 +83,20 @@
 								</c:if>
 								<c:if test="${not empty historyList }">
 									<h1>Show History Borrow</h1>
-									<table border="2">
+									<table align="center" class="table">
 										<tr>
-											<td>序号</td>
-											<td>用户id</td>
-											<td>用户名</td>
-											<td>书名</td>
-											<td>book id</td>
-											<td>借阅时间</td>
-											<td>借阅处理人ID</td>
-											<td>借阅处理人姓名</td>
-											<td>还书时间</td>
-											<td>还书处理人ID</td>
-											<td>还书处理人姓名</td>
-											<td>状态</td>
+											<td>Number</td>
+											<td>Reader ID</td>
+											<td>Reader Name</td>
+											<td>Book Name</td>
+											<td>Book ID</td>
+											<td>Borrow Time</td>
+											<td>Lend Librarian ID</td>
+											<td>Lend Librarian Name</td>
+											<td>Return Time</td>
+											<td>Return Librarian ID</td>
+											<td>Return Librarian Name</td>
+											<td>State</td>
 										</tr>
 										<c:forEach var="item" items="${historyList}" varStatus="i">
 											<tr>
@@ -118,14 +118,14 @@
 								</c:if>
 								<c:if test="${not empty borrowCart }">
 									<h1>Show History Borrow</h1>
-									<table border="2">
+									<table align="center" class="table">
 										<tr>
-											<td>序号</td>
-											<td>用户id</td>
-											<td>用户名</td>
-											<td>书名</td>
-											<td>book id</td>
-											<td>提交时间</td>
+											<td>Number</td>
+											<td>Reader ID</td>
+											<td>Reader Name</td>
+											<td>Book Name</td>
+											<td>Book ID</td>
+											<td>Submit Time</td>
 										</tr>
 										<c:forEach var="item" items="${borrowCart}" varStatus="i">
 											<tr>
@@ -149,7 +149,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-
+<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

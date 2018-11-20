@@ -92,7 +92,7 @@
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-
+<jsp:include page="../Footer.jsp" />
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->

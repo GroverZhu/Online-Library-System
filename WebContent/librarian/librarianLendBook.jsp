@@ -62,8 +62,9 @@
 									<input type="submit" class="btn btn-primary"
 										value="Show Reader Information" />
 								</form>
+								<br />
 								<c:if test="${not empty readerEntity}">
-									<table>
+									<table class="table">
 										<tr>
 											<td>Reader ID:</td>
 											<td>${readerEntity.id }</td>

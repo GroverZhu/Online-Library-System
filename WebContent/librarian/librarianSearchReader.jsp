@@ -89,25 +89,26 @@
 												</div>
 											</td>
 											<td width=350px height=64px><input type="radio"
-												name="state" value="unlock" />未锁定 <input type="radio"
-												name="state" value="blockade" /> 锁定 <input type="radio"
-												name="state" value="unknown" checked />未指定</td>
+												name="state" value="unlock" />Unlock <input type="radio"
+												name="state" value="blockade" /> Blockade <input type="radio"
+												name="state" value="unknown" checked />Unspecified</td>
 										</tr>
 									</table>
 									<div style="width: 300px; margin: auto">
 										<button type="submit" class="btn btn-primary btn-block">Search</button>
 									</div>
 								</form>
+								<br />
 								<c:if test="${not empty readerEntity }">
-									<table align="center">
+									<table align="center" class="table">
 										<tr>
 											<td>ID</td>
-											<td>用户名</td>
+											<td>Name</td>
 											<td>email</td>
 											<td>state</td>
-											<td>借阅车</td>
-											<td>借阅历史</td>
-											<td>当前借阅</td>
+											<td>Borrow Cart</td>
+											<td>Borrow History</td>
+											<td>Current Borrow</td>
 										</tr>
 										<tr>
 											<td>${readerEntity.id }</td>
@@ -115,25 +116,25 @@
 											<td>${readerEntity.email }</td>
 											<td>${readerEntity.state }</td>
 											<td><a
-												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=cart">查看</a></td>
+												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=cart">Detail</a></td>
 											<td><a
-												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=history">查看</a></td>
+												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=history">Detail</a></td>
 											<td><a
-												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=current">查看</a></td>
+												href="ShowReaderInfo?reader_id=${readerEntity.id }&param=current">Detail</a></td>
 										</tr>
 									</table>
 								</c:if>
 								<c:if test="${not empty readerList }">
-									<table border="2">
+									<table  align="center" class="table">
 										<tr>
-											<td>序号</td>
+											<td>Number</td>
 											<td>ID</td>
-											<td>用户名</td>
+											<td>Name</td>
 											<td>email</td>
 											<td>state</td>
-											<td>借阅车</td>
-											<td>借阅历史</td>
-											<td>当前借阅</td>
+											<td>Borrow Cart</td>
+											<td>Borrow History</td>
+											<td>Current Borrow</td>
 										</tr>
 										<c:forEach var="reader" items="${readerList }" varStatus="i">
 											<tr>
@@ -143,11 +144,11 @@
 												<td>${reader.email }</td>
 												<td>${reader.state }</td>
 												<td><a
-													href="ShowReaderInfo?reader_id=${reader.id }&param=cart">查看</a></td>
+													href="ShowReaderInfo?reader_id=${reader.id }&param=cart">Detail</a></td>
 												<td><a
-													href="ShowReaderInfo?reader_id=${reader.id }&param=history">查看</a></td>
+													href="ShowReaderInfo?reader_id=${reader.id }&param=history">Detail</a></td>
 												<td><a
-													href="ShowReaderInfo?reader_id=${reader.id }&param=current">查看</a></td>
+													href="ShowReaderInfo?reader_id=${reader.id }&param=current">Detail</a></td>
 											</tr>
 										</c:forEach>
 									</table>

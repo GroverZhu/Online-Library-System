@@ -42,16 +42,16 @@
 													maxlength="15" style="height: 23px; width: 100px"></td>
 												<td><input type="text" name="newEmail" maxlength="15"
 													style="height: 23px; width: 100px"></td>
-												<td><input type="SUBMIT" name="cis2" value="Modify"></td>
+												<td><div style="width: 150px; margin: auto">
+										<button type="submit" name="cis2"
+											class="btn btn-primary btn-block">Modify</button></td>
 											</form>
 										</tr>
 
 									</tbody>
 								</table>
 								<div>
-									<div style="width: 300px; margin: auto">
-										<button type="submit" name="cis2"
-											class="btn btn-primary btn-block">Modify</button>
+									
 									</div>
 								</div>
 							</div>
@@ -65,6 +65,7 @@
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
 	<!-- END WRAPPER -->
+	<jsp:include page="Footer.jsp" />
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
