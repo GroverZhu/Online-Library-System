@@ -61,8 +61,6 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp; <select id="input" name="style">
-											<option selected value="Please select info type">Please
-												select</option>
 											<option value="bookName" selected="selected">Book
 												name</option>
 											<option value="author">author</option>
@@ -76,9 +74,33 @@
 										<button type="submit" name="submit" class="btn btn-success">Search</button>
 
 									</form>
+									<!-- INPUTS -->
+									<div class="panel">
+										<div class="panel-heading"></div>
 
+										<div class="panel-body"><br />
+											<br>ISBN:<input type="text" class="form-control"
+												name="bookDetailName" readonly="readonly"
+												value="${BookDetail.ISBN }" /> 
+												<br> Book Name:
+												<input type="text" class="form-control" name="bookDetailName"
+												readonly="readonly" value="${BookDetail.name}" /> <br>
+											Publisher:<input type="text" class="form-control"
+												name="bookDetailName" readonly="readonly"
+												value="${BookDetail.publisher.name }" /> <br> Authors:<input
+												type="text" class="form-control" name="bookDetailName"
+												readonly="readonly" value="${BookDetail.authors }" /> <br>
+											Price:<input type="text" class="form-control"
+												name="bookDetailName" readonly="readonly"
+												value="${BookDetail.price }" /> <br> Description:
+											<textarea class="form-control" name="bookDetailName"
+												readonly="readonly">${BookDetail.description }</textarea>
+											<br>
+										</div>
+									</div>
+									<!-- END INPUTS -->
 									<br /> <br /> <br />
-									<table class="table">
+									<table class="table" style="width:150px;height:10px">
 										<thead>
 											<tr>
 												<th>ID</th>
@@ -87,8 +109,7 @@
 												<th>Author</th>
 												<th>Publisher</th>
 												<th>Location</th>
-												<th>Status</th>
-
+												<th>Status</th>					
 											</tr>
 
 											<!-- 展示书籍信息 -->
@@ -96,10 +117,10 @@
 											<c:set var="bookInfoList" scope="session"
 												value="${bookInfoList}" />
 											<c:set var="bookInfoISBN" scope="session"
-												value="${bookInfoISBN}" />	
-																			
+												value="${bookInfoISBN}" />
+
 											<c:forEach var="book" items="${bookInfoList }">
-												<tr>													   									  
+												<tr>
 													<th>${book.id }</th>
 													<th>${book.ISBN }</th>
 													<th>${book.name }</th>
@@ -107,25 +128,37 @@
 													<th>${book.publisher.name }</th>
 													<th>${book.location }</th>
 													<th>${book.state }</th>
+													<c:if test="${book.state=='inlib'}" var="flag">
 													<th><form class="navbar-form navbar-left"
-															role="search" align="center" method="post"
+															role="search" style="width:150px;height:10px" method="post"
 															action="AddBookToCart">
 															<input type="hidden" name="id" value='${book.id}'></input>
 															<button type="submit" name="addtocart"
-																class="btn btn-success">Add To Cart</button>
+																class="btn btn-success" style="width:120px;height:30px">Add To Cart</button>
 														</form>
+													</th>
+													</c:if>
+													<c:if test="${not flag}">
+													<th></th>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</thead>
 
 									</table>
 									<nav>
-									
+
 										<ul class="pager">
-											<li><a href="?start=0&bookInfoISBN=${sessionScope.bookInfoISBN }">首 页</a></li>
-											<li><a href="?start=${pre}&bookInfoISBN=${sessionScope.bookInfoISBN }">上一页</a></li>
-											<li><a href="?start=${next}&bookInfoISBN=${sessionScope.bookInfoISBN }">下一页</a></li>
-											<li><a href="?start=${last}&bookInfoISBN=${sessionScope.bookInfoISBN }">末 页</a></li>
+											<li><a
+												href="?start=0&bookInfoISBN=${sessionScope.bookInfoISBN }">首
+													页</a></li>
+											<li><a
+												href="?start=${pre}&bookInfoISBN=${sessionScope.bookInfoISBN }">上一页</a></li>
+											<li><a
+												href="?start=${next}&bookInfoISBN=${sessionScope.bookInfoISBN }">下一页</a></li>
+											<li><a
+												href="?start=${last}&bookInfoISBN=${sessionScope.bookInfoISBN }">末
+													页</a></li>
 										</ul>
 									</nav>
 								</div>

@@ -2,6 +2,7 @@ package controller.reader;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ReaderDAO;
+import entity.BorrowItem;
+import entity.Cart;
 import entity.Reader;
 import util.*;
 
@@ -52,41 +55,29 @@ public class ReaderModifyInformation extends HttpServlet {
 		// get reader id
 		Reader reader = (Reader) session.getAttribute("ReaderEntity");
 		int id = reader.getId();
-		System.out.println("ID:" + id);
 
 		// get new information
 		String name = (String) request.getParameter("newName");
 		String password = (String) request.getParameter("newPassword");
 		String email = (String) request.getParameter("newEmail");
+		String state=reader.getState();
+		ArrayList<BorrowItem> borrowhistory=reader.getBorrowHistory();
+		ArrayList<Cart>cartList=reader.getCartList();
 		ReaderDAO readerDAO = new ReaderDAO();
 
-		// Ilegal character filter
-		CharacterFilterUtil cf = new CharacterFilterUtil();
-		String newName = cf.isName(name);
-		String newPassword = cf.isPassword(password);
-		String newEmail = cf.isEmail(email);
+		// execute the update
+		String newPassword1 = SecurityUtil.md5(password);
+		readerDAO.updateReaderInformation(id, name, newPassword1, email);
+		Reader newReader=new Reader();
+		newReader.setId(id);
+		newReader.setEmail(email);
+		newReader.setName(name);
+		newReader.setState(state);
+		newReader.setBorrowHistory(borrowhistory);
+		newReader.setCartList(cartList);
+		session.setAttribute("ReaderEntity", newReader);
+		out.print(
+				"<script>alert('Update information successfully! ');window.location='readerIndex.jsp';</script>");
 
-		// output to console
-		System.out.println(name);
-		System.out.println(password);
-		System.out.println(email);
-
-		// judge if null
-		if (newName == null || newName == "" || newName.isEmpty()) {
-			out.print(
-					"<script>alert('Please enter name!');window.location='readerChangeInformation.jsp';</script>");
-		} else if (newPassword == null || newPassword == "" || newPassword.isEmpty()) {
-			out.print(
-					"<script>alert('Please enter password!');window.location='readerChangeInformation.jsp';</script>");
-		} else if (newEmail == null || newEmail == "" || newEmail.isEmpty()) {
-			out.print(
-					"<script>alert('Please enter email!');window.location='readerChangeInformation.jsp';</script>");
-		} else {
-			// execute the update
-			String newPassword1 = SecurityUtil.md5(password);
-			readerDAO.updateReaderInformation(id, newName, newPassword1, newEmail);
-			out.print(
-					"<script>alert('Update information successfully! Please login again!');window.location='homepage.jsp';</script>");
-		}
 	}
 }

@@ -1191,7 +1191,7 @@ public class BookDAO {
 			+	" left join publisher on publisher.publisher_id=book.publisher_id) "
 			+	" left join writes on writes.isbn=book.isbn "
 			+	" left join author on author.author_id=writes.author_id) "
-             +    " where state='inlib' and book.isbn=\'"+isbn+
+             +    " where book.isbn=\'"+isbn+
 				"\' group by book_id desc limit ?,?";
 			
 		} else {
