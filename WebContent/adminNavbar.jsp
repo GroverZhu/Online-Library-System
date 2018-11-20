@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="brand">
-	<a href="homepage.jsp"><img src="assets/img/BiblioSoft Logo.png"
+	<a href="adminHomepage.jsp"><img src="assets/img/BiblioSoft Logo.png"
 		alt="BiblioSoft Logo" class="img-responsive logo"></a>
 </div>
 <div class="container-fluid">
