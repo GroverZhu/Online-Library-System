@@ -16,7 +16,7 @@ public class AccountStateTag extends TagSupport {
 		try {
 			JspWriter out = pageContext.getOut();
 			String outPrint = "";
-			String[] states = { "unclock", "blockade" };
+			String[] states = { "unlock", "blockade" };
 			outPrint += "<select id='State' name='state' size='1'>";
 			for (String state : states) {
 				outPrint += "<option>";
