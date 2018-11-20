@@ -374,14 +374,24 @@
     <servlet-name>LibrarianEditBook</servlet-name>
     <url-pattern>/librarian/LibrarianEditBook</url-pattern>
   </servlet-mapping>
-<servlet>
-		<description></description>
-		<display-name>ReaderViewReturnRecord</display-name>
-		<servlet-name>ReaderViewReturnRecord</servlet-name>
-		<servlet-class>controller.reader.ReaderViewReturnRecord</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ReaderViewReturnRecord</servlet-name>
-		<url-pattern>/ReaderViewReturnRecord</url-pattern>
-	</servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReaderViewReturnRecord</display-name>
+    <servlet-name>ReaderViewReturnRecord</servlet-name>
+    <servlet-class>controller.reader.ReaderViewReturnRecord</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReaderViewReturnRecord</servlet-name>
+    <url-pattern>/ReaderViewReturnRecord</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DestorySession</display-name>
+    <servlet-name>DestorySession</servlet-name>
+    <servlet-class>action.DestorySession</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DestorySession</servlet-name>
+    <url-pattern>/DestorySession</url-pattern>
+  </servlet-mapping>
 </web-app>

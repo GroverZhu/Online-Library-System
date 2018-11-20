@@ -50,9 +50,9 @@
 
 <script>
 	function logout() {
-		var result = confirm("Please make sure.Logout?");
+		var result = confirm("Please make sure to logout!");
 		if (result == true) {
-			window.location.href = "#";
+			window.location.href = "DestorySession";
 		} else {
 
 		}
