@@ -49,6 +49,8 @@
 
                     <li><a href="ReaderBorrowCart" class=""><i class="lnr lnr-linearicons"></i> <span>Borrow Cart</span></a>
                     </li>
+                    <li><a href="#" class=""><i class="lnr lnr-linearicons"></i> <span>Logout</span></a>
+                    </li>
                 </ul>
             </nav>
         </div>
