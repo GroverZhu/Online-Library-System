@@ -36,12 +36,12 @@
 
 											<td>${ReaderEntity.id }</td>
 											<form method="post" action="ReaderModifyInformation">
-												<td><input type="text" name="newName" maxlength="15"
+												<td><input type="text" name="newName" value="${ReaderEntity.name }" maxlength="15"
 													style="height: 23px; width: 100px"></td>
-												<td><input type="password" name="newPassword"
+												<td><input type="password" name="newPassword" 
 													maxlength="15" style="height: 23px; width: 100px"></td>
-												<td><input type="text" name="newEmail" maxlength="15"
-													style="height: 23px; width: 100px"></td>
+												<td><input type="text" name="newEmail" value="${ReaderEntity.email }"maxlength="15"
+													style="height: 23px; width: 150px"></td>
 												<td><div style="width: 150px; margin: auto">
 										<button type="submit" name="cis2"
 											class="btn btn-primary btn-block">Modify</button></td>

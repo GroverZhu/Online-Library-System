@@ -1,11 +1,16 @@
 package test;
 
-import util.CharacterFilter;
+import util.CharacterFilterUtil;
 
+/**
+ * 
+ * @author Huyuxi
+ *
+ */
 class testFilter {
 
 	public static void main(String[] args) {
-		CharacterFilter cf = new CharacterFilter();
+		CharacterFilterUtil cf = new CharacterFilterUtil();
 		System.out.println(cf.isEmail("374522830@qq.com"));
 		System.out.println(cf.isName("Huyuxi"));
 		System.out.println(cf.isPassword("hyx123456"));

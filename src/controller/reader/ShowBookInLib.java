@@ -31,7 +31,7 @@ public class ShowBookInLib extends HttpServlet {
 		
 		//分页功能
 		int start = 0;
-		int count = 1;
+		int count = 10;
 
 		try {
 			start = Integer.parseInt(request.getParameter("start"));
@@ -48,7 +48,10 @@ public class ShowBookInLib extends HttpServlet {
 		}
 		int total = bookDAO.getTotal(isbn);
 		
-		System.out.println("TTTTTTTTTTTTTTTTTTT"+total);
+		if(total==0) {
+			out.print("<script>alert('This kind of book is not available!');window.location='readerSearchBook.jsp';</script>");
+			return;
+		}
 		
 		int last;
 		if (0 == total % count)
@@ -58,10 +61,6 @@ public class ShowBookInLib extends HttpServlet {
 
 		pre = pre < 0 ? 0 : pre;
 		next = next > last ? last : next;
-
-//		request.setAttribute("next", next);
-//		request.setAttribute("pre", pre);
-//		request.setAttribute("last", last);
 		
 		session.setAttribute("next", next);
 		session.setAttribute("pre", pre);

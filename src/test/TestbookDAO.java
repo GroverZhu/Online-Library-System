@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import dao.BookDAO;
 import entity.Book;
-import util.CharacterFilter;
+import util.*;
 
 /**
  * 测试bookDAO

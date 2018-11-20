@@ -61,7 +61,7 @@ public class ReaderModifyInformation extends HttpServlet {
 		ReaderDAO readerDAO = new ReaderDAO();
 
 		// Ilegal character filter
-		CharacterFilter cf = new CharacterFilter();
+		CharacterFilterUtil cf = new CharacterFilterUtil();
 		String newName = cf.isName(name);
 		String newPassword = cf.isPassword(password);
 		String newEmail = cf.isEmail(email);
@@ -74,13 +74,13 @@ public class ReaderModifyInformation extends HttpServlet {
 		// judge if null
 		if (newName == null || newName == "" || newName.isEmpty()) {
 			out.print(
-					"<script>alert('Please enter the full keyword!');window.location='readerChangeInformation.jsp';</script>");
+					"<script>alert('Please enter name!');window.location='readerChangeInformation.jsp';</script>");
 		} else if (newPassword == null || newPassword == "" || newPassword.isEmpty()) {
 			out.print(
-					"<script>alert('Please enter the full keyword!');window.location='readerChangeInformation.jsp';</script>");
+					"<script>alert('Please enter password!');window.location='readerChangeInformation.jsp';</script>");
 		} else if (newEmail == null || newEmail == "" || newEmail.isEmpty()) {
 			out.print(
-					"<script>alert('Please enter the full keyword!');window.location='readerChangeInformation.jsp';</script>");
+					"<script>alert('Please enter email!');window.location='readerChangeInformation.jsp';</script>");
 		} else {
 			// execute the update
 			String newPassword1 = SecurityUtil.md5(password);
