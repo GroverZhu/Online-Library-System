@@ -2,7 +2,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="brand">
-            <a href="index.jsp"><img src="assets/img/BiblioSoft Logo.png"
+            <a href="readerIndex.jsp"><img src="assets/img/BiblioSoft Logo.png"
                                      alt="BiblioSoft Logo" class="img-responsive logo"></a>
         </div>
         <div class="container-fluid">
@@ -55,3 +55,13 @@
             </nav>
         </div>
     </div>
+   <script>
+	function logout() {
+		var result = confirm("Please make sure to logout!");
+		if (result == true) {
+			window.location.href = "DestorySession";
+		} else {
+
+		}
+	}
+</script>

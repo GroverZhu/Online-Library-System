@@ -46,12 +46,15 @@ public class ShowBookInLib extends HttpServlet {
 		if (isbn==null) {
 			isbn=(String) session.getAttribute("bookInfoISBN");			
 		}
+		Book book=bookDAO.getBookByIsbn(isbn);
+		session.setAttribute("BookDetail", book);
 		int total = bookDAO.getTotal(isbn);
 		
 		if(total==0) {
-			out.print("<script>alert('This kind of book is not available!');window.location='readerSearchBook.jsp';</script>");
+			out.print("<script>alert('Sorry,this kind of book is not available!');window.location='readerSearchBook.jsp';</script>");
 			return;
 		}
+		
 		
 		int last;
 		if (0 == total % count)

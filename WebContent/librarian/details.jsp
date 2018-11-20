@@ -64,7 +64,7 @@
 							<div class="panel">
 								<div class="panel-heading"></div>
 
-								<div class="panel-body">
+								<div class="panel-body"><br>
 									ISBN:<input type="text" class="form-control" name="readerName"
 										readonly="readonly" value="${information.ISBN }" /> <br>
 									Book Name:<input type="text" class="form-control"
