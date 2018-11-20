@@ -105,15 +105,14 @@
 		</div>
 	</div>
 	<!-- END WRAPPER -->
-<jsp:include page="Footer.jsp" />
+	<jsp:include page="Footer.jsp" />
 	<script>
     function checkuse() {
-        //在每个函数中定义check变量是为了在表单提交后，能够逐个验证每个函数是否通过，很好很好。（以下同理）
+        //在每个函数中定义check变量是为了在表单提交后，能够逐个验证每个函数是否通过
         var check;
         var username = document.getElementById("userid").value;
         if (username.length != 6) {
             alert("admin id's length is 6");
-            //此处甚妙，既然你在此处输入错误，那么按理说当然要在此处继续输入了。（在此处继续获取焦点！）
             document.getElementById("username").focus();
             check = false;
         }
