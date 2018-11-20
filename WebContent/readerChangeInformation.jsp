@@ -42,16 +42,16 @@
 													maxlength="15" style="height: 23px; width: 100px"></td>
 												<td><input type="text" name="newEmail" maxlength="15"
 													style="height: 23px; width: 100px"></td>
-												<td><input type="SUBMIT" name="cis2" value="Modify"></td>
+												<td><div style="width: 150px; margin: auto">
+										<button type="submit" name="cis2"
+											class="btn btn-primary btn-block">Modify</button></td>
 											</form>
 										</tr>
 
 									</tbody>
 								</table>
 								<div>
-									<div style="width: 300px; margin: auto">
-										<button type="submit" name="cis2"
-											class="btn btn-primary btn-block">Modify</button>
+									
 									</div>
 								</div>
 							</div>
