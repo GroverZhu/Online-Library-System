@@ -35,6 +35,7 @@
                             <th>Book Name</th>
                             <th>Librarian ID</th>
                             <th>Start Time</th>
+                            <th>DeadLine Time</th>
                         </tr>
                         <c:forEach items="${borrowHistory}" var="borrowhistory" varStatus="num">
                          <tr>
@@ -43,6 +44,7 @@
                             <th>${borrowhistory.bookName}</th>
                             <th>${borrowhistory.borrowLibrarianId}</th>
                             <th>${borrowhistory.borrowTime}</th>
+                             <th>${borrowhistory.returnTime}</th>
                          </tr>
                         </c:forEach>
                         </thead>
