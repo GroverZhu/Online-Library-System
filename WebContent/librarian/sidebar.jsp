@@ -22,10 +22,18 @@
 	<div class="sidebar-scroll">
 		<nav>
 		<ul class="nav">
-			<li><a href="librarianHomepage.jsp" class=""><i
-					class="lnr lnr-home"></i> <span>Librarian Homepage</span></a></li>
-			<li><a href="librarianModifyInfo.jsp" class=""><i
-					class="lnr lnr-home"></i> <span>Change Password</span></a></li>
+			<li>
+				<a href="librarianHomepage.jsp" class="">
+					<i class="lnr lnr-home"></i> 
+					<span>Librarian Homepage</span>
+				</a>
+			</li>
+			<li>
+				<a href="librarianModifyInfo.jsp" class="">
+			 		<i class="lnr lnr-home"></i> 
+			 		<span>Change Password</span>
+			 	</a>
+			 </li>
 
 			<li><a href="#subPages1" data-toggle="collapse"
 				class="collapsed"><i class="lnr lnr-cog"></i> <span>Manage
@@ -40,7 +48,8 @@
 						<li><a href="librarianReturnBook.jsp" class="">Return
 								Book</a></li>
 					</ul>
-				</div></li>
+				</div>
+			</li>
 
 			<li><a href="#subPages2" data-toggle="collapse"
 				class="collapsed"><i class="lnr lnr-cog"></i> <span>Manage
@@ -59,10 +68,15 @@
 								Reader</a></li>
 						<li><a href="ShowCart?start=0" class="">Show Borrow Cart</a></li>
 					</ul>
-				</div></li>
+				</div>
+			</li>
 
-			<li><a href="#" onclick="logout()" class=""><i
-					class="lnr lnr-linearicons"></i> <span>Logout</span></a></li>
+			<li>
+				<a href="#" onclick="logout()" class="">
+					<i class="lnr lnr-linearicons"></i> 
+					<span>Logout</span>
+				</a>
+			</li>
 		</ul>
 		</nav>
 	</div>
@@ -72,7 +86,7 @@
 	function logout() {
 		var result = confirm("Please make sure to Logout?");
 		if (result == true) {
-			window.location.href = "../DestorySession";
+			window.location.href = "../DestroySession";
 		} else {
 
 		}

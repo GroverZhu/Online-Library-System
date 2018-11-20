@@ -41,6 +41,9 @@ public class LibrarianLendBook extends HttpServlet {
 		Librarian librarian=(Librarian)session.getAttribute("librarianEntity");
 		BorrowCartDAO bDAO=new BorrowCartDAO();	
 		if(operate.equals("agree")) {//同意将书借出
+			System.out.println("readerId="+readerId+","
+					+ "bookId="+bookId+","
+							+ "librarianId"+librarian.getId());
 			bDAO.agreeBorrowBook(readerId, bookId, librarian.getId());//同意借书
 		}else if(operate.equals("disagree")) {//不同意将书借出
 			bDAO.disagreeBorrowBook(readerId, bookId, librarian.getId());//拒绝借书

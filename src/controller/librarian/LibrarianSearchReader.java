@@ -1,6 +1,7 @@
 package controller.librarian;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,12 +21,52 @@ import entity.Reader;
 public class LibrarianSearchReader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReaderDAO readerDAO;
+	private int start = 0;//起始行
+	private int count = 2;//每页显示行数
+	private int condition=0;
+	
     public LibrarianSearchReader() {
         super();
         readerDAO=new ReaderDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		try {
+			start = Integer.parseInt(request.getParameter("start"));
+		} catch (NumberFormatException e) {
+			// 当浏览器没有传参数start时
+		}
+		int next = start + count;//下一页
+		int pre = start - count;//前一页
+		int total=readerDAO.getTotal();
+		//最后一页的起始行
+		int last;
+		if (0 == total % count) {//每一页都能展示最大行数
+			last = total - count;
+		}else {
+			last = total - total % count;
+		}
+		pre = pre < 0 ? 0 : pre;
+		next = next > last ? last : next;
+		//设置request属性
+		request.setAttribute("next", next);
+		request.setAttribute("pre", pre);
+		request.setAttribute("last", last);
+		request.setAttribute("current", start);
+		System.out.println("--LibrarianSearchReader--，分页展示所有读者--,Condition"+6);
+		int condition=Integer.parseInt(request.getParameter("condition"));
+		if(condition==3) {
+			//获取数据库中所有的reader，分页展示
+			List<Reader> list=readerDAO.getAllReaders(start,count);
+			request.setAttribute("readerList", list);
+			request.setAttribute("condition", 3);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("librarianSearchReader.jsp");
+			dispatcher.forward(request, response);
+		}else if(condition ==1) {
+		}else if(condition ==3) {
+			
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,10 +100,20 @@ public class LibrarianSearchReader extends HttpServlet {
 					dispatcher.forward(request, response);
 				}else {
 					System.out.println("--LibrarianSearchReader--,Condition"+2);
-					request.setAttribute("readerEntity", reader);
-					RequestDispatcher dispatcher=request.getRequestDispatcher("errorSearchReader.jsp");
-					dispatcher.forward(request, response);
+					PrintWriter out=response.getWriter();
+					out.print(
+							"<script language='javascript'>"
+							+ "alert('There is no such reader!');"
+							+ "window.location.href='librarianSearchReader.jsp';"
+							+ "</script>");
 				}
+			}else {
+				PrintWriter out=response.getWriter();
+				out.print(
+						"<script language='javascript'>"
+						+ "alert('There is no such reader!');"
+						+ "window.location.href='librarianSearchReader.jsp';"
+						+ "</script>");
 			}
 		}else{//id为空
 			if(name==null&&state!=null) {
@@ -73,16 +124,24 @@ public class LibrarianSearchReader extends HttpServlet {
 				dispatcher.forward(request, response);
 			}else if(name!=null&&state==null){
 				System.out.println("--LibrarianSearchReader--,Condition"+4);
-				List<Reader> list=readerDAO.getReaderByName(name);
-				for(Reader i:list) {
-					System.out.println(i.toString());
-				}
+				//获取数据库中所有name相似的reader，分页展示
+				List<Reader> list=readerDAO.getReaderByName(name,0,count);
 				request.setAttribute("readerList", list);
+				request.setAttribute("condition", 1);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("librarianSearchReader.jsp");
 				dispatcher.forward(request, response);
 			}else if(name!=null&&state!=null) {
 				System.out.println("--LibrarianSearchReader--,Condition"+5);
 				List<Reader> list=readerDAO.getReaderByName_State(name,state);
+				request.setAttribute("readerList", list);
+				request.setAttribute("condition", 2);
+				RequestDispatcher dispatcher=request.getRequestDispatcher("librarianSearchReader.jsp");
+				dispatcher.forward(request, response);
+			}else if(name==null&&state==null) {
+				System.out.println("--LibrarianSearchReader--,Condition"+6);
+				//获取数据库中所有的reader，分页展示
+				List<Reader> list=readerDAO.getAllReaders();
+				request.setAttribute("condition", 3);
 				request.setAttribute("readerList", list);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("librarianSearchReader.jsp");
 				dispatcher.forward(request, response);

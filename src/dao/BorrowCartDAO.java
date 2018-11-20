@@ -121,6 +121,7 @@ public class BorrowCartDAO {
 		int total = -1;
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
+			System.out.println(conn.toString());
 			st = conn.createStatement();
 			String sql = "SELECT COUNT(*) AS total FROM borrow_cart WHERE submit_time IS NOT NULL";
 			rs = st.executeQuery(sql);
@@ -149,12 +150,14 @@ public class BorrowCartDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
+			System.out.println(conn.toString());
 			conn.setAutoCommit(false);// 开启事务
 			st = conn.createStatement();
 			// 从borrow_cart删除该条目
 			String sql = "DELETE FROM borrow_cart " + "WHERE book_id=" + bookId + " AND reader_id=" + readerId
 					+ " AND submit_time IS NOT NULL";
 			st.executeUpdate(sql);
+			System.out.println(getTotal());
 			// 将book_in_library中的相应book改变状态
 			sql = "UPDATE book_in_library " + "SET state='borrowed' " + "WHERE book_id=" + bookId;
 			st.executeUpdate(sql);
@@ -167,8 +170,10 @@ public class BorrowCartDAO {
 			Timestamp time = new Timestamp(Calendar.getInstance().getTimeInMillis());
 			pstmt.setTimestamp(4, time);
 			pstmt.executeUpdate();
+			System.out.println(getTotal());
 			conn.commit();// 提交事务
 			pstmt.close();
+			System.out.println(getTotal());
 			st.close();
 			conn.close();
 			return true;
@@ -472,4 +477,9 @@ public class BorrowCartDAO {
 		return 0;
 	}
 
+	public static void main(String[] args) {
+		BorrowCartDAO dao=new BorrowCartDAO();
+//		dao.updateBorrowCart(2, 1);
+		dao.agreeBorrowBook(1, 2, 1);
+	}
 }

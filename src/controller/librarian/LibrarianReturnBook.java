@@ -24,6 +24,7 @@ import entity.Reader;
  */
 public class LibrarianReturnBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private BorrowCartDAO dao = new BorrowCartDAO();
 
 	public LibrarianReturnBook() {
 		super();
@@ -31,6 +32,19 @@ public class LibrarianReturnBook extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int bookId=Integer.parseInt(request.getParameter("bookId"));
+		HttpSession session = request.getSession();
+		Librarian librarian = (Librarian) session.getAttribute("librarianEntity");
+		if(dao.returnBook(bookId, librarian.getId())) {
+			PrintWriter out = response.getWriter();
+			out.print("<script language='javascript'>" + "alert('Success!');"
+					+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
+		}else {
+			PrintWriter out = response.getWriter();
+			out.print("<script language='javascript'>" + "alert('Failed!');"
+					+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,10 +53,11 @@ public class LibrarianReturnBook extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		BorrowCartDAO dao = new BorrowCartDAO();
 		HttpSession session = request.getSession();
 		Librarian librarian = (Librarian) session.getAttribute("librarianEntity");
 		BorrowItemDAO d = new BorrowItemDAO();
+		
+		//获取读者信息
 		Reader reader = d.getReaderInBorrowItemByBookID(bookId);
 		if (reader == null) {
 			out.print("<script language='javascript'>"
@@ -50,16 +65,21 @@ public class LibrarianReturnBook extends HttpServlet {
 					+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
 		}
 		BookDAO bDAO = new BookDAO();
+		
+		//获取book信息
 		Book book = bDAO.searchByID(bookId);
 		if (book != null) {
-			if (dao.returnBook(bookId, librarian.getId())) {
-				request.setAttribute("borrowerEntity", reader);
-				request.setAttribute("bookEntity", book);
-				request.getRequestDispatcher("librarianReturnBook.jsp").forward(request, response);
-			} else {
-				out.print("<script language='javascript'>" + "alert('This Book is not borrowed!');"
-						+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
-			}
+			request.setAttribute("borrowerEntity", reader);
+			request.setAttribute("bookEntity", book);
+			request.getRequestDispatcher("librarianReturnBook.jsp").forward(request, response);
+//			if (dao.returnBook(bookId, librarian.getId())) {
+//				request.setAttribute("borrowerEntity", reader);
+//				request.setAttribute("borrowerEntity", book);
+//				request.getRequestDispatcher("librarianReturnBook.jsp").forward(request, response);
+//			} else {
+//				out.print("<script language='javascript'>" + "alert('This Book is not borrowed!');"
+//						+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
+//			}
 		} else {
 			out.print("<script language='javascript'>" + "alert('Error Book ID! There is no book ID= '" + bookId + "!);"
 					+ "window.location.href='librarianReturnBook.jsp';" + "</script>");
