@@ -105,7 +105,7 @@
 		</div>
 	</div>
 	<!-- END WRAPPER -->
-
+<jsp:include page="Footer.jsp" />
 	<script>
     function checkuse() {
         //在每个函数中定义check变量是为了在表单提交后，能够逐个验证每个函数是否通过，很好很好。（以下同理）

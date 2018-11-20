@@ -8,6 +8,6 @@
 </head>
 <body>
 <script language='javascript'>alert('Success Submit Borrow Cart!');window.location.href='readerBorrowCart.jsp';</script>");
-
+<jsp:include page="Footer.jsp" />
 </body>
 </html>

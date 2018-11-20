@@ -31,17 +31,16 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-	<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="brand">
-			<img src="assets/img/BiblioSoft Logo.png"
-				alt="BiblioSoft Logo" class="img-responsive logo">
+			<img src="assets/img/BiblioSoft Logo.png" alt="BiblioSoft Logo"
+				class="img-responsive logo">
 		</div>
 		<div class="container-fluid">
 			<div id="navbar-menu">
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a class="update-pro" href="Login.jsp" title="Login" ><i class="fa fa-rocket"></i> <span>Login</span></a>
-					</li>
+					<li><a class="update-pro" href="Login.jsp" title="Login"><i
+							class="fa fa-rocket"></i> <span>Login</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -51,19 +50,22 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-				<br/><br/><br/><br/>
+					<br />
+					<br />
+					<br />
+					<br />
 					<div class="panel">
 						<div class="panel-heading">
 							<br />
 							<div class="logo text-center">
-									<img src="assets/img/logo-big.png" alt="BiblioSoft Logo">
+								<img src="assets/img/logo-big.png" alt="BiblioSoft Logo">
 							</div>
 						</div>
-						</div>
-						</div>
-						</div>
-						</div>
-						
+					</div>
+				</div>
+			</div>
+		</div>
+		<jsp:include page="Footer.jsp" />
 </body>
 
 </html>

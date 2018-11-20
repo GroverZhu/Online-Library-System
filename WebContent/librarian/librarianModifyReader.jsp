@@ -143,7 +143,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-
+<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

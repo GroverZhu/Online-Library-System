@@ -143,16 +143,7 @@
 
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">
-					Copyright &copy; 2018.Company name All 中文rights reserved. <a
-						target="_blank" title="BiblioSoft">BiblioSoft</a> - Collect from <a
-						title="BiblioSoft" target="_blank">Software</a>
-				</p>
-
-			</div>
-		</footer>
+		<jsp:include page="../Footer.jsp" />
 		<!-- Javascript -->
 		<script src="../assets/vendor/jquery/jquery.min.js"></script>
 		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>

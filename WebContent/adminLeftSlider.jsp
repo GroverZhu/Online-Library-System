@@ -47,7 +47,7 @@
 		</nav>
 	</div>
 </div>
-
+<jsp:include page="Footer.jsp" />
 <script>
 	function logout() {
 		var result = confirm("Please make sure to logout!");

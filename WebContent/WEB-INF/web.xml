@@ -356,7 +356,7 @@
     </init-param>
     <init-param>
       <param-name>disableFilter</param-name>
-      <param-value>N</param-value>
+      <param-value>Y</param-value>
     </init-param>
   </filter>
   <filter-mapping>
