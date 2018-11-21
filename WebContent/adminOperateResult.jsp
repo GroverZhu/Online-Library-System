@@ -22,6 +22,7 @@
 <link rel="icon" type="image/png" sizes="96x96"
 	href="assets/img/favicon.png">
 <body>
+<c:if test="${empty sessionScope.AdministratorEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->

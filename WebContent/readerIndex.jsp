@@ -2,7 +2,8 @@
          pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <c:if test="${empty sessionScope.ReaderEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
 <jsp:include page="readerNavbar.jsp"/>
 <body>
 <!-- WRAPPER -->

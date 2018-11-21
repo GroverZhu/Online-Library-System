@@ -33,6 +33,7 @@
 
 <body>
 	<!-- WRAPPER -->
+<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
 		<%@ include file="sidebar.jsp"%>

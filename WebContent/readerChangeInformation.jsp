@@ -7,6 +7,7 @@
 <jsp:include page="readerNavbar.jsp" />
 
 <body>
+<c:if test="${empty sessionScope.ReaderEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
 	<!-- WRAPPER -->
 	<jsp:include page="readerLeftSlider.jsp" />
 	<!-- END LEFT SIDEBAR -->

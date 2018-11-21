@@ -35,6 +35,7 @@
 </head>
 
 <body>
+<c:if test="${empty sessionScope.ReaderEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
 	<!-- WRAPPER -->
 	<jsp:include page="readerNavbar.jsp" />
 	<!-- END NAVBAR -->
