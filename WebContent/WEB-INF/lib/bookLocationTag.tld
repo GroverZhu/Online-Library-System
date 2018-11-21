@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+ 	<tlib-version>1.0</tlib-version>
+ 	<jsp-version>1.2</jsp-version>
+ 	<short-name>Book Location Tag</short-name>
+ 
+ <tag>
+  <name>location</name>
+  <tag-class>action.BookLocationTag</tag-class>
+  <body-content>empty</body-content>
+</tag>
+ 
+</taglib>
