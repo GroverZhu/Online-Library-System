@@ -50,10 +50,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<br />
-					<br />
-					<br />
-					<br />
+					<br /> <br /> <br /> <br />
 					<div class="panel">
 						<div class="panel-heading">
 							<br />
