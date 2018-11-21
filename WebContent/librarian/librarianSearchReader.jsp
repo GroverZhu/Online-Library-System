@@ -177,16 +177,16 @@
 	<script>
 		var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
 		var isReaderId = /^\d{4,10}$/;
-		var isReaderId = /^\d{4,10}$/;
 
 		function inputCheck(form) {
-			
-			if (!isReaderId.test(form.readerID.value)) {
+
+			if (!isReaderId.test(form.readerID.value)
+					&& !isName.test(form.name.value)) {
 				alert("Invalid Reader ID(Should Be 4-10 Numbers!), Please Input Again!");
 				form.readerID.focus();
 				return false;
-			}
-			if (!isName.test(form.name.value)) {
+			} else if (!isName.test(form.name.value)
+					&& !isReaderId.test(form.readerID.value)) {
 				alert("Reader name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
 				form.name.focus();
 				return false;

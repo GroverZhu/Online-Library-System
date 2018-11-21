@@ -41,7 +41,8 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="post" onsubmit="return inputCheck(this)" action="LibrarianSearchBook">
+							<form method="post" onsubmit="return inputCheck(this)"
+								action="LibrarianSearchBook">
 								<div class="panel">
 									<div class="panel-heading">
 										<table>
@@ -53,10 +54,10 @@
 													</div>
 												</td>
 												<td width=350px height=64px><select name="searchBy"
-													size="1">
-														<option>Book Name</option>
-														<option>Author</option>
-														<option>ISBN</option>
+													id="myselects" size="1">
+														<option value="bookname">Book Name</option>
+														<option value="author">Author</option>
+														<option value="isbn">ISBN</option>
 												</select></td>
 											</tr>
 										</table>
@@ -66,6 +67,7 @@
 										<div class="col-md-12">
 											<div class="input-group">
 												<input class="form-control" type="text" name="keyword"
+													id="inputText"
 													placeholder="Input Keywords:Chinese Book Name, Author or ISBN">
 												<span class="input-group-btn">
 													<button class="btn btn-primary" type="submit">Search</button>
@@ -94,23 +96,22 @@
 										</thead>
 										<tbody>
 											<c:if test="${not empty sessionScope.bookList }">
-											<c:forEach var="item" items="${sessionScope.bookList }" varStatus="i">
-												<tr>
-													<td>1</td>
-													<td>${item.ISBN }</td>
-													<td>${item.name }</td>
-													<td>${item.publisher.name }</td>
-													<td>${item.authors }</td>
-													<td>${item.price }</td>
-													<th>
-														<a href="LibrarianSearchBook?isbn=${item.ISBN}">
-														<button type="button" class="btn btn-primary">
-															<i class="fa fa-refresh"></i> Details
-														</button>
-														</a>
-													</th>
-												</tr>
-											</c:forEach>
+												<c:forEach var="item" items="${sessionScope.bookList }"
+													varStatus="i">
+													<tr>
+														<td>1</td>
+														<td>${item.ISBN }</td>
+														<td>${item.name }</td>
+														<td>${item.publisher.name }</td>
+														<td>${item.authors }</td>
+														<td>${item.price }</td>
+														<th><a href="LibrarianSearchBook?isbn=${item.ISBN}">
+																<button type="button" class="btn btn-primary">
+																	<i class="fa fa-refresh"></i> Details
+																</button>
+														</a></th>
+													</tr>
+												</c:forEach>
 
 											</c:if>
 											<c:if test="${not empty sessionScope.bookEntity }">
@@ -153,12 +154,39 @@
 			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="../assets/scripts/klorofil-common.js"></script>
-		<script>
 
-	
-	function inputCheck(form) {
-		
-	}
-	</script>
+		<script type="text/javascript">
+			function inputCheck(form) {
+				// 书的名字不可超过50个字符
+				var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
+				var isISBN = /^\d{10}$|^\d{13}$/;
+
+				var myselect = document.getElementById("myselects");
+				var index = myselect.selectedIndex;
+				var value = myselect.options[index].value;
+				if (myselect.options[index].value == "bookname") {
+					if (!isName.test(form.inputText.value)) {
+						alert("Book name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+						form.inputText.focus();
+						return false;
+					}
+				}
+				if (value == "author") {
+					if (!isName.test(form.inputText.value)) {
+						alert("Author name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+						form.inputText.focus();
+						return false;
+					}
+				}
+				if (value == "isbn") {
+					if (!isISBN.test(form.inputText.value)) {
+						alert("ISBN must use be 10 or 13 digitals and cannot be empty, please enter again!");
+						form.inputText.focus();
+						return false;
+					}
+				}
+
+			}
+		</script>
 </body>
 </html>
