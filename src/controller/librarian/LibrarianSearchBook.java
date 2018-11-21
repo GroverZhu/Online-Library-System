@@ -46,7 +46,7 @@ public class LibrarianSearchBook extends HttpServlet {
 		String keyword=request.getParameter("keyword");
 		System.out.println("关键词keyword="+keyword);
 		System.out.println(request.getCharacterEncoding());
-		if(searchBy.equals("Book Name")) {
+		if(searchBy.equals("bookname")) {
 			System.out.println("By Book Name");
 			List<Book> list=(List<Book>) bookDAO.getBookByAlikeTitle(keyword);
 			if(list==null||list.isEmpty()) {
@@ -61,7 +61,7 @@ public class LibrarianSearchBook extends HttpServlet {
 				session.setMaxInactiveInterval(1);
 				response.sendRedirect("librarianSearchBook.jsp");
 			}
-		}else if(searchBy.equals("ISBN")) {
+		}else if(searchBy.equals("isbn")) {
 			System.out.println("By ISBN");
 			Book book=bookDAO.getBookByIsbn(keyword);
 			if(book==null) {
@@ -76,7 +76,7 @@ public class LibrarianSearchBook extends HttpServlet {
 				response.sendRedirect("librarianSearchBook.jsp");
 //				request.getRequestDispatcher("librarianSearchBook.jsp").forward(request, response);
 			}
-		}else if(searchBy.equals("Author")) {
+		}else if(searchBy.equals("author")) {
 			System.out.println("By Author");
 			List<Book> list=(List<Book>) bookDAO.getBookByAuthor(keyword);
 			if(list==null||list.isEmpty()) {
