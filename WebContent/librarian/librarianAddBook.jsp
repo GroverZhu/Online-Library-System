@@ -35,13 +35,15 @@
 
 <body>
 
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.librarianEntity}">
+		<jsp:forward page="../homepage.jsp" />
+	</c:if>
 
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
 		<%@ include file="sidebar.jsp"%>
-     </div>
+
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -138,18 +140,18 @@
 		<div class="clearfix"></div>
 		<jsp:include page="../Footer.jsp" />
 		<!-- END WRAPPER -->
+	</div>
+	<!-- Javascript -->
+	<script src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="../assets/scripts/klorofil-common.js"></script>
 
-		<!-- Javascript -->
-		<script src="../assets/vendor/jquery/jquery.min.js"></script>
-		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script
-			src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-		<script
-			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-		<script src="../assets/scripts/klorofil-common.js"></script>
-
-		<script>
+	<script>
 			var isISBN = /^\d{10}$|^\d{13}$/;
 			var isPublishTime = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
 			var isBookName = /^[&a-zA-Z0-9\u4e00-\u9fa5()（）：:\s\S ]{1,}$/;

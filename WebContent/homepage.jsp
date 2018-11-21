@@ -56,7 +56,33 @@
 							<br />
 							<div class="logo text-center">
 								<img src="assets/img/logo-big.png" alt="BiblioSoft Logo">
+								<br /><br />
+								<h1>Recommend Books</h1>
 							</div>
+						</div>
+						<div class="panel-body">
+						<table align = "center" style="text-align:center">
+						<tr>
+							<td width="350px"><h3>Poetry</h3></td>
+							<td width="350px"><h3>Prose</h3></td>
+							<td width="350px"><h3>Novel</h3></td>
+						</tr>
+						<tr>
+							<td width="350px"><img src="assets/img/poetry.jpg" width="350px"></td>
+							<td width="350px"><img src="assets/img/prose.jpg" width="350px"></td>
+							<td width="350px"><img src="assets/img/novel.jpg" width="335px"></td>
+						</tr>
+						<tr>
+							<td width="350px"><br /><h3>Author:Lin Huiyin</h3></td>
+							<td width="350px"><br /><h3>Author:Yang Jiang</h3></td>
+							<td width="350px"><br /><h3>Author:Qian Zhongshu</h3></td>
+						</tr>
+						<tr>
+							<td width="350px"></td>
+							<td width="350px"></td>
+							<td width="350px"></td>
+						</tr>
+						</table>
 						</div>
 					</div>
 				</div>

@@ -124,9 +124,12 @@
 											</c:if>
 										</tbody>
 									</table>
+									<br />
+									<div align="center">
 									<a href="LibrarianReturnBook?bookId=${bookEntity.id }">
-									Return
+									<h3>Return</h3>
 									</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -139,6 +142,7 @@
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<jsp:include page="../Footer.jsp" />
+	</div>
 		<!-- Javascript -->
 		<script src="../assets/vendor/jquery/jquery.min.js"></script>
 		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
