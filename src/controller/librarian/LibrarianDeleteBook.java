@@ -27,7 +27,7 @@ public class LibrarianDeleteBook extends HttpServlet {
 		int tag=bookDAO.deleteBookById(bookId);
 		if(tag==1) {
 			out.print("<script language='javascript'>"
-					+ "alert('Success to Delete Kook!');"
+					+ "alert('Success to Delete Book!');"
 					+ "window.location.href='librarianDeleteBook.jsp';"
 					+ "</script>");
 		}else if(tag==2){

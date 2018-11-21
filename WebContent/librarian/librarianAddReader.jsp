@@ -73,7 +73,7 @@
 								<form method="post" action="LibrarianAddReader">
 									<div class="panel-body">
 										<input type="text" class="form-control"
-											placeholder="Reader Name 由字符、空格、中文组成" name="readerName">
+											placeholder="Reader Name must be English or Chinese Character" name="readerName">
 										<br> <input type="text" class="form-control"
 											placeholder="Password" name="password"> <br> <label
 											class="fancy-radio"> <input name="state"

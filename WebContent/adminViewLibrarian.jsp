@@ -69,7 +69,7 @@
 											<th>${lib.name}</th>
 											<th>${lib.state}</th>
 											<th>
-												<button class="btn btn-primary"
+												<button class="btn btn-danger"
 													onclick="window.location.href='adminDeleteLibrarian.jsp?id=${lib.id}&name=${lib.name}'">Delete</button>
 												<button class="btn btn-primary"
 													onclick="window.location.href='adminModifyLibrarianBefore.jsp?id=${lib.id}'">Modify</button>

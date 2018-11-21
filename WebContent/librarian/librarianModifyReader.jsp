@@ -61,8 +61,8 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="hidden" name="id" class="form-control"
-														value="${readerEntity.id } placeholder="ReaderID">
+													<input type="text" readonly="readonly" name="id" class="form-control"
+														value="${readerEntity.id }" placeholder="ReaderID">
 												</div>
 											</td>
 										</tr>

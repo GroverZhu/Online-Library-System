@@ -82,9 +82,9 @@
 										Book Name: <input type="text" class="form-control"
 											name="Book Name" placeholder="Book Name"
 											value="${sessionScope.BookName__}" /> <br /> Book
-										Description: <input type="text" class="form-control"
+										Description: <textarea  class="form-control"
 											name="Book Description" placeholder="Book Description"
-											value="${sessionScope.BookDes__}" /> <br /> Publish Time: <input
+											 >${sessionScope.BookDes__}</textarea> <br /> Publish Time: <input
 											type="text" class="form-control" name="Publish Time"
 											placeholder="Publish Time ( Example:2010-10-20 )"
 											value="${sessionScope.PubTime__}" /> <br /> Price: <input
