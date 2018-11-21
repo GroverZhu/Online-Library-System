@@ -9,6 +9,10 @@
       <taglib-uri>simpleTag</taglib-uri>
       <taglib-location>/WEB-INF/tld/stateTag.tld</taglib-location>
     </taglib>
+    <taglib>
+			<taglib-uri>BookLocationTag</taglib-uri>
+			<taglib-location>/WEB-INF/lib/bookLocationTag.tld</taglib-location>
+	</taglib>
   </jsp-config>
   <servlet>
     <description></description>
