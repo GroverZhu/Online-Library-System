@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,11 +62,12 @@
 											</div>
 										</td>
 										<td width="550px">
-											<form method="post" onsubmit="return inputCheck(this)" action="SearchReaderBeforeEdit">
+											<form method="post" onsubmit="return inputCheck(this)"
+												action="SearchReaderBeforeEdit">
 												<div class="input-group">
-													<input class="form-control" type="text" name="account" id="account"
-														placeholder="Please Input ReaderID"> <span
-														class="input-group-btn">
+													<input class="form-control" type="text" name="account"
+														id="account" placeholder="Please Input ReaderID">
+													<span class="input-group-btn">
 														<button class="btn btn-primary" type="submit">Search</button>
 													</span>
 												</div>
@@ -72,7 +75,7 @@
 										</td>
 									</tr>
 								</table>
-							<br />	
+								<br />
 
 								<!-- 如果readerEntity属性不为空，则展示Reader信息 -->
 								<c:if test="${not empty readerEntity }">
@@ -95,7 +98,8 @@
 											<td>${readerEntity.state }</td>
 										</tr>
 									</table>
-									<a href="LibrarianModifyReader?reader_id=${readerEntity.id}">Modify Reader Information</a>
+									<a href="LibrarianModifyReader?reader_id=${readerEntity.id}">Modify
+										Reader Information</a>
 								</c:if>
 							</div>
 						</div>
@@ -107,7 +111,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-<jsp:include page="../Footer.jsp" />
+	<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

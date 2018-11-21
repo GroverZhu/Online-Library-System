@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -93,7 +95,7 @@
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-<jsp:include page="../Footer.jsp" />
+		<jsp:include page="../Footer.jsp" />
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->

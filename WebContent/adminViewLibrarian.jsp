@@ -23,7 +23,9 @@
 <link rel="icon" type="image/png" sizes="96x96"
 	href="assets/img/favicon.png">
 <body>
-<c:if test="${empty sessionScope.AdministratorEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.AdministratorEntity}">
+		<jsp:forward page="homepage.jsp" />
+	</c:if>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
@@ -108,7 +110,6 @@
 			src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="assets/scripts/klorofil-common.js"></script>
-		
 </body>
 
 </html>

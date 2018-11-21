@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <html lang="en">
 <head>
 <title>Librarian Edit Book</title>
@@ -36,8 +38,8 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
-		<%@ include file="sidebar.jsp" %>
-		
+		<%@ include file="sidebar.jsp"%>
+
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -45,81 +47,81 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Information</h3>
 					<div class="row">
-						<div class="col-md-12" >
-							
+						<div class="col-md-12">
+
 							<!-- INPUTS -->
 							<div class="panel">
-								<div class="panel-heading">
-								</div>
-								
+								<div class="panel-heading"></div>
+
 								<div class="panel-body">
-										ISBN:<input type="text" class="form-control" readonly="readonly" name="ISBN"  value="${bookEdit.ISBN }"/>
-	                                    <br>
-	                                    Book Name:<input type="text" class="form-control" readonly="readonly" name="name"  value="${bookEdit.name}"/>
-	                                    <br>
-										Publisher:<input type="text" class="form-control" readonly="readonly" name="publisher"  value="${bookEdit.publisher.name }"/>
-	                                    <br>
-	                                    Authors:<input type="text" class="form-control" readonly="readonly" name="authors"  value="${bookEdit.authors }"/>
-	                                    <br>
-	                                    Price:<input type="text" class="form-control" readonly="readonly" name="price"  value="${bookEdit.price }"/>
-	                                    <br>
-	                                    Description:<textarea class="form-control" readonly="readonly" name="description" >${bookEdit.description }</textarea>
-	                                    <br>
+									ISBN:<input type="text" class="form-control"
+										readonly="readonly" name="ISBN" value="${bookEdit.ISBN }" /> <br>
+									Book Name:<input type="text" class="form-control"
+										readonly="readonly" name="name" value="${bookEdit.name}" /> <br>
+									Publisher:<input type="text" class="form-control"
+										readonly="readonly" name="publisher"
+										value="${bookEdit.publisher.name }" /> <br> Authors:<input
+										type="text" class="form-control" readonly="readonly"
+										name="authors" value="${bookEdit.authors }" /> <br>
+									Price:<input type="text" class="form-control"
+										readonly="readonly" name="price" value="${bookEdit.price }" />
+									<br> Description:
+									<textarea class="form-control" readonly="readonly"
+										name="description">${bookEdit.description }</textarea>
+									<br>
 								</div>
 							</div>
 							<!-- END INPUTS -->
 							<form method="post" action="LibrarianEditBook">
-							<table class="table">
+								<table class="table">
 									<thead>
-											<tr>
-												<th>Number</th>
-												<th>Book ID</th>
-												<th>Book Location</th>
-												<th>State</th>
-												<th>Operate</th>
-											</tr>
-										</thead>
+										<tr>
+											<th>Number</th>
+											<th>Book ID</th>
+											<th>Book Location</th>
+											<th>State</th>
+											<th>Operate</th>
+										</tr>
+									</thead>
 									<tbody>
-											<c:forEach var="item" items="${bookEditList }" varStatus="i">
-												<c:if test="${item.id != bookEditId }">
-													<tr>
-														<td>${i.count }</td>
-														<td>${item.id }</td>
-														<td>${item.location }</td>
-														<td>${item.state }</td>
-														<th>
-															<a href="LibrarianEditBook?book_id=${item.id}">
-															<button type="button" class="btn btn-primary">
-																<i class="fa fa-refresh"></i> Edit
-															</button>
-															</a>
-														</th>
-													</tr>
-												</c:if>
-												<c:if test="${item.id == bookEditId }">
-													<tr>
-														<td>${i.count }</td>
-														<td>${item.id }</td>
-														<input type="hidden" name="Book ID"  value="${item.id }" />
-														<td><input type="text" name="Location" value="${item.location }"/></td>
-														<td><input type="text" name="State" value="${item.state }"></td>
-														<th>
-															<a href="LibrarianEditBook?book_id=${item.id}">
-															<button type="button" class="btn btn-primary">
-																<i class="fa fa-refresh"></i> Edit
-															</button>
-															</a>
-														</th>
-													</tr>
-													
-												</c:if>
-											</c:forEach>
-										</tbody>
-							</table>
+										<c:forEach var="item" items="${bookEditList }" varStatus="i">
+											<c:if test="${item.id != bookEditId }">
+												<tr>
+													<td>${i.count }</td>
+													<td>${item.id }</td>
+													<td>${item.location }</td>
+													<td>${item.state }</td>
+													<th>
+														<button type="button" class="btn btn-primary">
+															<i class="fa fa-refresh"></i> Refresh
+														</button>
+													</th>
+												</tr>
+											</c:if>
+											<c:if test="${item.id == bookEditId }">
+												<tr>
+													<td>${i.count }</td>
+													<td>${item.id }</td>
+													<input type="hidden" name="Book ID" value="${item.id }" />
+													<td><input type="text" name="Location"
+														value="${item.location }" /></td>
+													<td><input type="text" name="State"
+														value="${item.state }"></td>
+													<th>
+														<button type="submit" class="btn btn-primary">
+															<i class="fa fa-refresh"></i> Refresh
+														</button>
+													</th>
+												</tr>
+
+											</c:if>
+										</c:forEach>
+									</tbody>
+								</table>
 							</form>
 							<!-- END INPUT SIZING -->
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -127,20 +129,18 @@
 		</div>
 		<!-- END MAIN -->
 
-	<div class="clearfix"></div>
-	<jsp:include page="../Footer.jsp" />
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="../assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script
-		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-	<script src="../assets/scripts/klorofil-common.js"></script>
-
-	
-
+		<div class="clearfix"></div>
+		<jsp:include page="../Footer.jsp" />
+		<!-- END WRAPPER -->
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script
+			src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script
+			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
 </body>
 
 </html>

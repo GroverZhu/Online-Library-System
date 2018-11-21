@@ -79,7 +79,7 @@ public class AdministratorDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+
 		}
 		return flag;
 

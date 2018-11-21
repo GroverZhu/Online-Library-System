@@ -58,5 +58,4 @@ public class Librarian {
 		return "Librarian [id=" + id + ", name=" + name + ", password=" + password + ", state=" + state + "]";
 	}
 
-
 }

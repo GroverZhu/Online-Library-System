@@ -60,15 +60,15 @@ public class ReaderModifyInformation extends HttpServlet {
 		String name = (String) request.getParameter("newName");
 		String password = (String) request.getParameter("newPassword");
 		String email = (String) request.getParameter("newEmail");
-		String state=reader.getState();
-		ArrayList<BorrowItem> borrowhistory=reader.getBorrowHistory();
-		ArrayList<Cart>cartList=reader.getCartList();
+		String state = reader.getState();
+		ArrayList<BorrowItem> borrowhistory = reader.getBorrowHistory();
+		ArrayList<Cart> cartList = reader.getCartList();
 		ReaderDAO readerDAO = new ReaderDAO();
 
 		// execute the update
 		String newPassword1 = SecurityUtil.md5(password);
 		readerDAO.updateReaderInformation(id, name, newPassword1, email);
-		Reader newReader=new Reader();
+		Reader newReader = new Reader();
 		newReader.setId(id);
 		newReader.setEmail(email);
 		newReader.setName(name);
@@ -76,8 +76,7 @@ public class ReaderModifyInformation extends HttpServlet {
 		newReader.setBorrowHistory(borrowhistory);
 		newReader.setCartList(cartList);
 		session.setAttribute("ReaderEntity", newReader);
-		out.print(
-				"<script>alert('Update information successfully! ');window.location='readerIndex.jsp';</script>");
+		out.print("<script>alert('Update information successfully! ');window.location='readerIndex.jsp';</script>");
 
 	}
 }

@@ -16,7 +16,8 @@ public class SessionSimpleTag extends SimpleTagSupport {
 
 	public void doTag() throws JspException, IOException {
 		JspWriter out = this.getJspContext().getOut();
-		out.println("<c:if test=\"${empty sessionScope.AdministratorEntity}\" > <jsp:forward page=\"homepage.jsp\"/> </c:if>");
-		
+		out.println(
+				"<c:if test=\"${empty sessionScope.AdministratorEntity}\" > <jsp:forward page=\"homepage.jsp\"/> </c:if>");
+
 	}
 }

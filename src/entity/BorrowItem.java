@@ -3,8 +3,8 @@ package entity;
 import java.util.Date;
 
 /**
- * 显示借阅记录
- * 增加了readerName、borrowLibrarianName、returnLibrarianName
+ * 显示借阅记录 增加了readerName、borrowLibrarianName、returnLibrarianName
+ * 
  * @author zengyaoNPU
  * @date 2018-11-15 20:25
  */
@@ -14,7 +14,7 @@ public class BorrowItem {
 	private int bookId;
 	private String bookName;
 	private String readerName;
-	private int readerId;//zengyaoNPU添加于2018-11-15 17:04
+	private int readerId;// zengyaoNPU添加于2018-11-15 17:04
 	private int borrowLibrarianId;
 	private String borrowLibrarianName;
 	private int returnLibrarianId;
@@ -158,6 +158,4 @@ public class BorrowItem {
 				+ returnTime + ", state=" + state + "]";
 	}
 
-
-	
 }

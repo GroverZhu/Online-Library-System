@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * @date 2018-11-12 23:07:00
  *
  * @author Hu Yuxi
- * @date 2018-11-14 19:53:00
- * Update:把authors改为String类型，sql语句直接返回以逗号分隔的作者姓名列表
+ * @date 2018-11-14 19:53:00 Update:把authors改为String类型，sql语句直接返回以逗号分隔的作者姓名列表
  */
 public class Book {
 	private int id;

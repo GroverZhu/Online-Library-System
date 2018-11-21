@@ -26,35 +26,93 @@ import util.DatabaseUtil;
  */
 public class BookDAO {
 	/**
+	 * 根据ISBN返回每本书籍信息,带有ID，分页展示
+	 * 
+	 * @author zengyaoNPU
+	 * @param isbn
+	 * @param start
+	 * @param count
+	 * @return
+	 */
+	public Collection<Book> getBookListByIsbn(String isbn, int start, int count) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs;
+		Book book = null;
+		Collection bookColle = new ArrayList();
+		String sql = null;
+		if (isbn != "all" && isbn != "" && isbn != null) {
+			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
+					+ " left join publisher on publisher.publisher_id=book.publisher_id) "
+					+ " left join writes on writes.isbn=book.isbn "
+					+ " left join author on author.author_id=writes.author_id) " + " where book.isbn = " + "\'" + isbn
+					+ "\' group by book_id LIMIT " + start + "," + count;
+		} else {
+			return bookColle;
+		}
+
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				book = new Book();
+				book.setId(rs.getInt("book_id"));
+				book.setISBN(rs.getString("isbn"));
+				book.setName(rs.getString("book_name"));
+				book.setPrice(rs.getBigDecimal("book_price"));
+				book.setDescription(rs.getString("book_description"));
+				// set publisher
+				Publisher publisher1 = new Publisher();
+				publisher1.setId(rs.getInt("publisher_id"));
+				publisher1.setName(rs.getString("publisher_name"));
+				publisher1.setDescription(rs.getString("publisher_description"));
+				book.setPublisher(publisher1);
+				// set author
+				book.setAuthors(rs.getString("GROUP_CONCAT(distinct author.author_name SEPARATOR ',')"));
+
+				book.setLocation(rs.getString("book_location"));
+				book.setState(rs.getString("state"));
+				bookColle.add(book);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bookColle;
+	}
+
+	/**
 	 * 更新书的信息
+	 * 
 	 * @author zengyaoNPU
 	 * @param bookId
 	 * @param location
 	 * @param state
 	 * @return
 	 */
-	public boolean updateBookInfoById(int bookId,String location,String state) {
+	public boolean updateBookInfoById(int bookId, String location, String state) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
-			String sql="UPDATE book_in_library SET book_location=?,state=? WHERE book_id=?" ; 
-			pstmt=conn.prepareStatement(sql);
+			String sql = "UPDATE book_in_library SET book_location=?,state=? WHERE book_id=?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, location);
 			pstmt.setString(2, state);
 			pstmt.setInt(3, bookId);
-			int row=pstmt.executeUpdate();
-			if(row==0) {
+			int row = pstmt.executeUpdate();
+			if (row == 0) {
 				return false;
-			}else {
+			} else {
 				return true;
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			System.out.println("--BookDAO--,--updateBookInfoById--,suffers exception");
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -774,11 +832,11 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (title != "all" && title != "" && title != null) {
-			sql =  "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
-					+" left join publisher on publisher.publisher_id=book.publisher_id) "
-					 +" left join writes on writes.isbn=book.isbn "
-					  +" left join author on author.author_id=writes.author_id)  where book.book_name like "
-						+ "\'%"+title+"%\'" +"group by book.isbn "; 
+			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
+					+ " left join publisher on publisher.publisher_id=book.publisher_id) "
+					+ " left join writes on writes.isbn=book.isbn "
+					+ " left join author on author.author_id=writes.author_id)  where book.book_name like " + "\'%"
+					+ title + "%\'" + "group by book.isbn ";
 		} else {
 			return bookColle;
 		}
@@ -811,7 +869,7 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 根据书名返回名称一致的每本书籍信息，带有ID
 	 * 
@@ -913,8 +971,7 @@ public class BookDAO {
 				book.setAuthors(rs.getString("GROUP_CONCAT(distinct author.author_name SEPARATOR ',')"));
 
 				book.setLocation(rs.getString("book_location"));
-				
-				
+
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -922,7 +979,7 @@ public class BookDAO {
 		}
 		return book;
 	}
-	
+
 	/**
 	 * 根据作者名返回名称相似的每本书籍信息，带有ID
 	 * 
@@ -978,7 +1035,7 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 根据作者名返回名称一致的每本书籍信息，不带ID
 	 * 
@@ -1032,7 +1089,7 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 根据出版社返回名称相似的每本书籍信息，带有ID
 	 * 
@@ -1052,8 +1109,8 @@ public class BookDAO {
 			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
-					+ " left join author on author.author_id=writes.author_id) " + " where publisher.publisher_name like "
-					+ "\'%" + publisher + "%\'  group by book_id ";
+					+ " left join author on author.author_id=writes.author_id) "
+					+ " where publisher.publisher_name like " + "\'%" + publisher + "%\'  group by book_id ";
 		} else {
 			return bookColle;
 		}
@@ -1088,7 +1145,7 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 根据出版社返回名称一致的每本书籍信息，不带ID
 	 * 
@@ -1108,8 +1165,8 @@ public class BookDAO {
 			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
-					+ " left join author on author.author_id=writes.author_id) " + " where publisher.publisher_name like "
-					+ "\'%" + publisher + "%\'  group by book.isbn ";
+					+ " left join author on author.author_id=writes.author_id) "
+					+ " where publisher.publisher_name like " + "\'%" + publisher + "%\'  group by book.isbn ";
 		} else {
 			return bookColle;
 		}
@@ -1142,16 +1199,17 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 更新书籍状态为reserve
+	 * 
 	 * @author Huyuxi
 	 * @date 2018-11-18
 	 * @param id
-	 * @return 
+	 * @return
 	 */
 	public int updateBookStateToReserve(int id) {
-		int flag=0;
+		int flag = 0;
 		Connection conn = null;
 		Statement st = null;
 		try {
@@ -1162,13 +1220,13 @@ public class BookDAO {
 			st.executeUpdate(sql);
 			st.close();
 			conn.close();
-			flag=1;
+			flag = 1;
 			return flag;
 		} catch (Exception e) {
-			flag=2;
+			flag = 2;
 			e.printStackTrace();
 			return flag;
-		}	
+		}
 	}
 
 	/**
@@ -1179,7 +1237,7 @@ public class BookDAO {
 	 * @param isbn
 	 * @return book list with ID
 	 */
-	public Collection<Book> getBookListByIsbnForCart(String isbn,int start,int count) {
+	public Collection<Book> getBookListByIsbnForCart(String isbn, int start, int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs;
@@ -1187,13 +1245,12 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (isbn != "all" && isbn != "" && isbn != null) {
-			sql =" select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
-			+	" left join publisher on publisher.publisher_id=book.publisher_id) "
-			+	" left join writes on writes.isbn=book.isbn "
-			+	" left join author on author.author_id=writes.author_id) "
-             +    " where book.isbn=\'"+isbn+
-				"\' group by book_id desc limit ?,?";
-			
+			sql = " select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
+					+ " left join publisher on publisher.publisher_id=book.publisher_id) "
+					+ " left join writes on writes.isbn=book.isbn "
+					+ " left join author on author.author_id=writes.author_id) " + " where book.isbn=\'" + isbn
+					+ "\' group by book_id desc limit ?,?";
+
 		} else {
 			return bookColle;
 		}
@@ -1232,11 +1289,12 @@ public class BookDAO {
 		}
 		return bookColle;
 	}
-	
+
 	/**
 	 * 馆藏书籍分页功能
+	 * 
 	 * @author Huyuxi
-	 * @return total 
+	 * @return total
 	 */
 	public int getTotal(String isbn) {
 		int total = 0;
@@ -1254,20 +1312,20 @@ public class BookDAO {
 					+ " left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
 					+ " left join author on author.author_id=writes.author_id) " + " where book.isbn = " + "\'" + isbn
-					+ "\' and  state='inlib' group by book_id";
-            rs = st.executeQuery(sql);
+					+ "\'  group by book_id";
+			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				total = total+rs.getInt(1);
+				total = total + rs.getInt(1);
 			}
 
 			System.out.println("total:" + total);
-            st.close();
-            rs.close();
+			st.close();
+			rs.close();
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return total;
 	}
-	
+
 }

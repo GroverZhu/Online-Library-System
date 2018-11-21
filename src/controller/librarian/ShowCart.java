@@ -13,6 +13,7 @@ import entity.Cart;
 
 /**
  * 该servlet用于接收从showCart.jsp传来的get请求，从数据库中获取borrow_cart，并分页展示给librarian
+ * 
  * @author zengyaoNPU
  * @date 2018-11-17 21:43
  *
@@ -26,36 +27,36 @@ public class ShowCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int start = 0;//起始行
-		int count = 2;//每页显示行数
+		int start = 0;// 起始行
+		int count = 2;// 每页显示行数
 		try {
 			start = Integer.parseInt(request.getParameter("start"));
 		} catch (NumberFormatException e) {
 			// 当浏览器没有传参数start时
 		}
-		int next = start + count;//下一页
-		int pre = start - count;//前一页
+		int next = start + count;// 下一页
+		int pre = start - count;// 前一页
 		BorrowCartDAO bDAO = new BorrowCartDAO();
-		int total = bDAO.getTotal();//获取borrow_cart中的总数
-		//最后一页的起始行
+		int total = bDAO.getTotal();// 获取borrow_cart中的总数
+		// 最后一页的起始行
 		int last;
-		if (0 == total % count) {//每一页都能展示最大行数
+		if (0 == total % count) {// 每一页都能展示最大行数
 			last = total - count;
-		}else {
+		} else {
 			last = total - total % count;
 		}
 		pre = pre < 0 ? 0 : pre;
 		next = next > last ? last : next;
-		//设置request属性
+		// 设置request属性
 		request.setAttribute("next", next);
 		request.setAttribute("pre", pre);
 		request.setAttribute("last", last);
 		request.setAttribute("current", start);
-		//获取数据库中所有的borrow_cart，分页展示
-		List<Cart> list=bDAO.getAllBorrowCartOrderByTime(start, count);
-		//设置request属性
+		// 获取数据库中所有的borrow_cart，分页展示
+		List<Cart> list = bDAO.getAllBorrowCartOrderByTime(start, count);
+		// 设置request属性
 		request.setAttribute("cartList", list);
-		//转发
+		// 转发
 		request.getRequestDispatcher("showCart.jsp").forward(request, response);
 	}
 

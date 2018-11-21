@@ -17,6 +17,7 @@ import util.DatabaseUtil;
 public class ReaderDAO {
 	/**
 	 * 获取reader总数
+	 * 
 	 * @author zengyaoNPU
 	 * @return
 	 */
@@ -25,88 +26,93 @@ public class ReaderDAO {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			conn=DatabaseUtil.getInstance().getConnection();
-			st=conn.createStatement();
-			String sql="SELECT COUNT(*) AS total FROM reader";
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "SELECT COUNT(*) AS total FROM reader";
 			System.out.println(sql);
-			rs=st.executeQuery(sql);
-			int total=0;
-			while(rs.next()) {
-				total=rs.getInt("total");
+			rs = st.executeQuery(sql);
+			int total = 0;
+			while (rs.next()) {
+				total = rs.getInt("total");
 			}
 			rs.close();
 			st.close();
 			conn.close();
 			return total;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("--ReaderDAO--,--getTotal--,suffers exception");
 			return 0;
 		}
 	}
+
 	/**
 	 * 获取所有的reader，分页显示
+	 * 
 	 * @author zengyaoNPU
 	 * @param start
 	 * @param count
 	 * @return
 	 */
-	public List<Reader> getAllReaders(int start,int count){
+	public List<Reader> getAllReaders(int start, int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		List<Reader> list=new ArrayList<>();
+		List<Reader> list = new ArrayList<>();
 		try {
-			conn=DatabaseUtil.getInstance().getConnection();
-			st=conn.createStatement();
-			String sql="SELECT * FROM reader LIMIT "+start+","+count;
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "SELECT * FROM reader LIMIT " + start + "," + count;
 			System.out.println(sql);
-			rs=st.executeQuery(sql);
-			while(rs.next()) {
-				Reader reader=getReaderById(rs.getInt("reader_id"));
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Reader reader = getReaderById(rs.getInt("reader_id"));
 				list.add(reader);
 			}
 			rs.close();
 			st.close();
 			conn.close();
 			return list;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("--ReaderDAO--,--getAllReaders--,suffers exception");
 			return null;
 		}
-		
+
 	}
+
 	/**
 	 * 获取所有的reader，分页显示
+	 * 
 	 * @author zengyaoNPU
 	 * @param start
 	 * @param count
 	 * @return
 	 */
-	public List<Reader> getAllReaders(){
+	public List<Reader> getAllReaders() {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		List<Reader> list=new ArrayList<>();
+		List<Reader> list = new ArrayList<>();
 		try {
-			conn=DatabaseUtil.getInstance().getConnection();
-			st=conn.createStatement();
-			String sql="SELECT * FROM reader";
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "SELECT * FROM reader";
 			System.out.println(sql);
-			rs=st.executeQuery(sql);
-			while(rs.next()) {
-				Reader reader=getReaderById(rs.getInt("reader_id"));
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Reader reader = getReaderById(rs.getInt("reader_id"));
 				list.add(reader);
 			}
 			rs.close();
 			st.close();
 			conn.close();
 			return list;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("--ReaderDAO--,--getAllReaders--,suffers exception");
 			return null;
 		}
-		
+
 	}
+
 	/**
 	 * librarian添加reader的信息
 	 * 
@@ -182,117 +188,125 @@ public class ReaderDAO {
 		return flag;
 	}
 
-		
 	/**
 	 * 根据id和name删除Reader，其中开启了事务
+	 * 
 	 * @author zengyaoNPU
-	 * @param id Reader的ID
-	 * @param name Reader的用户名
+	 * @param id
+	 *            Reader的ID
+	 * @param name
+	 *            Reader的用户名
 	 * @return id与name不匹配或者id不存在返回false；删除成功返回true
 	 */
-	public boolean deleteReaderById(int id,String name) {
-		Connection conn=null;
-		Statement st=null;
-		ResultSet rs=null;
-		boolean tag=false;
+	public boolean deleteReaderById(int id, String name) {
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		boolean tag = false;
 		try {
-			conn=DatabaseUtil.getInstance().getConnection();
+			conn = DatabaseUtil.getInstance().getConnection();
 			conn.setAutoCommit(false);
-			st=conn.createStatement();
-			String query="select * from reader where reader_id="+id+" and reader_name='"+name+"'";
-			rs=st.executeQuery(query);
-			if(rs.next()) {
-				String sql="delete from reader where reader_id="+id;
-				int row=st.executeUpdate(sql);
-				if(row==1) {
-					tag=true;
+			st = conn.createStatement();
+			String query = "select * from reader where reader_id=" + id + " and reader_name='" + name + "'";
+			rs = st.executeQuery(query);
+			if (rs.next()) {
+				String sql = "delete from reader where reader_id=" + id;
+				int row = st.executeUpdate(sql);
+				if (row == 1) {
+					tag = true;
 				}
-			}else {
+			} else {
 				System.out.println("--ReaderDAO--,--deleteReaderById()--,id和nam不匹配");
-				tag=false;
+				tag = false;
 			}
 			conn.commit();
 			return tag;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("--ReaderDAO--,--deleteReaderById()--,suffers exception");
 			return false;
 		}
 	}
-    /**
-     * 根据Reader ID获取Reader实例
-     *
-     * @param id
-     * @return
-     * @author zengyaoNPU
-     */
-    public Reader getReaderById(int id) {
-        Reader reader = new Reader();
-        Connection conn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        try {
-            conn = DatabaseUtil.getInstance().getConnection();
-            st = conn.createStatement();
-            String sql = "select * from reader where reader_id=" + id;
-            rs = st.executeQuery(sql);
-            if (rs.next()) {
-                //获取数据
-                String name = rs.getString("reader_name");
-                String password = rs.getString("reader_password");
-                String email = rs.getString("reader_email");
-                String state = rs.getString("state");
-                //封装实体
-                reader.setId(id);
-                reader.setEmail(email);
-                reader.setName(name);
-                reader.setPassword(password);
-                reader.setState(state);
-                rs.close();
-                st.close();
-                conn.close();
-                return reader;
-            } else {
-                System.out.println("--Reader--,--getReaderById()--,Cannot find the Reader by id=" + id);
-                rs.close();
-                st.close();
-                conn.close();
-                return null;
-            }
-        } catch (Exception e) {
-            System.out.println("--Reader--,--getReaderById()--,suffers exception");
-            return null;
-        }
-    }
 
-    /**
-     * 修改用户信息
-     *
-     * @param id       readerID，该值不被改动
-     * @param name     reader_name
-     * @param password reader_password
-     * @param email    reader_email
-     * @return
-     * @author zengyaoNPU
-     */
-    public boolean updateData(int id, String name, String password, String email, String state) {
-        Connection conn = null;
-        Statement st = null;
-        try {
-            conn = DatabaseUtil.getInstance().getConnection();
-            st = conn.createStatement();
-            //更新Reader的信息
-            String sql = "UPDATE reader SET reader_name='" + name + "',reader_password='" + password + "',reader_email='" + email + "',state='" + state + "' WHERE reader_id=" + id;
-            st.executeUpdate(sql);
-            int row = st.executeUpdate(sql);
-            st.close();
-            conn.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println("--Reader--,--updateData()--,suffers exception");
-            return false;
-        }
-    }
+	/**
+	 * 根据Reader ID获取Reader实例
+	 *
+	 * @param id
+	 * @return
+	 * @author zengyaoNPU
+	 */
+	public Reader getReaderById(int id) {
+		Reader reader = new Reader();
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			String sql = "select * from reader where reader_id=" + id;
+			rs = st.executeQuery(sql);
+			if (rs.next()) {
+				// 获取数据
+				String name = rs.getString("reader_name");
+				String password = rs.getString("reader_password");
+				String email = rs.getString("reader_email");
+				String state = rs.getString("state");
+				// 封装实体
+				reader.setId(id);
+				reader.setEmail(email);
+				reader.setName(name);
+				reader.setPassword(password);
+				reader.setState(state);
+				rs.close();
+				st.close();
+				conn.close();
+				return reader;
+			} else {
+				System.out.println("--Reader--,--getReaderById()--,Cannot find the Reader by id=" + id);
+				rs.close();
+				st.close();
+				conn.close();
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("--Reader--,--getReaderById()--,suffers exception");
+			return null;
+		}
+	}
+
+	/**
+	 * 修改用户信息
+	 *
+	 * @param id
+	 *            readerID，该值不被改动
+	 * @param name
+	 *            reader_name
+	 * @param password
+	 *            reader_password
+	 * @param email
+	 *            reader_email
+	 * @return
+	 * @author zengyaoNPU
+	 */
+	public boolean updateData(int id, String name, String password, String email, String state) {
+		Connection conn = null;
+		Statement st = null;
+		try {
+			conn = DatabaseUtil.getInstance().getConnection();
+			st = conn.createStatement();
+			// 更新Reader的信息
+			String sql = "UPDATE reader SET reader_name='" + name + "',reader_password='" + password
+					+ "',reader_email='" + email + "',state='" + state + "' WHERE reader_id=" + id;
+			st.executeUpdate(sql);
+			int row = st.executeUpdate(sql);
+			st.close();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			System.out.println("--Reader--,--updateData()--,suffers exception");
+			return false;
+		}
+	}
 
 	/**
 	 * 根据reader_name获取读者列表（考虑到多个reader同一个name的情况）
@@ -323,6 +337,7 @@ public class ReaderDAO {
 			return null;
 		}
 	}
+
 	/**
 	 * 根据reader_name获取读者列表（考虑到多个reader同一个name的情况）,分页展示
 	 * 
@@ -330,7 +345,7 @@ public class ReaderDAO {
 	 * @param name
 	 * @return
 	 */
-	public List<Reader> getReaderByName(String name,int start,int count) {
+	public List<Reader> getReaderByName(String name, int start, int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -338,7 +353,7 @@ public class ReaderDAO {
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
 			st = conn.createStatement();
-			String sql = "select * from reader where reader_name like '%" + name + "%' LIMIT "+start+","+count;
+			String sql = "select * from reader where reader_name like '%" + name + "%' LIMIT " + start + "," + count;
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
 				Reader reader = getReaderById(rs.getInt("reader_id"));// 根据reader_id获取一个reader实体
@@ -352,6 +367,7 @@ public class ReaderDAO {
 			return null;
 		}
 	}
+
 	/**
 	 * 根据state查询用户，返回用户列表
 	 * 
@@ -412,8 +428,8 @@ public class ReaderDAO {
 			return null;
 		}
 
-
 	}
+
 	/**
 	 * 根据用户名和state获取读者列表，分页展示
 	 * 
@@ -422,7 +438,7 @@ public class ReaderDAO {
 	 * @param state
 	 * @return
 	 */
-	public List<Reader> getReaderByName_State(String name, String state,int start, int count) {
+	public List<Reader> getReaderByName_State(String name, String state, int start, int count) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -444,10 +460,11 @@ public class ReaderDAO {
 			return null;
 		}
 
-
 	}
+
 	/**
 	 * 根据readerID获取该reader借阅图书的总数
+	 * 
 	 * @author zengyaoNPU
 	 * @param readerId
 	 * @return
@@ -456,17 +473,15 @@ public class ReaderDAO {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		int total=0;
+		int total = 0;
 		try {
 			conn = DatabaseUtil.getInstance().getConnection();
 			st = conn.createStatement();
-			String sql = "SELECT COUNT(*) AS borrowTotal  " + 
-					"FROM borrow_item " + 
-					"WHERE return_time IS NULL "
-					+ "AND reader_id="+readerId; 
+			String sql = "SELECT COUNT(*) AS borrowTotal  " + "FROM borrow_item " + "WHERE return_time IS NULL "
+					+ "AND reader_id=" + readerId;
 			rs = st.executeQuery(sql);
 			if (rs.next()) {
-				total=rs.getInt("borrowTotal");
+				total = rs.getInt("borrowTotal");
 			}
 			rs.close();
 			st.close();
@@ -476,6 +491,6 @@ public class ReaderDAO {
 			System.out.println("--ReaderDAO--,getBorrowTotal(),suffers exception");
 			return -1;
 		}
-		
+
 	}
 }

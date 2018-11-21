@@ -33,7 +33,9 @@
 
 <body>
 	<!-- WRAPPER -->
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.librarianEntity}">
+		<jsp:forward page="../homepage.jsp" />
+	</c:if>
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
 		<%@ include file="sidebar.jsp"%>
@@ -51,7 +53,7 @@
 								<h3 class="panel-title">Manage Reader</h3>
 							</div>
 							<div class="panel-body">
-							<br />	
+								<br />
 
 								<!-- 如果readerEntity属性不为空，则展示Reader信息 -->
 								<c:if test="${not empty newReaderEntity }">
@@ -74,7 +76,8 @@
 											<td>${newReaderEntity.state }</td>
 										</tr>
 									</table>
-									<a href="LibrarianModifyReader?reader_id=${newReaderEntity.id}">Modify Reader Information</a>
+									<a href="LibrarianModifyReader?reader_id=${newReaderEntity.id}">Modify
+										Reader Information</a>
 								</c:if>
 							</div>
 						</div>
@@ -86,7 +89,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-<jsp:include page="../Footer.jsp" />
+	<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

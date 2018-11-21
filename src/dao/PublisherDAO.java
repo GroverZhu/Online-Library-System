@@ -12,6 +12,7 @@ import util.DatabaseUtil;
 public class PublisherDAO {
 	/**
 	 * 增加一个publisher
+	 * 
 	 * @author GroverZhu
 	 * @author zengyaoNPU 修改
 	 * @param name
@@ -22,17 +23,17 @@ public class PublisherDAO {
 		int publisherId = -1;
 		try {
 			Connection conn = DatabaseUtil.getInstance().getConnection();
-			//修改 @ZengyaoNPU
-			String query="select * from publisher where publisher_name='"+name+"'";
-			PreparedStatement pstmt=conn.prepareStatement(query);
-			ResultSet rs=pstmt.executeQuery();
-			if(rs.next()) {
-				int id=rs.getInt("publisher_id");
+			// 修改 @ZengyaoNPU
+			String query = "select * from publisher where publisher_name='" + name + "'";
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int id = rs.getInt("publisher_id");
 				rs.close();
 				pstmt.close();
 				conn.close();
 				return id;
-			}//修改 @ZengyaoNPU
+			} // 修改 @ZengyaoNPU
 			String add = "insert into publisher(publisher_name, publisher_description) values(?, ?)";
 			PreparedStatement sql = conn.prepareStatement(add, Statement.RETURN_GENERATED_KEYS);
 			sql.setString(1, name);

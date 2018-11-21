@@ -43,7 +43,8 @@
 								</div>
 								<p class="lead">Login to your account</p>
 							</div>
-							<form class="form-auth-small" method="post" action="../LoginHandler">
+							<form class="form-auth-small" method="post"
+								action="../LoginHandler">
 								<table align="center">
 									<tr>
 										<td width=150px height=64px>

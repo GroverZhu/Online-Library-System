@@ -35,7 +35,9 @@
 </head>
 
 <body>
-<c:if test="${empty sessionScope.ReaderEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.ReaderEntity}">
+		<jsp:forward page="homepage.jsp" />
+	</c:if>
 	<!-- WRAPPER -->
 	<jsp:include page="readerNavbar.jsp" />
 	<!-- END NAVBAR -->
@@ -55,36 +57,15 @@
 									<h3 class="panel-title">Search</h3>
 								</div>
 								<div class="panel-body">
-									<form class="navbar-form navbar-left" role="search"
-										align="center" method="post" action="SearchBookForReader">
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp; <select id="input" name="style">
-											<option value="bookName" selected="selected">Book
-												name</option>
-											<option value="author">author</option>
-											<option value="publisher">publisher</option>
-										</select>
-										<div class="form-group" align="center">
-											<input type="text" name="name"
-												placeholder="begin to search..." class="form-control"
-												style="width: 400px;" />
-										</div>
-										<button type="submit" name="submit" class="btn btn-success">Search</button>
-
-									</form>
 									<!-- INPUTS -->
 									<div class="panel">
 										<div class="panel-heading"></div>
 
-										<div class="panel-body"><br />
-											<br>ISBN:<input type="text" class="form-control"
+										<div class="panel-body">
+											ISBN:<input type="text" class="form-control"
 												name="bookDetailName" readonly="readonly"
-												value="${BookDetail.ISBN }" /> 
-												<br> Book Name:
-												<input type="text" class="form-control" name="bookDetailName"
+												value="${BookDetail.ISBN }" /> <br> Book Name: <input
+												type="text" class="form-control" name="bookDetailName"
 												readonly="readonly" value="${BookDetail.name}" /> <br>
 											Publisher:<input type="text" class="form-control"
 												name="bookDetailName" readonly="readonly"
@@ -101,16 +82,17 @@
 									</div>
 									<!-- END INPUTS -->
 									<br /> <br /> <br />
-									<table class="table" style="width:150px;height:10px">
+									<table class="table">
 										<thead>
 											<tr>
 												<th>ID</th>
 												<th>ISBN</th>
-												<th>Book_name</th>
+												<th>Book Name</th>
 												<th>Author</th>
 												<th>Publisher</th>
 												<th>Location</th>
-												<th>Status</th>					
+												<th>Status</th>
+												<th>Operation</th>
 											</tr>
 
 											<!-- 展示书籍信息 -->
@@ -130,17 +112,14 @@
 													<th>${book.location }</th>
 													<th>${book.state }</th>
 													<c:if test="${book.state=='inlib'}" var="flag">
-													<th><form class="navbar-form navbar-left"
-															role="search" style="width:150px;height:10px" method="post"
-															action="AddBookToCart">
-															<input type="hidden" name="id" value='${book.id}'></input>
-															<button type="submit" name="addtocart"
-																class="btn btn-success" style="width:120px;height:30px">Add To Cart</button>
-														</form>
-													</th>
+														<th><form method="post" action="AddBookToCart">
+																<input type="hidden" name="id" value='${book.id}'></input>
+																<button type="submit" name="addtocart"
+																	class="btn btn-success">Add To Cart</button>
+															</form></th>
 													</c:if>
 													<c:if test="${not flag}">
-													<th></th>
+														<th></th>
 													</c:if>
 												</tr>
 											</c:forEach>

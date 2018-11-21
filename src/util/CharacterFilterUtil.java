@@ -3,8 +3,6 @@ package util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 /**
  * 根据正则表达式来判断输入的格式是否满足要求 判断是否为数(isNumeric) 过滤不正常的字符(filterStr) 判空(isEmpty)
  * 判断是否为电话号码(isTelephone) 判断是否为邮箱(isEmail) 判断是否为姓名(isName) 判断是否为密码(isPassword)
@@ -92,19 +90,19 @@ public class CharacterFilterUtil {
 			return null;
 		}
 		String test = "^\\\\w+((-\\\\w+)|(\\\\.\\\\w+))*\\\\@[A-Za-z0-9]+((\\\\.|-)[A-Za-z0-9]+)*\\\\.[A-Za-z0-9]+$";
-		String test1="^([a-z0-9A-Z]+[-|_|\\\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-zA-Z]{2,}$";
-//		if (Pattern.matches(test1, str)) {
-//			System.out.println("cannot pass filter : " + str);
-//			return null;
-//		}
-//		return str;
+		String test1 = "^([a-z0-9A-Z]+[-|_|\\\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-zA-Z]{2,}$";
+		// if (Pattern.matches(test1, str)) {
+		// System.out.println("cannot pass filter : " + str);
+		// return null;
+		// }
+		// return str;
 		try {
-		Pattern regex = Pattern.compile(test1);
-	    Matcher matcher = regex.matcher(str);
-	    matcher.matches();
-		}catch (Exception e){
+			Pattern regex = Pattern.compile(test1);
+			Matcher matcher = regex.matcher(str);
+			matcher.matches();
+		} catch (Exception e) {
 			e.printStackTrace();
-		    return null;
+			return null;
 		}
 		return str;
 	}

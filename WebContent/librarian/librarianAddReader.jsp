@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <title>Add Reader</title>
@@ -49,7 +49,9 @@
 </head>
 
 <body>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.librarianEntity}">
+		<jsp:forward page="../homepage.jsp" />
+	</c:if>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
@@ -72,12 +74,14 @@
 									</h3>
 								</div>
 
-								<form method="post" onsubmit="return inputCheck(this)" action="LibrarianAddReader">
+								<form method="post" onsubmit="return inputCheck(this)"
+									action="LibrarianAddReader">
 									<div class="panel-body">
 										<input type="text" class="form-control"
-											placeholder="Reader Name must be English or Chinese Character" name="readerName" id="readerName">
-										<br> <input type="text" class="form-control"
-											placeholder="Password" name="password" id="password"> <br> <label
+											placeholder="Reader Name must be English or Chinese Character"
+											name="readerName" id="readerName"> <br> <input
+											type="password" class="form-control" placeholder="Password"
+											name="password" id="password"> <br> <label
 											class="fancy-radio"> <input name="state"
 											value="unlock" type="radio" checked> <span><i></i>Unlock</span>
 										</label> <label class="fancy-radio"> <input name="state"
@@ -105,7 +109,7 @@
 		<div class="clearfix"></div>
 		<jsp:include page="../Footer.jsp" />
 		<!-- END WRAPPER -->
-		
+
 		<!-- Javascript -->
 		<script src="../assets/vendor/jquery/jquery.min.js"></script>
 		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>

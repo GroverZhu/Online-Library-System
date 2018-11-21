@@ -10,19 +10,19 @@ import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.JspTag;
 import javax.servlet.jsp.tagext.SimpleTag;
 
-public class BookLocationTag implements SimpleTag {
+public class SearchByTag implements SimpleTag {
 
 	private JspContext jspContext;
 
 	/**
-	 * 为添加书本中的location添加下拉框
+	 * 为搜书功能中添加下拉框
 	 */
 	public void doTag() throws JspException, IOException {
 		try {
 			JspWriter out = jspContext.getOut();
 			String outPrint = "";
-			String[] color = { "四层-科技图书阅览区", "四层-科技图书典藏区", "三层-社科类图书阅览区", "三层-社科类图书典藏区", "二层-杂志期刊" };
-			outPrint += "<select name='Location' size='1' class=\"form-control\"> ";
+			String[] color = { "Book Name", "Author", "Publisher", "ISBN" };
+			outPrint += "<select id=\"input\" name=\"searchBy\"> ";
 			for (int i = 0; i < color.length; i++) {
 				outPrint += "<option>";
 				outPrint += color[i];
@@ -50,4 +50,5 @@ public class BookLocationTag implements SimpleTag {
 	public void setParent(JspTag arg0) {
 
 	}
+
 }

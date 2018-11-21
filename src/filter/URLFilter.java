@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet Filter implementation class URLFilter
- *  @author Huyuxi
- *  @date 2018-11-19
+ * 
+ * @author Huyuxi
+ * @date 2018-11-19
  */
 public class URLFilter implements Filter {
 
@@ -44,7 +45,8 @@ public class URLFilter implements Filter {
 		String disableFilter = config.getInitParameter("disableFilter");
 		String path = httpRequest.getRequestURI();
 
-		System.out.println("-*-\n" + redirectPath + "\n" + disableFilter + path + "\n-*-");
+		// System.out.println("-*-\n" + redirectPath + "\n" + disableFilter +
+		// path + "\n-*-");
 		// 判断初始化参数是否让该Filter生效 "Y"为无效， "N"为有效
 		if (disableFilter.toUpperCase().equals("Y")) {
 			chain.doFilter(request, response);
@@ -54,7 +56,7 @@ public class URLFilter implements Filter {
 		// 通过header的referer的头来判断是否是通过homepage.jsp的链接访问到的
 		if (disableFilter.toUpperCase().equals("N")) {
 			if (httpRequest.getMethod().toUpperCase().equals("GET")) {
-				if (httpRequest.getHeader("referer")!= null) {
+				if (httpRequest.getHeader("referer") != null) {
 					chain.doFilter(request, response);
 				} else if (httpRequest.getRequestURI().equals(redirectPath)) {
 					chain.doFilter(request, response);

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <html lang="en">
 <head>
 <title>Book Details</title>
@@ -46,7 +49,6 @@
 </head>
 
 <body>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
@@ -65,7 +67,7 @@
 							<div class="panel">
 								<div class="panel-heading"></div>
 
-								<div class="panel-body"><br>
+								<div class="panel-body">
 									ISBN:<input type="text" class="form-control" name="readerName"
 										readonly="readonly" value="${information.ISBN }" /> <br>
 									Book Name:<input type="text" class="form-control"
@@ -78,9 +80,11 @@
 										value="${information.authors }" /> <br> Price:<input
 										type="text" class="form-control" name="readerName"
 										readonly="readonly" value="${information.price }" /> <br>
-									Description:<textarea  class="form-control"
-										name="readerName" readonly="readonly"
-										>${information.description }</textarea> <br>
+									Description:
+									<textarea class="form-control" name="readerName"
+										readonly="readonly">
+										${information.description }</textarea>
+									<br>
 								</div>
 							</div>
 							<!-- END INPUTS -->
@@ -110,7 +114,20 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							<nav>
 
+								<ul class="pager">
+									<li><a href="?start=0&bookInfoISBN=${information.ISBN }">首
+											页</a></li>
+									<li><a
+										href="?start=${pre}&bookInfoISBN=${information.ISBN }">上一页</a></li>
+									<li><a
+										href="?start=${next}&bookInfoISBN=${information.ISBN }">下一页</a></li>
+									<li><a
+										href="?start=${last}&bookInfoISBN=${information.ISBN }">末
+											页</a></li>
+								</ul>
+							</nav>
 
 						</div>
 					</div>
@@ -129,7 +146,7 @@
 	<div class="clearfix"></div>
 	<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
-	
+
 	<!-- Javascript -->
 	<script src="../assets/vendor/jquery/jquery.min.js"></script>
 	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>

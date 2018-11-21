@@ -32,7 +32,9 @@
 </head>
 
 <body>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.librarianEntity}">
+		<jsp:forward page="../homepage.jsp" />
+	</c:if>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
@@ -47,7 +49,8 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="POST" onsubmit="return inputCheck(this)" action="SearchBookById">
+							<form method="POST" onsubmit="return inputCheck(this)"
+								action="SearchBookById">
 								<div class="panel">
 									<div class="panel-heading">
 										<h3 class="panel-title">Input Book ID</h3>
@@ -56,8 +59,8 @@
 										<div class="col-md-12">
 											<div class="input-group">
 												<!-- 在此输入book_ID -->
-												<input class="form-control" type="text" name="book_id" id="bookID"
-													placeholder="Book ID"> <span
+												<input class="form-control" type="text" name="book_id"
+													id="bookID" placeholder="Book ID"> <span
 													class="input-group-btn"><button
 														class="btn btn-primary" type="SUBMIT">Search</button></span>
 											</div>

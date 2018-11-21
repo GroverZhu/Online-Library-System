@@ -35,7 +35,7 @@ public class AddLibrarian extends HttpServlet {
 		// 设置编码格式
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		String name = request.getParameter("librarianName");
 		String password = request.getParameter("password");
 		LibrarianDAO lib = new LibrarianDAO();

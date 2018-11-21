@@ -478,8 +478,8 @@ public class BorrowCartDAO {
 	}
 
 	public static void main(String[] args) {
-		BorrowCartDAO dao=new BorrowCartDAO();
-//		dao.updateBorrowCart(2, 1);
+		BorrowCartDAO dao = new BorrowCartDAO();
+		// dao.updateBorrowCart(2, 1);
 		dao.agreeBorrowBook(1, 2, 1);
 	}
 }

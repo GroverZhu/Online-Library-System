@@ -19,32 +19,35 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 该servlet用于验证ISBN的正确性，并从网上获取图书信息
+ * 
  * @author zengyaoNPU
  * @date 2018-11-17 21:43
  */
 public class ValidateISBN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ValidateISBN() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ValidateISBN() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String isbn = request.getParameter("ISBN");
 		String uri = "https://api.douban.com/v2/book/isbn/" + isbn;
 		String jsonData = "";
 		HttpSession session = request.getSession();
-		PrintWriter out=response.getWriter();
+		PrintWriter out = response.getWriter();
 
 		try {
-			jsonData = getJsonData(uri, "");//自定义函数
+			jsonData = getJsonData(uri, "");// 自定义函数
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(jsonData!="") {
+		if (jsonData != "") {
 			System.out.println(jsonData);
 			Map maps = (Map) JSON.parse(jsonData);
 			String author = maps.get("author").toString();
@@ -59,7 +62,7 @@ public class ValidateISBN extends HttpServlet {
 			System.out.println("出版社: " + maps.get("publisher"));
 			System.out.println("书名: " + maps.get("title"));
 			System.out.println("摘要: " + maps.get("summary"));
-			
+
 			session.setAttribute("ISBN__", isbn);
 			session.setAttribute("BookName__", maps.get("title"));
 			session.setAttribute("BookDes__", maps.get("summary"));
@@ -68,12 +71,15 @@ public class ValidateISBN extends HttpServlet {
 			session.setAttribute("Author__", author);
 			session.setAttribute("PubName__", maps.get("publisher"));
 
-			out.print("<script language='javascript'>alert('The ISBN is valid!');window.location.href='librarianAddBook.jsp';</script>");
-			
-		}else {
-			out.print("<script language='javascript'>alert('Invailed ISBN!');window.location.href='librarianAddBook.jsp';</script>");
+			out.print(
+					"<script language='javascript'>alert('The ISBN is valid!');window.location.href='librarianAddBook.jsp';</script>");
+
+		} else {
+			out.print(
+					"<script language='javascript'>alert('Invailed ISBN!');window.location.href='librarianAddBook.jsp';</script>");
 		}
 	}
+
 	private String getJsonData(String url, String param) throws Exception {
 		String result = "";
 		BufferedReader in = null;

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +53,8 @@
 								<h3 class="panel-title">Modify Reader</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" onsubmit="return inputCheck(this)" action="LibrarianModifyReader">
+								<form method="post" onsubmit="return inputCheck(this)"
+									action="LibrarianModifyReader">
 									<table align="center">
 										<tr>
 											<td width=150px height=64px>
@@ -62,8 +65,9 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" readonly="readonly" name="id" class="form-control"
-														value="${readerEntity.id }" placeholder="ReaderID">
+													<input type="text" readonly="readonly" name="id"
+														class="form-control" value="${readerEntity.id }"
+														placeholder="ReaderID">
 												</div>
 											</td>
 										</tr>
@@ -76,8 +80,9 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" name="name" id="name" class="form-control"
-														value="${readerEntity.name }" placeholder="Reader Name">
+													<input type="text" name="name" id="name"
+														class="form-control" value="${readerEntity.name }"
+														placeholder="Reader Name">
 												</div>
 											</td>
 										</tr>
@@ -89,8 +94,9 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" name="email" id="email" class="form-control"
-														value="${readerEntity.email }" placeholder="Email">
+													<input type="text" name="email" id="email"
+														class="form-control" value="${readerEntity.email }"
+														placeholder="Email">
 												</div>
 											</td>
 										</tr>
@@ -101,12 +107,11 @@
 												</div>
 											</td>
 											<td width=350px height=64px>
-												<!--  label class="control-label" for="state">${readerEntity.state }</label --> 
+												<!--  label class="control-label" for="state">${readerEntity.state }</label -->
 												<c:if test="${readerEntity.state eq 'unlock'}">
 													<input type="radio" name="state" value="blockade" />Blockade
 													<input type="radio" name="state" value="unlock" checked />Unlock
-												</c:if> 
-												<c:if test="${readerEntity.state eq 'blockade'}">
+												</c:if> <c:if test="${readerEntity.state eq 'blockade'}">
 													<input type="radio" name="state" value="blockade" checked />Blockade
 													<input type="radio" name="state" value="unlock" />Unlock
 												</c:if>
@@ -131,7 +136,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-<jsp:include page="../Footer.jsp" />
+	<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -160,6 +165,6 @@
 		}
 	}
 	</script>
-	
+
 </body>
 </html>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+<c:if test="${empty sessionScope.librarianEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -46,7 +48,8 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="post" onsubmit="return inputCheck(this)" action="LibrarianReturnBook">
+							<form method="post" onsubmit="return inputCheck(this)"
+								action="LibrarianReturnBook">
 								<div class="panel">
 									<div class="panel-heading">
 										<h3 class="panel-title">Input Book ID:</h3>
@@ -54,8 +57,8 @@
 									<div class="panel-body">
 										<div class="col-md-12">
 											<div class="input-group">
-												<input class="form-control" type="text" name="bookId" id="bookID"
-													placeholder="book ID"> <span
+												<input class="form-control" type="text" name="bookId"
+													id="bookID" placeholder="book ID"> <span
 													class="input-group-btn"> <input
 													class="btn btn-primary" type="submit" value="Search" />
 												</span>
@@ -126,9 +129,9 @@
 									</table>
 									<br />
 									<div align="center">
-									<a href="LibrarianReturnBook?bookId=${bookEntity.id }">
-									<h3>Return</h3>
-									</a>
+										<a href="LibrarianReturnBook?bookId=${bookEntity.id }">
+											<h3>Return</h3>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -143,16 +146,16 @@
 		<div class="clearfix"></div>
 		<jsp:include page="../Footer.jsp" />
 	</div>
-		<!-- Javascript -->
-		<script src="../assets/vendor/jquery/jquery.min.js"></script>
-		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script
-			src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-		<script
-			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-		<script src="../assets/scripts/klorofil-common.js"></script>
-		<script>
+	<!-- Javascript -->
+	<script src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script
+		src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="../assets/scripts/klorofil-common.js"></script>
+	<script>
 
 	
 	var isBookId = /^\d{1,10}$/;

@@ -80,8 +80,11 @@ public class LibrarianLendBook extends HttpServlet {
 			BookDAO bookDAO = new BookDAO();
 			// 获取book实例
 			Book book = bookDAO.searchByID(bookId);
-			// 设置request属性
-			if (book.getState().equals("borrowed")) {// 书已被借阅
+			if (book == null) {
+				System.out.println("--LibrarianLendBook--,book is null for id=" + bookId);
+				out.print("<script language='javascript'>" + "alert('Sorry! The book not exsits!');"
+						+ "window.location.href='librarianLendBook.jsp';" + "</script>");
+			} else if (book.getState().equals("borrowed")) {// 书已被借阅
 				System.out.println("--LibrarianLendBook--,borrowed");
 				out.print("<script language='javascript'>" + "alert('Sorry! The book you selected has been borrowed!');"
 						+ "window.location.href='librarianLendBook.jsp';" + "</script>");

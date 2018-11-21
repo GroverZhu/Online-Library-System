@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="simpleTag" prefix="simple"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${empty sessionScope.AdministratorEntity}">
+	<jsp:forward page="../homepage.jsp" />
+</c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +27,6 @@
 <link rel="icon" type="image/png" sizes="96x96"
 	href="assets/img/favicon.png">
 <body>
-<c:if test="${empty sessionScope.AdministratorEntity}" > <jsp:forward page="homepage.jsp"/> </c:if> 
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
@@ -43,7 +46,8 @@
 							<h1 align="center" class="page-title">Modify Librarian
 								Information</h1>
 						</div>
-						<form onsubmit="return inputCheck(this)" method="post" action="AdminModify">
+						<form onsubmit="return inputCheck(this)" method="post"
+							action="AdminModify">
 							<div class="panel-body">
 								<table align="center">
 									<tr>
@@ -57,8 +61,7 @@
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
 												<input type="text" id="LibrarianID" name="librarianId"
-													class="form-control" readonly="readonly" value="${id}"
-													>
+													class="form-control" readonly="readonly" value="${id}">
 											</div>
 										</td>
 									</tr>
@@ -89,7 +92,8 @@
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
 												<input type="password" id="Password" name="password"
-													class="form-control" placeholder="please enter password or be empty">
+													class="form-control"
+													placeholder="please enter password or be empty">
 											</div>
 										</td>
 									</tr>

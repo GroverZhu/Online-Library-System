@@ -18,6 +18,7 @@ import util.DatabaseUtil;
 public class AuthorDAO {
 	/**
 	 * 增加一个author
+	 * 
 	 * @author GroverZhu
 	 * @author zengyaoNPU 修改
 	 * @param name
@@ -28,15 +29,15 @@ public class AuthorDAO {
 		int authorId = -1;
 		try {
 			Connection conn = DatabaseUtil.getInstance().getConnection();
-			//修改 @zengyaoNPU
-			String query="select * from author where author_name='"+name+"'";
-			Statement st=conn.createStatement();
-			ResultSet rs=st.executeQuery(query);
-			if(rs.next()) {
-				int id=rs.getInt("author_id");
+			// 修改 @zengyaoNPU
+			String query = "select * from author where author_name='" + name + "'";
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			if (rs.next()) {
+				int id = rs.getInt("author_id");
 				DatabaseUtil.getInstance().closeConnection(conn, st, rs);
 				return id;
-			}//修改 @zengyaoNPU
+			} // 修改 @zengyaoNPU
 			String add = "insert into author(author_name, author_description) values(?, ?)";
 			PreparedStatement sql = conn.prepareStatement(add, Statement.RETURN_GENERATED_KEYS);
 			sql.setString(1, name);

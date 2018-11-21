@@ -36,9 +36,9 @@ public class DeleteLibrarian extends HttpServlet {
 
 		int librarianId = Integer.valueOf(request.getParameter("librarianId"));
 		String librarianName = request.getParameter("librarianName");
-		
+
 		LibrarianDAO libDao = new LibrarianDAO();
-		
+
 		int flag = libDao.deleteLibrarianByIdName(librarianId, librarianName);
 
 		if (flag == 1) {

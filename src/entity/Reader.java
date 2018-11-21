@@ -78,7 +78,6 @@ public class Reader {
 		this.borrowHistory = borrowHistory;
 	}
 
-
 	@Override
 	/**
 	 * @author zengyaoNPU

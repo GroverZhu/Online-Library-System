@@ -32,7 +32,9 @@
 </head>
 
 <body>
-<c:if test="${empty sessionScope.librarianEntity}" > <jsp:forward page="../homepage.jsp"/> </c:if> 
+	<c:if test="${empty sessionScope.librarianEntity}">
+		<jsp:forward page="../homepage.jsp" />
+	</c:if>
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
@@ -150,7 +152,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-<jsp:include page="../Footer.jsp" />
+	<jsp:include page="../Footer.jsp" />
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
