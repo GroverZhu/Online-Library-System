@@ -139,16 +139,6 @@
 	<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="../assets/scripts/klorofil-common.js"></script>
 
-	<script>
-		function logout() {
-			var result = confirm("Please make sure.Logout?");
-			if (result == true) {
-				window.location.href = "DestroyLibSession";
-			} else {
-
-			}
-		}
-	</script>
 </body>
 
 </html>

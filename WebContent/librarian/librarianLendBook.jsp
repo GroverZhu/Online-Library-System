@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Librarian Lend Book</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -50,14 +50,16 @@
 								<h3 class="panel-title">Librarian Lend Book</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" action="LibrarianLendBook">
+								<form method="post" onsubmit="return inputCheck1(this)"
+									action="LibrarianLendBook">
 									<label class="control-label" for="librarianName">Reader
 										ID</label>
 									<c:if test="${not empty readerEntity}">
-										<input type="text" name="readerId" value="${readerEntity.id }" />
+										<input type="text" name="readerId" id="readerID1"
+											value="${readerEntity.id }" readonly="readonly" />
 									</c:if>
 									<c:if test="${empty readerEntity}">
-										<input type="text" name="readerId" />
+										<input type="text" name="readerId" id="readerID2" />
 									</c:if>
 									<input type="submit" class="btn btn-primary"
 										value="Show Reader Information" />
@@ -86,8 +88,9 @@
 											<td>${total}</td>
 										</tr>
 									</table>
-									<form method="post" action="LibrarianLendBook">
-										Book ID: <input type="text" name="bookId" /> <input
+									<form method="post" onsubmit="return inputCheck2(this)"
+										action="LibrarianLendBook">
+										Book ID: <input type="text" name="bookId" id="bookID" /> <input
 											type="hidden" name="readerId" value="${readerEntity.id }" />
 										<input type="submit" class="btn btn-primary" value="Lend Book" />
 									</form>
@@ -114,5 +117,31 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+		var isReaderId = /^\d{4,10}$/;
+
+		function inputCheck1(form) {
+			if (!isReaderId.test(form.readerID2.value)) {
+				alert("Invalid reader ID(Should Be 4-10 Numbers!), Please Input Again!");
+				form.readerID2.focus();
+				return false;
+			}
+			if (!isReaderId.test(form.readerID1.value)) {
+				alert("Invalid reader ID(Should Be 4-10 Numbers!), Please Input Again!");
+				form.readerID1.focus();
+				return false;
+			}
+
+		}
+
+		var isBookId = /^\d{1,10}$/;
+		function inputCheck2(form) {
+			if (!isBookId.test(form.bookID.value)) {
+				alert("Invalid Book ID(Should Be 1-10 Numbers!), Please Input Again!");
+				form.bookID.focus();
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

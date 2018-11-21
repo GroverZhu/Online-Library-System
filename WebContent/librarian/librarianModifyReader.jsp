@@ -50,7 +50,7 @@
 								<h3 class="panel-title">Modify Reader</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" action="LibrarianModifyReader">
+								<form method="post" onsubmit="return inputCheck(this)" action="LibrarianModifyReader">
 									<table align="center">
 										<tr>
 											<td width=150px height=64px>
@@ -75,7 +75,7 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" name="name" class="form-control"
+													<input type="text" name="name" id="name" class="form-control"
 														value="${readerEntity.name }" placeholder="Reader Name">
 												</div>
 											</td>
@@ -88,7 +88,7 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" name="email" class="form-control"
+													<input type="text" name="email" id="email" class="form-control"
 														value="${readerEntity.email }" placeholder="Email">
 												</div>
 											</td>
@@ -140,5 +140,25 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+
+	
+	var isReaderName = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
+	var isEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	
+	function inputCheck(form) {
+		if (!isReaderName.test(form.name.value)) {
+			alert("Invalid Reader Name, Please Input Again!");
+			form.name.focus();
+			return false;
+		}
+		if (!isEmail.test(form.email.value)) {
+			alert("Invalid Email, Please Input Again!");
+			form.email.focus();
+			return false;
+		}
+	}
+	</script>
+	
 </body>
 </html>

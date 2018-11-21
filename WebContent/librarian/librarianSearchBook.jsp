@@ -41,7 +41,7 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="post" action="LibrarianSearchBook">
+							<form method="post" onsubmit="return inputCheck(this)" action="LibrarianSearchBook">
 								<div class="panel">
 									<div class="panel-heading">
 										<table>
@@ -66,7 +66,7 @@
 										<div class="col-md-12">
 											<div class="input-group">
 												<input class="form-control" type="text" name="keyword"
-													placeholder="Input Keywords:中文 Book Name, Author or ISBN">
+													placeholder="Input Keywords:Chinese Book Name, Author or ISBN">
 												<span class="input-group-btn">
 													<button class="btn btn-primary" type="submit">Search</button>
 												</span>
@@ -153,5 +153,12 @@
 			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script>
+
+	
+	function inputCheck(form) {
+		
+	}
+	</script>
 </body>
 </html>

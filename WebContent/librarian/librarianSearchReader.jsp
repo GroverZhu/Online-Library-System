@@ -50,7 +50,8 @@
 								<h3 class="panel-title">Librarian Search Reader</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" action="LibrarianSearchReader">
+								<form method="post" onsubmit="return inputCheck(this)"
+									action="LibrarianSearchReader">
 									<table align="center">
 										<tr>
 											<td width=250px height=64px>
@@ -76,7 +77,7 @@
 											</td>
 											<td width=350px height=64px>
 												<div class="form-group has-success has-feedback">
-													<input type="text" id="LibrarianName" name="name"
+													<input type="text" id="readerName" name="name"
 														class="form-control"
 														placeholder="Please enter the Reader Name">
 												</div>
@@ -173,5 +174,25 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+		var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
+		var isReaderId = /^\d{4,10}$/;
+		var isReaderId = /^\d{4,10}$/;
+
+		function inputCheck(form) {
+			
+			if (!isReaderId.test(form.readerID.value)) {
+				alert("Invalid Reader ID(Should Be 4-10 Numbers!), Please Input Again!");
+				form.readerID.focus();
+				return false;
+			}
+			if (!isName.test(form.name.value)) {
+				alert("Reader name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+				form.name.focus();
+				return false;
+			}
+
+		}
+	</script>
 </body>
 </html>

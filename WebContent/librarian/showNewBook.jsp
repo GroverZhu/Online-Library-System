@@ -109,14 +109,6 @@
 			size : 100
 		});
 
-		function logout() {
-			var result = confirm("Please make sure.Logout?");
-			if (result == true) {
-				window.location.href = "DestroyLibSession";
-			} else {
-
-			}
-		}
 		function add() {
 
 			window.location.href = "addBook.jsp";

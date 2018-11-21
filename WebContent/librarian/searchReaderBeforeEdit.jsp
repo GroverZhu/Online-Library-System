@@ -59,9 +59,9 @@
 											</div>
 										</td>
 										<td width="550px">
-											<form method="post" action="SearchReaderBeforeEdit">
+											<form method="post" onsubmit="return inputCheck(this)" action="SearchReaderBeforeEdit">
 												<div class="input-group">
-													<input class="form-control" type="text" name="account"
+													<input class="form-control" type="text" name="account" id="account"
 														placeholder="Please Input ReaderID"> <span
 														class="input-group-btn">
 														<button class="btn btn-primary" type="submit">Search</button>
@@ -116,5 +116,18 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script>
+
+	
+	var isReaderId = /^\d{4,10}$/;
+	
+	function inputCheck(form) {
+		if (!isReaderId.test(form.account.value)) {
+			alert("Invalid Reader ID(Should Be 4-10 Numbers!), Please Input Again!");
+			form.account.focus();
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>

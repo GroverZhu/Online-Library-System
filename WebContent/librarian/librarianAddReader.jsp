@@ -70,12 +70,12 @@
 									</h3>
 								</div>
 
-								<form method="post" action="LibrarianAddReader">
+								<form method="post" onsubmit="return inputCheck(this)" action="LibrarianAddReader">
 									<div class="panel-body">
 										<input type="text" class="form-control"
-											placeholder="Reader Name must be English or Chinese Character" name="readerName">
+											placeholder="Reader Name must be English or Chinese Character" name="readerName" id="readerName">
 										<br> <input type="text" class="form-control"
-											placeholder="Password" name="password"> <br> <label
+											placeholder="Password" name="password" id="password"> <br> <label
 											class="fancy-radio"> <input name="state"
 											value="unlock" type="radio" checked> <span><i></i>Unlock</span>
 										</label> <label class="fancy-radio"> <input name="state"
@@ -116,15 +116,26 @@
 
 		<script>
 
+		// Reader的姓名不可超过45个字符
+		var isName = /^[a-zA-Z0-9\u4e00-\u9fa5 ]{1,50}$/;
+		// 读者的密码不可超过45个字符
+		var isPassword = /^\w{1,50}$/;
 
-	function logout(){
-		var result = confirm("Please make sure.Logout?");  
-	    if (result == true) {  
-	    	window.location.href="DestroyLibSession"; 
-	    } else {  
-	        
-	    }
-	}
+		function inputCheck(form) {
+			if (!isName.test(form.readerName.value)) {
+				alert("Reader name must use the English or Chinese character with less than 50 letters and cannot be empty, please enter again!");
+				form.readerName.focus();
+				return false;
+			}
+
+			if (!isPassword.test(form.password.value)) {
+				alert("Password must less than 50 letters and cannot be empty, please enter again!");
+				form.password.focus();
+				return false;
+			}
+
+		}
+
 	
 	</script>
 </body>

@@ -45,7 +45,7 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="post" action="LibrarianReturnBook">
+							<form method="post" onsubmit="return inputCheck(this)" action="LibrarianReturnBook">
 								<div class="panel">
 									<div class="panel-heading">
 										<h3 class="panel-title">Input Book ID:</h3>
@@ -53,7 +53,7 @@
 									<div class="panel-body">
 										<div class="col-md-12">
 											<div class="input-group">
-												<input class="form-control" type="text" name="bookId"
+												<input class="form-control" type="text" name="bookId" id="bookID"
 													placeholder="book ID"> <span
 													class="input-group-btn"> <input
 													class="btn btn-primary" type="submit" value="Search" />
@@ -147,5 +147,18 @@
 			src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script>
+
+	
+	var isBookId = /^\d{1,10}$/;
+	
+	function inputCheck(form) {
+		if (!isBookId.test(form.bookID.value)) {
+			alert("Invalid book ID, Please Input Again!");
+			form.bookID.focus();
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>

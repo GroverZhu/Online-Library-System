@@ -45,7 +45,7 @@
 						<div class="col-md-12">
 
 							<!-- INPUTS -->
-							<form method="POST" action="SearchBookById">
+							<form method="POST" onsubmit="return inputCheck(this)" action="SearchBookById">
 								<div class="panel">
 									<div class="panel-heading">
 										<h3 class="panel-title">Input Book ID</h3>
@@ -54,7 +54,7 @@
 										<div class="col-md-12">
 											<div class="input-group">
 												<!-- 在此输入book_ID -->
-												<input class="form-control" type="text" name="book_id"
+												<input class="form-control" type="text" name="book_id" id="bookID"
 													placeholder="Book ID"> <span
 													class="input-group-btn"><button
 														class="btn btn-primary" type="SUBMIT">Search</button></span>
@@ -122,16 +122,16 @@
 	<script src="assets/scripts/klorofil-common.js"></script>
 
 	<script>
-
-	function logout(){
-		var result = confirm("Please make sure.Logout?");  
-	    if (result == true) {  
-	    	window.location.href="DestroyLibSession"; 
-	    } else {  
-	        
-	    }
-	}
 	
+	var isBookId = /^\d{1,10}$/;
+	
+	function inputCheck(form) {
+		if (!isBookId.test(form.bookID.value)) {
+			alert("Invalid book ID(Should Be 1-10 Numbers!), Please Input Again!");
+			form.bookID.focus();
+			return false;
+		}
+	}
 	</script>
 
 </body>

@@ -86,7 +86,7 @@
 	function logout() {
 		var result = confirm("Please make sure to Logout?");
 		if (result == true) {
-			window.location.href = "../DestroySession";
+			window.location.href = "../DestorySession";
 		} else {
 
 		}

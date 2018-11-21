@@ -47,7 +47,8 @@
 						<div class="panel-heading">
 							<h1 align="center" class="page-title">Delete Reader</h1>
 						</div>
-						<form method="post" action="LibrarianDeleteReader">
+						<form method="post" onsubmit="return inputCheck(this)"
+							action="LibrarianDeleteReader">
 							<div class="panel-body">
 								<table align="center">
 									<tr>
@@ -74,7 +75,7 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="text" id="LibrarianName" name="name"
+												<input type="text" id="readerName" name="name"
 													class="form-control"
 													placeholder="Please enter the Reader Name">
 											</div>
@@ -109,13 +110,21 @@
 		<script src="../assets/scripts/klorofil-common.js"></script>
 
 		<script>
-			function logout() {
-				var result = confirm("Please make sure.Logout?");
-				if (result == true) {
-					window.location.href = "DestroyLibSession";
-				} else {
+			var isReaderId = /^\d{4,10}$/;
+			var isName = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
 
+			function inputCheck(form) {
+				if (!isReaderId.test(form.readerID.value)) {
+					alert("Invalid Reader ID(Should Be 4-10 Numbers!), Please Input Again!");
+					form.readerID.focus();
+					return false;
 				}
+				if (!isName.test(form.readerName.value)) {
+					alert("Invalid Reader Name, Please Input Again!");
+					form.readerName.focus();
+					return false;
+				}
+				
 			}
 		</script>
 </body>
