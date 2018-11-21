@@ -41,7 +41,7 @@
 	<div id="wrapper">
 		<%@ include file="navbar.jsp"%>
 		<%@ include file="sidebar.jsp"%>
-     </div>
+     
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
