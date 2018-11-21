@@ -152,74 +152,74 @@
 	<script src="../assets/scripts/klorofil-common.js"></script>
 
 	<script>
-			var isISBN = /^\d{10}$|^\d{13}$/;
-			var isPublishTime = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
-			var isBookName = /^[&a-zA-Z0-9\u4e00-\u9fa5()（）：:\s\S ]{1,}$/;
-			var isPrice = /^[0-9]+(.[0-9]{2})?$/;
-			var isPublisherName = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
-			var isAuthor = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
-			var isLocation = /^[\w\s\S]{1,}$/;
-			var isNumber = /^\d{1,10}$/;
+		var isISBN = /^\d{10}$|^\d{13}$/;
+		var isPublishTime = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
+		var isBookName = /^[&a-zA-Z0-9\u4e00-\u9fa5()（）：:\s\S ]{1,}$/;
+		var isPrice = /^[0-9]+(.[0-9]{2})?$/;
+		var isPublisherName = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
+		var isAuthor = /^[&a-zA-Z0-9\u4e00-\u9fa5 ]{1,}$/;
+		var isLocation = /^[\w\s\S]{1,}$/;
+		var isNumber = /^\d{1,10}$/;
 
-			function inputCheck(form) {
-				if (!isISBN.test(form.ISBN.value)) {
-					alert("Invalid ISBN, Please Input Again!");
-					form.ISBN.focus();
-					return false;
-				}
-
-				if (!isPublishTime.test(form.PublishTime.value)) {
-					alert("Invalid Publish Time, Please Input Again!");
-					form.PublishTime.focus();
-					return false;
-				}
-
-				if (!isBookName.test(form.BookName.value)) {
-					alert("Invalid Book Name, Please Input Again!");
-					form.BookName.focus();
-					return false;
-				}
-
-				if (!isPrice.test(form.Price.value)) {
-					alert("Invalid Price, Please Input Again!");
-					form.Price.focus();
-					return false;
-				}
-
-				if (!isPublisherName.test(form.PublisherName.value)) {
-					alert("Invalid Publisher Name, Please Input Again!");
-					form.PublisherName.focus();
-					return false;
-				}
-
-				if (!isAuthor.test(form.Author.value)) {
-					alert("Invalid Author Name, Please Input Again!");
-					form.Author.focus();
-					return false;
-				}
-
-				if (!isLocation.test(form.Location.value)) {
-					alert("Invalid Location, Please Input Again!");
-					form.Location.focus();
-					return false;
-				}
-
-				if (!isNumber.test(form.Number.value)) {
-					alert("Invalid Number, Please Input Again!");
-					form.Number.focus();
-					return false;
-				}
-
+		function inputCheck(form) {
+			if (!isISBN.test(form.ISBN.value)) {
+				alert("Invalid ISBN, Please Input Again!");
+				form.ISBN.focus();
+				return false;
 			}
 
-			function inputCheck2(form) {
-				if (!isISBN.test(form.ISBNSearch.value)) {
-					alert("Invalid ISBN, Please Input Again!");
-					form.ISBNSearch.focus();
-					return false;
-				}
+			if (!isPublishTime.test(form.PublishTime.value)) {
+				alert("Invalid Publish Time, Please Input Again!");
+				form.PublishTime.focus();
+				return false;
 			}
-		</script>
+
+			if (!isBookName.test(form.BookName.value)) {
+				alert("Invalid Book Name, Please Input Again!");
+				form.BookName.focus();
+				return false;
+			}
+
+			if (!isPrice.test(form.Price.value)) {
+				alert("Invalid Price, Please Input Again!");
+				form.Price.focus();
+				return false;
+			}
+
+			if (!isPublisherName.test(form.PublisherName.value)) {
+				alert("Invalid Publisher Name, Please Input Again!");
+				form.PublisherName.focus();
+				return false;
+			}
+
+			if (!isAuthor.test(form.Author.value)) {
+				alert("Invalid Author Name, Please Input Again!");
+				form.Author.focus();
+				return false;
+			}
+
+			if (!isLocation.test(form.Location.value)) {
+				alert("Invalid Location, Please Input Again!");
+				form.Location.focus();
+				return false;
+			}
+
+			if (!isNumber.test(form.Number.value)) {
+				alert("Invalid Number, Please Input Again!");
+				form.Number.focus();
+				return false;
+			}
+
+		}
+
+		function inputCheck2(form) {
+			if (!isISBN.test(form.ISBNSearch.value)) {
+				alert("Invalid ISBN, Please Input Again!");
+				form.ISBNSearch.focus();
+				return false;
+			}
+		}
+	</script>
 </body>
 
 </html>

@@ -43,38 +43,44 @@ public class ReaderViewReturnRecord extends HttpServlet {
         try {
             start = Integer.parseInt(request.getParameter("start"));
             num = num + start;
-            session.setAttribute("nums",num);
+            session.setAttribute("nums", num);
         } catch (NumberFormatException e) {
             // 当浏览器没有传参数start时
         }
 
         int next = start + count;
         int pre = start - count;
+        if (session != null) {
+            Reader reader = (Reader) session.getAttribute("ReaderEntity");
+            if (reader != null) {
+                int readerid = reader.getId();
 
-        Reader reader = (Reader) session.getAttribute("ReaderEntity");
-        int readerid = reader.getId();
+                List<BorrowItem> borrowitems = borrowItemDAO.getBorrowItemInHistory(readerid);
+                int total = 0;
+                for (BorrowItem borrowItem : borrowitems) {
+                    total++;
+                }
 
-        List<BorrowItem> borrowitems = borrowItemDAO.getBorrowItemInHistory(readerid);
-        int total = 0;
-        for(BorrowItem borrowItem : borrowitems){
-            total++;
+                int last;
+                if (0 == total % count)
+                    last = total - count;
+                else
+                    last = total - total % count;
+
+                pre = pre < 0 ? 0 : pre;
+                next = next > last ? last : next;
+                request.setAttribute("next", next);
+                request.setAttribute("pre", pre);
+                request.setAttribute("last", last);
+
+                List<BorrowItem> borrowItems = borrowItemDAO.getBorrowItemInHistory(start, count, readerid);
+                request.setAttribute("borrowitems", borrowItems);
+                request.getRequestDispatcher("readerReturnHistory.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("homepage.jsp").forward(request, response);
+            }
+        } else {
+            request.getRequestDispatcher("homepage.jsp").forward(request, response);
         }
-
-        int last;
-        if (0 == total % count)
-            last = total - count;
-        else
-            last = total - total % count;
-
-        pre = pre < 0 ? 0 : pre;
-        next = next > last ? last : next;
-        request.setAttribute("next", next);
-        request.setAttribute("pre", pre);
-        request.setAttribute("last", last);
-
-        List<BorrowItem> borrowItems = borrowItemDAO.getBorrowItemInHistory(start, count,readerid);
-        request.setAttribute("borrowitems", borrowItems);
-        request.getRequestDispatcher("readerReturnHistory.jsp").forward(request, response);
     }
-
 }
