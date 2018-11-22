@@ -66,7 +66,7 @@
 										<div class="col-md-12">
 											<div class="input-group">
 												<input class="form-control" type="text" name="keyword"
-													placeholder="Input Keywords:中文 Book Name, Author or ISBN">
+													placeholder="Input Keywords:Chinese Character, Book Name, Author or ISBN">
 												<span class="input-group-btn">
 													<button class="btn btn-primary" type="submit">Search</button>
 												</span>

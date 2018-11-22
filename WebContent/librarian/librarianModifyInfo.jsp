@@ -49,7 +49,7 @@
 						<div class="panel-heading">
 							<h1 align="center" class="page-title">Modify Password</h1>
 						</div>
-						<form method="post" action="ChangePassword">
+						<form onsubmit="return inputCheck(this)" method="post" action="ChangePassword">
 							<div class="panel-body">
 								<table align="center">
 									<tr>
@@ -61,7 +61,7 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="password" name="old" class="form-control"
+												<input type="password" name="old" class="form-control" id="Old"
 													placeholder="Old Password"
 													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
@@ -76,7 +76,7 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
-												<input type="password" name="new" class="form-control"
+												<input type="password" name="new" class="form-control" id="New"
 													placeholder="New Password"
 													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
@@ -92,7 +92,7 @@
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
 												<input type="password" name="confirm" class="form-control"
-													placeholder="Confirm New Password"
+													placeholder="Confirm New Password" id="NewConfirm"
 													onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
 											</div>
 										</td>
@@ -123,6 +123,30 @@
 		src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script type="text/javascript">
+	// 读者的密码不可超过45个字符
+	var isPassword = /^\w{1,50}$/;
+
+	function inputCheck(form) {
+		if (!isPassword.test(form.Old.value)) {
+			alert("Password must less than 50 letters and cannot be empty, please enter again!");
+			form.Old.focus();
+			return false;
+		}
+
+		if (!isPassword.test(form.New.value)) {
+			alert("Password must less than 50 letters and cannot be empty, please enter again!");
+			form.New.focus();
+			return false;
+		}
+		if (!isPassword.test(form.NewConfirm.value)) {
+			alert("Password must less than 50 letters and cannot be empty, please enter again!");
+			form.NewConfirm.focus();
+			return false;
+		}
+
+	}
+	</script>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ public class LibrarianDeleteBook extends HttpServlet {
 			out.print("<script language='javascript'>" + "alert('Fail to Delete Book!This book doesn't EXIST');"
 					+ "window.location.href='librarianDeleteBook.jsp';" + "</script>");
 		} else if (tag == 4) {
-			out.print("<script language='javascript'>" + "alert('Suffers Exceptoin!');"
+			out.print("<script language='javascript'>" + "alert('Fail to Delete Book! Suffers Exceptoin!');"
 					+ "window.location.href='librarianDeleteBook.jsp';" + "</script>");
 		}
 
