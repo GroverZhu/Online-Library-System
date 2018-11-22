@@ -34,13 +34,22 @@ public class LoginHandler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+		if(request.getParameter("authority")==null
+				||request.getParameter("userID")==null
+				||request.getParameter("password")==null
+				||request.getParameter("authority").equals("")
+				||request.getParameter("userID").equals("")
+				||request.getParameter("password").equals("")) {
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		}else {
 		//获取参数
 		String authority = (String) request.getParameter("authority");
 		String userId=request.getParameter("userID");
 		int id=Integer.parseInt(userId);
 		String password=request.getParameter("password");
 		String isRemember=request.getParameter("isRemember");
-		System.out.println(isRemember);
+		System.out.println("isRemember="+isRemember);
 		boolean isCorrect=true;
 		if(isRemember!=null) {
 			//判断用户ID、密码、权限是否正确
@@ -68,6 +77,8 @@ public class LoginHandler extends HttpServlet {
 			if(isCorrect) {//必须要密码正确才能保存密码
 				rememberPassword(userId,password,authority,request,response);//保存密码
 			}
+		}else {
+			forgetPassword(userId,request,response);
 		}
 		if (authority.equals("reader")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ReaderLogin");
@@ -78,6 +89,7 @@ public class LoginHandler extends HttpServlet {
 		} else if (authority.equals("administrator")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("AdministratorLogin");
 			dispatcher.forward(request, response);
+		}
 		}
 	}
 	private void rememberPassword(String userId,String password,String authority,HttpServletRequest request, HttpServletResponse response)
@@ -105,6 +117,71 @@ public class LoginHandler extends HttpServlet {
 				Cookie cookie=new Cookie("account",userId+"="+password+"="+authority);
 				cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
+			}
+		}else {
+			return ;
+		}
+	}
+	private void forgetPassword(String userId,HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Cookie[] cookies=request.getCookies();
+		boolean hasAccountCookie=false;
+		Cookie accountCookie=null;
+		if(cookies!=null) {//如果cookies不为空（一定不为空，有系统自带的cookie）
+			for(Cookie cookie:cookies) {
+				//遍历cookies，找到名称为account的cookie
+				if(cookie.getName().equals("account")) {
+					accountCookie=cookie;//初始化
+					hasAccountCookie=true;
+					break;
+				}
+			}
+			if(hasAccountCookie==true) {//非首次保存密码
+				String cookieValue=accountCookie.getValue();
+				if(cookieValue.contains("&")) {//有多个account
+					System.out.println("--LoginHandler--,--doGet()--,含有多个账号");
+					String[] accounts=cookieValue.split("&");
+					int k=-1;
+					for(int i=0;i<accounts.length;i++) {
+						if(accounts[i].split("=")[0].equals(userId)) {//在cookie中找到选中的userID
+							k=i;
+							break;
+						}
+					}
+					String newCookieValue="";
+					if(k!=0) {
+						newCookieValue=accounts[0];
+						for(int i=1;i<accounts.length;i++) {
+							if(k==i) {
+								continue;
+							}else {
+								newCookieValue+="&"+accounts[i];
+							}
+						}
+					}else {
+						newCookieValue=accounts[1];
+						for(int i=2;i<accounts.length;i++) {
+							if(k==i) {
+								continue;
+							}else {
+								newCookieValue+="&"+accounts[i];
+							}
+						}
+					}
+					System.out.println("newCookieValue="+newCookieValue);
+					Cookie cookie=new Cookie("account",newCookieValue);
+					response.addCookie(cookie);
+				}else {//仅有一个account
+					System.out.println("--LoginHandler--,--forgetPassword()--,仅有一个账号");
+					if(cookieValue.split("=")[0].equals(userId)) {//在cookie中找到选中的userID
+						Cookie cookie=new Cookie("account","");
+						cookie.setMaxAge(1);//失效
+						response.addCookie(cookie);
+					}
+				}
+			}else {//不用删除密码
+				System.out.println("--LoginHandler--,--forgetPassword()--,没有记录");
+				return;
 			}
 		}else {
 			return ;

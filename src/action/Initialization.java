@@ -33,7 +33,7 @@ public class Initialization extends HttpServlet {
 		boolean hasAccountCookie = false;
 		Cookie accountCookie = null;
 		if (cookies != null) {
-			System.out.println("cookie not null");
+			System.out.println("--Initialization--,cookie not null");
 			for (Cookie cookie : cookies) {//遍历cookies，查询名为account的cookie
 				if ("account".equals(cookie.getName())) {
 					hasAccountCookie = true;
@@ -43,10 +43,8 @@ public class Initialization extends HttpServlet {
 			}
 			if (hasAccountCookie) {
 				List<String> idList=new ArrayList<>();//userID的列表
-				List<String> pwList=new ArrayList<>();//password的列表
-				List<String> authorityList=new ArrayList<>();//authority的列表
 				String cookieValue = accountCookie.getValue();
-				System.out.println(cookieValue);
+				System.out.println("--Initialization--,cookieValue="+cookieValue);
 				//字符串处理
 				if(cookieValue.contains("&")) {
 					String[] accounts = cookieValue.split("&");
@@ -55,21 +53,15 @@ public class Initialization extends HttpServlet {
 						String pw=accounts[i].split("=")[1];
 						String authority=accounts[i].split("=")[2];
 						idList.add(id);
-						pwList.add(pw);
-						authorityList.add(authority);
 					}
 				}else {
 					String id=cookieValue.split("=")[0];
 					String pw=cookieValue.split("=")[1];
 					String authority=cookieValue.split("=")[2];
 					idList.add(id);
-					pwList.add(pw);
-					authorityList.add(authority);
 				}
 				//设置request参数
-				request.setAttribute("idList", idList);
-				request.setAttribute("pwList", pwList);
-				request.setAttribute("authorityList", authorityList);
+				session.setAttribute("idList", idList);
 				request.getRequestDispatcher("Login.jsp").forward(request, response);
 			}else {
 				request.getRequestDispatcher("Login.jsp").forward(request, response);

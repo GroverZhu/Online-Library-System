@@ -59,7 +59,7 @@
 													placeholder="User ID"
 													onkeyup="this.value=this.value.replace(/\D/g,'')"
 													onafterpaste="this.value=this.value.replace(/\D/g,'')"
-													value="${userId }">
+													value="${userId}">
 													</c:if>
 													<c:if test="${empty userId }">
 														<input type="text" name="userID" class="form-control"
