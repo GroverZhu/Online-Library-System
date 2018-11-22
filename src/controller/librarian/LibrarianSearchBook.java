@@ -104,6 +104,7 @@ public class LibrarianSearchBook extends HttpServlet {
 				// 不知道为什么，这里用requestDispatcher的时候，第二次进入jsp页面会中文乱码
 				HttpSession session = request.getSession();
 				session.setAttribute("bookList", list);
+				session.removeAttribute("bookEntity");
 				response.sendRedirect("librarianSearchBook.jsp");
 			}
 		} else if (searchBy.equals("ISBN")) {
@@ -115,6 +116,7 @@ public class LibrarianSearchBook extends HttpServlet {
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("bookEntity", book);
+				session.removeAttribute("bookList");
 				response.sendRedirect("librarianSearchBook.jsp");
 			}
 		} else if (searchBy.equals("Author")) {
@@ -126,6 +128,7 @@ public class LibrarianSearchBook extends HttpServlet {
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("bookList", list);
+				session.removeAttribute("bookEntity");
 				response.sendRedirect("librarianSearchBook.jsp");
 			}
 		} else if (searchBy.equals("Publisher")) {
@@ -136,6 +139,7 @@ public class LibrarianSearchBook extends HttpServlet {
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("bookList", list);
+				session.removeAttribute("bookEntity");
 				response.sendRedirect("librarianSearchBook.jsp");
 			}
 

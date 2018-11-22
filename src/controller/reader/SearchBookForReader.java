@@ -72,6 +72,7 @@ public class SearchBookForReader extends HttpServlet {
 						"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
 			}
 			session.setAttribute("bookEntity", book);
+			session.removeAttribute("bookList");
 			request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
 
 		} else {
@@ -84,6 +85,7 @@ public class SearchBookForReader extends HttpServlet {
 					"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
 		} else {
 			session.setAttribute("bookList", books);
+			session.removeAttribute("bookEntity");
 			request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
 		}
 	}
