@@ -996,7 +996,7 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (author != "all" && author != "" && author != null) {
-			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
+			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
 					+ " left join author on author.author_id=writes.author_id) " + " where author.author_name like "
@@ -1052,7 +1052,7 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (author != "all" && author != "" && author != null) {
-			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
+			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
 					+ " left join author on author.author_id=writes.author_id) " + " where author.author_name like "
@@ -1106,7 +1106,7 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (publisher != "all" && publisher != "" && publisher != null) {
-			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
+			sql = "select book_id,book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,state,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book  join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
 					+ " left join author on author.author_id=writes.author_id) "
@@ -1162,7 +1162,7 @@ public class BookDAO {
 		Collection bookColle = new ArrayList();
 		String sql = null;
 		if (publisher != "all" && publisher != "" && publisher != null) {
-			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book left join book_in_library on book.isbn=book_in_library.isbn) "
+			sql = "select book.isbn,book_name,book_price,book_description,publisher.publisher_id,publisher_name,publisher_description,book_location,GROUP_CONCAT(distinct author.author_name SEPARATOR ',') from (((book join book_in_library on book.isbn=book_in_library.isbn) "
 					+ "left join publisher on publisher.publisher_id=book.publisher_id) "
 					+ " left join writes on writes.isbn=book.isbn "
 					+ " left join author on author.author_id=writes.author_id) "
