@@ -55,9 +55,8 @@
 											</tr>
 
 											<!-- 展示书籍信息 -->
-
-											<c:set var="bookList" scope="session" value="${bookList}" />
-											<c:forEach var="book" items="${bookList }">
+											<c:if test="${not empty sessionScope.bookList }">
+											<c:forEach var="book" items="${sessionScope.bookList }">
 												<tr>
 													<th>${book.ISBN }</th>
 													<th>${book.name }</th>
@@ -72,7 +71,22 @@
 														</form></th>
 												</tr>
 											</c:forEach>
-
+											</c:if>
+											<c:if test="${not empty sessionScope.bookEntity }">
+											<tr>
+													<th>${sessionScope.bookEntity.ISBN }</th>
+													<th>${sessionScope.bookEntity.name }</th>
+													<th>${sessionScope.bookEntity.authors }</th>
+													<th>${sessionScope.bookEntity.publisher.name }</th>
+													<th>${sessionScope.bookEntity.price }</th>
+													<th><form align="center" method="post"
+															action="ShowBookInLib">
+															<input type="hidden" name="isbn" value='${sessionScope.bookEntity.ISBN}'></input>
+															<button type="submit" name="bookInfo"
+																class="btn btn-success">More Information</button>
+														</form></th>
+												</tr>
+											</c:if>
 										</thead>
 									</table>
 								</div>

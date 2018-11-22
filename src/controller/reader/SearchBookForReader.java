@@ -61,12 +61,43 @@ public class SearchBookForReader extends HttpServlet {
 		}
 		if (style.equals("Book Name")) {
 			books = bookDAO.getBookByAlikeTitle(name);
+			System.out.println("--SearchBookForReader--,books.size()=" + books.size());
+
+			if (books.isEmpty()) {
+				out.print(
+						"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
+			} else {
+				session.setAttribute("bookList", books);
+				session.removeAttribute("bookEntity");
+				request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
+			}
 		} else if (style.equals("Author")) {
 			books = bookDAO.getBookByAuthor(name);
+			System.out.println("--SearchBookForReader--,books.size()=" + books.size());
+
+			if (books.isEmpty()) {
+				out.print(
+						"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
+			} else {
+				session.setAttribute("bookList", books);
+				session.removeAttribute("bookEntity");
+				request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
+			}
 		} else if (style.equals("Publisher")) {
 			books = bookDAO.getBookByPublisher(name);
+			System.out.println("--SearchBookForReader--,books.size()=" + books.size());
+
+			if (books.isEmpty()) {
+				out.print(
+						"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
+			} else {
+				session.setAttribute("bookList", books);
+				session.removeAttribute("bookEntity");
+				request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
+			}
 		} else if (style.equals("ISBN")) {
 			Book book = bookDAO.getBookByIsbn(name);
+			System.out.println(book.toString());
 			if (book == null) {
 				out.print(
 						"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
@@ -77,16 +108,6 @@ public class SearchBookForReader extends HttpServlet {
 
 		} else {
 			out.print("<script>alert('Please select a search type!');window.location='readerSearchBook.jsp';</script>");
-		}
-		System.out.println("--SearchBookForReader--,books.size()=" + books.size());
-
-		if (books.isEmpty()) {
-			out.print(
-					"<script>alert('No related books!Please try a new one!');window.location='readerSearchBook.jsp';</script>");
-		} else {
-			session.setAttribute("bookList", books);
-			session.removeAttribute("bookEntity");
-			request.getRequestDispatcher("readerSearchBook.jsp").forward(request, response);
 		}
 	}
 
