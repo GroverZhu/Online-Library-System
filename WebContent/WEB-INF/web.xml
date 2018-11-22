@@ -10,9 +10,9 @@
       <taglib-location>/WEB-INF/tld/stateTag.tld</taglib-location>
     </taglib>
     <taglib>
-			<taglib-uri>BookLocationTag</taglib-uri>
-			<taglib-location>/WEB-INF/lib/bookLocationTag.tld</taglib-location>
-	</taglib>
+      <taglib-uri>BookLocationTag</taglib-uri>
+      <taglib-location>/WEB-INF/lib/bookLocationTag.tld</taglib-location>
+    </taglib>
   </jsp-config>
   <servlet>
     <description></description>
@@ -408,5 +408,24 @@
     <servlet-name>ShowNewReader</servlet-name>
     <url-pattern>/librarian/ShowNewReader</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>Initialization</display-name>
+    <servlet-name>Initialization</servlet-name>
+    <servlet-class>action.Initialization</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Initialization</servlet-name>
+    <url-pattern>/Initialization</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AutoFilling</display-name>
+    <servlet-name>AutoFilling</servlet-name>
+    <servlet-class>action.AutoFilling</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutoFilling</servlet-name>
+    <url-pattern>/AutoFilling</url-pattern>
+  </servlet-mapping>
 </web-app>

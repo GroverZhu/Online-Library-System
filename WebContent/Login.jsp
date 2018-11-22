@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="fullscreen-bg">
 
@@ -53,10 +54,19 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
+												<c:if test="${not empty userId }">
 												<input type="text" name="userID" class="form-control"
 													placeholder="User ID"
 													onkeyup="this.value=this.value.replace(/\D/g,'')"
+													onafterpaste="this.value=this.value.replace(/\D/g,'')"
+													value="${userId }">
+													</c:if>
+													<c:if test="${empty userId }">
+														<input type="text" name="userID" class="form-control"
+													placeholder="User ID"
+													onkeyup="this.value=this.value.replace(/\D/g,'')"
 													onafterpaste="this.value=this.value.replace(/\D/g,'')">
+													</c:if>
 											</div>
 
 										</td>
@@ -69,8 +79,15 @@
 										</td>
 										<td width=350px height=64px>
 											<div class="form-group has-success has-feedback">
+												<c:if test="${not empty password }">
 												<input type="password" name="password" id="pw"
+													class="form-control" placeholder="Password" maxlength="32"
+													value="${password }">
+													</c:if>
+													<c:if test="${empty password }">
+													<input type="password" name="password" id="pw"
 													class="form-control" placeholder="Password" maxlength="32">
+													</c:if>
 											</div>
 										</td>
 									</tr>
@@ -78,14 +95,54 @@
 										<td></td>
 										<td>
 											<div class="form-group clearfix" align="left">
-												<input type="radio" name="authority" value="reader" checked />I'm
-												Reader <br /> <input type="radio" name="authority"
-													value="librarian" />I'm Librarian <br /> <input
-													type="radio" name="authority" value="administrator" />I'm
-												Administrator <br />
+												<c:if test="${empty authority }">
+												<input type="radio" name="authority" value="reader" checked />I'm Reader <br /> 
+												<input type="radio" name="authority" value="librarian" />I'm Librarian <br /> 
+												<input type="radio" name="authority" value="administrator" />I'm Administrator <br />
+												</c:if>
+												<c:if test="${not empty authority }">
+												<c:if test="${authority eq 'reader' }">
+												<input type="radio" name="authority" value="reader" checked />I'm Reader <br /> 
+												<input type="radio" name="authority" value="librarian" />I'm Librarian <br /> 
+												<input type="radio" name="authority" value="administrator" />I'm Administrator <br />
+												</c:if>
+												<c:if test="${authority eq 'librarian' }">
+												<input type="radio" name="authority" value="reader" />I'm Reader <br /> 
+												<input type="radio" name="authority" value="librarian" checked/>I'm Librarian <br /> 
+												<input type="radio" name="authority" value="administrator" />I'm Administrator <br />
+												</c:if>
+												<c:if test="${authority eq 'administrator' }">
+												<input type="radio" name="authority" value="reader" />I'm Reader <br /> 
+												<input type="radio" name="authority" value="librarian" />I'm Librarian <br /> 
+												<input type="radio" name="authority" value="administrator" checked/>I'm Administrator <br />
+												</c:if>
+												</c:if>
+												
 											</div>
 										</td>
 									</tr>
+									<tr>
+										<td></td>
+										
+										<td>
+											<div class="form-group clearfix" align="left">
+												<input type="checkbox" name="isRemember" id="isRemember"/>Remember Password
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<select name="account" size="1" id="account" onchange="change(this.value)">
+											<c:forEach var="item" items="${idList }" >
+											<option value="${item }">${item }</option>
+											</c:forEach>
+											</select>
+											
+								
+										</td>
+									</tr>
+				
 								</table>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
 							</form>
@@ -117,6 +174,9 @@
             check = false;
         }
         return check;
+    }
+    function change(val){
+    	window.location.href="AutoFilling?param="+val;
     }
 </script>
 

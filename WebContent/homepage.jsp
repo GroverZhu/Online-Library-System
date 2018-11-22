@@ -39,7 +39,7 @@
 		<div class="container-fluid">
 			<div id="navbar-menu">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="update-pro" href="Login.jsp" title="Login"><i
+					<li><a class="update-pro" href="Initialization" title="Login"><i
 							class="fa fa-rocket"></i> <span>Login</span></a></li>
 				</ul>
 			</div>

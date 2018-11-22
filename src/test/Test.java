@@ -5,9 +5,10 @@ import entity.Book;
 
 public class Test {
 	public static void main(String[] args) {
-		BookDAO b = new BookDAO();
-		Book book = b.searchByID(2);
-		System.out.println(2);
+		String a="123456";
+		if(a.contains("7")) {
+			System.out.println("OK");
+		}
 
 	}
 }
