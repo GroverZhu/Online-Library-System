@@ -108,11 +108,36 @@ public class LoginHandler extends HttpServlet {
 			}
 			if(hasAccountCookie==true) {//非首次保存密码
 				String cookieValue=accountCookie.getValue();
-				cookieValue+="&"+userId+"="+password+"="+authority;
-				Cookie cookie=new Cookie("account",cookieValue);//更新cookie的值
-				cookie.setMaxAge(60*60*24);
-				response.addCookie(cookie);
-				System.out.println();
+				System.out.println("--LoginHandler--,cookieValue="+cookieValue);
+				boolean hasStore=false;
+				//查找是否保存过该账号
+				if(cookieValue.contains("&")) {
+					String[] accounts=cookieValue.split("&");
+					
+					for(int i=0;i<accounts.length;i++) {
+						System.out.println("accounts["+i+"]="+accounts[i]);
+						if(accounts[i].split("=")[0].equals(userId)) {
+							hasStore=true;
+							break;
+						}
+					}
+				}else {
+					if(cookieValue.split("=")[0].equals(userId)) {
+						hasStore=true;
+					}
+				}
+				if(hasStore==false) {
+					System.out.println("userId="+userId);
+					System.out.println("password="+password);
+					System.out.println("authority="+authority);
+					cookieValue+="&"+userId+"="+password+"="+authority;
+					Cookie cookie=new Cookie("account",cookieValue);//更新cookie的值
+					cookie.setMaxAge(60*60*24);
+					response.addCookie(cookie);
+					System.out.println("--LoginHandler--,添加新的账户");
+				}else {
+					System.out.println("--LoginHandler--,该账户已被保存");
+				}
 			}else {//首次保存密码，直接初始化一个cookie
 				Cookie cookie=new Cookie("account",userId+"="+password+"="+authority);
 				cookie.setMaxAge(60*60*24);

@@ -134,6 +134,7 @@
 										<td></td>
 										<td>
 											<select name="account" size="1" id="account" onchange="change(this.value)">
+											<option value="please">please select </option> 
 											<c:forEach var="item" items="${idList }" >
 											<option value="${item }">${item }</option>
 											</c:forEach>
@@ -176,7 +177,9 @@
         return check;
     }
     function change(val){
-    	window.location.href="AutoFilling?param="+val;
+        if(val!="please"){
+    		window.location.href="AutoFilling?param="+val;
+        }
     }
 </script>
 
