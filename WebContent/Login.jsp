@@ -70,6 +70,17 @@
 											</div>
 
 										</td>
+										<td>
+										<div class="form-group">
+											<select name="account" size="1" id="account" class="selectpicker" onchange="change(this.value)">
+											<option value="please">please select </option> 
+											<c:forEach var="item" items="${idList }" >
+											<option value="${item }">${item }</option>
+											</c:forEach>
+											</select>
+											
+									</div>
+										</td>
 									</tr>
 									<tr>
 										<td width=150px height=64px>
@@ -132,16 +143,7 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td>
-											<select name="account" size="1" id="account" onchange="change(this.value)">
-											<option value="please">please select </option> 
-											<c:forEach var="item" items="${idList }" >
-											<option value="${item }">${item }</option>
-											</c:forEach>
-											</select>
-											
-								
-										</td>
+										
 									</tr>
 				
 								</table>

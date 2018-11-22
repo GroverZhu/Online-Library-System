@@ -74,6 +74,7 @@ public class AutoFilling extends HttpServlet {
 						request.setAttribute("password", password);
 						request.setAttribute("authority", authority);
 					}
+					request.getRequestDispatcher("Login.jsp").forward(request, response);
 				}
 			}else {//不含有所需cookie
 				request.getRequestDispatcher("Login.jsp").forward(request, response);
