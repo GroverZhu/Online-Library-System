@@ -192,11 +192,11 @@
 				return false;
 			}
 
-			if (!isAuthor.test(form.Author.value)) {
+			/*if (!isAuthor.test(form.Author.value)) {
 				alert("Invalid Author Name, Please Input Again!");
 				form.Author.focus();
 				return false;
-			}
+			}*/
 
 			if (!isLocation.test(form.Location.value)) {
 				alert("Invalid Location, Please Input Again!");

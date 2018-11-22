@@ -416,11 +416,4 @@ public class BorrowItemDAO {
 
 	}
 
-	public static void main(String[] args) {
-		BorrowItemDAO b = new BorrowItemDAO();
-		List<BorrowItem> list = b.getBorrowItemInReturn(1);
-		for (BorrowItem i : list) {
-			System.out.println(i.toString());
-		}
-	}
 }
