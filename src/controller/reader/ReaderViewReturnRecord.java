@@ -36,6 +36,7 @@ public class ReaderViewReturnRecord extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int start = 0;
 		int count = 6;
 		int num = 0;

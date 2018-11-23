@@ -30,6 +30,8 @@ public class ShowNewReader extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String s = request.getParameter("reader_id");
 		int readerId = Integer.parseInt(s);
 		ReaderDAO readerDAO = new ReaderDAO();

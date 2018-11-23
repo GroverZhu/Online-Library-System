@@ -35,6 +35,7 @@ public class LibrarianAddBook extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		Book newbook = new Book();
 		BookDAO bookdao = new BookDAO();
 		// 获取表单数据

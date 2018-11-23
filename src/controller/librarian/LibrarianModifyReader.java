@@ -30,6 +30,8 @@ public class LibrarianModifyReader extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		System.out.println("--LibrarianModifyReader--doGet()");
 		int readerId = Integer.parseInt(request.getParameter("reader_id"));// 获取请求参数
 		ReaderDAO readerDAO = new ReaderDAO();
@@ -48,7 +50,8 @@ public class LibrarianModifyReader extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		System.out.println("--LibrarianModifyReader--doPost()");
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		// 获取参数
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");

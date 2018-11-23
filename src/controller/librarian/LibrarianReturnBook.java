@@ -32,6 +32,8 @@ public class LibrarianReturnBook extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		HttpSession session = request.getSession();
 		Librarian librarian = (Librarian) session.getAttribute("librarianEntity");

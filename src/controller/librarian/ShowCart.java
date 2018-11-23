@@ -27,6 +27,8 @@ public class ShowCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int start = 0;// 起始行
 		int count = 2;// 每页显示行数
 		try {

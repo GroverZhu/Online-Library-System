@@ -29,6 +29,8 @@ public class SearchBookById extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int bookId = Integer.parseInt(request.getParameter("book_id"));// 获取参数
 		BookDAO bookDAO = new BookDAO();
 		Book book = bookDAO.searchByID(bookId);// 实例化一个book

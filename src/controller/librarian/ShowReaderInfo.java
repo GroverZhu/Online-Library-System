@@ -26,7 +26,8 @@ public class ShowReaderInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		int readerId = Integer.parseInt(request.getParameter("reader_id"));
 		String param = request.getParameter("param");
 

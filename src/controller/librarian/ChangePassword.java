@@ -33,6 +33,8 @@ public class ChangePassword extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		Librarian librarian = (Librarian) session.getAttribute("librarianEntity");

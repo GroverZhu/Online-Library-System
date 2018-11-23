@@ -27,7 +27,8 @@ public class ReaderReturnHistory extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		Reader reader = (Reader) session.getAttribute("ReaderEntity");
 		int userid = Integer.MAX_VALUE;
 		if (reader != null) {

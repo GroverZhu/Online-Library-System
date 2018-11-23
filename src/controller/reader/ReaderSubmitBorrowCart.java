@@ -27,7 +27,8 @@ public class ReaderSubmitBorrowCart extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String bookids = request.getParameter("bookid");
 		int bookid = Integer.MAX_VALUE;
 		if (bookids != null)

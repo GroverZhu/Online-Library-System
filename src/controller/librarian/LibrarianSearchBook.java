@@ -88,7 +88,8 @@ public class LibrarianSearchBook extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		String searchBy = request.getParameter("searchBy");
 		String keyword = request.getParameter("keyword");
