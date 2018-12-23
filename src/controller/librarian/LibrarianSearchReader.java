@@ -22,7 +22,7 @@ public class LibrarianSearchReader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReaderDAO readerDAO;
 	private int start = 0;// 起始行
-	private int count = 2;// 每页显示行数
+	private int count = 5;// 每页显示行数
 	private int condition = 0;
 
 	public LibrarianSearchReader() {

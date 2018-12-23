@@ -33,7 +33,7 @@ public class ShowBookInLib extends HttpServlet {
 
 		// 分页功能
 		int start = 0;
-		int count = 10;
+		int count = 5;
 
 		try {
 			start = Integer.parseInt(request.getParameter("start"));

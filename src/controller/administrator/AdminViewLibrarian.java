@@ -32,7 +32,7 @@ public class AdminViewLibrarian extends HttpServlet {
 
 		response.setContentType("text/html; charset=UTF-8");
 		int start = 0;
-		int count = 6;
+		int count = 5;
 
 		try {
 			start = Integer.parseInt(request.getParameter("start"));

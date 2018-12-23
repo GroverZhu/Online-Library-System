@@ -30,7 +30,7 @@ public class ShowCart extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		int start = 0;// 起始行
-		int count = 2;// 每页显示行数
+		int count = 5;// 每页显示行数
 		try {
 			start = Integer.parseInt(request.getParameter("start"));
 		} catch (NumberFormatException e) {

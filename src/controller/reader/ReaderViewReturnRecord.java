@@ -38,7 +38,7 @@ public class ReaderViewReturnRecord extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		int start = 0;
-		int count = 6;
+		int count = 5;
 		int num = 0;
 		HttpSession session = request.getSession();
 		try {
