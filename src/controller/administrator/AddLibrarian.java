@@ -37,7 +37,7 @@ public class AddLibrarian extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 
 		String name = request.getParameter("librarianName");
-		String password = request.getParameter("password");
+		String password = util.SecurityUtil.md5(request.getParameter("password"));
 		LibrarianDAO lib = new LibrarianDAO();
 		int libId = lib.addLibrarian(name, password, "unlock");
 		if (libId != -1) {
