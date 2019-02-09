@@ -1,11 +1,13 @@
 <!-- TOC -->
 
-- [开发环境](#开发环境)
-- [开发文档](#开发文档)
-- [运行示例](#运行示例)
-    - [Administrator操作](#administrator操作)
-    - [图书馆管理员(librarian)操作](#图书馆管理员librarian操作)
-    - [读者(reader)操作](#读者reader操作)
+    - [开发环境](#开发环境)
+    - [开发文档](#开发文档)
+    - [运行示例](#运行示例)
+        - [Administrator操作](#administrator操作)
+- [<center> ![](./image/image004.jpg) </center>](#center-imageimage004jpg-center)
+- [<center>![](./image/image006.jpg)</center>](#centerimageimage006jpgcenter)
+        - [图书馆管理员(librarian)操作](#图书馆管理员librarian操作)
+        - [读者(reader)操作](#读者reader操作)
 
 <!-- /TOC -->
 ## 开发环境   
@@ -22,9 +24,9 @@
 ## 运行示例   
 ### Administrator操作   
 1. 登录系统:   
-<div align="center">![](./image/image004.jpg) </div>
+# <center> ![](./image/image004.jpg) </center> 
 输入账号密码，选择身份，登录。
-<center>![](./image/image006.jpg)</center>
+# <center>![](./image/image006.jpg)</center>
 进入首页，到达管理员首页，可以在侧边栏选择项目进行操作。
 <center>![](./image/image008.jpg) </center>   
 2. 修改个人信息，管理员可以修改自己账号的账户名和密码。<center>![](./image/image010.jpg) ![](./image/image012.jpg)</center>   
