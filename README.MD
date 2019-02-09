@@ -50,6 +50,7 @@
 <div align=center><img src="./image/image038.jpg"/></div>   
 <div align=center><img src="./image/image040.jpg"/></div>   
 <div align=center><img src="./image/image042.jpg"/></div>   
+
 ### 图书馆管理员(librarian)操作    
      
 1. 在登陆界面登陆后，进入librarian主页面，界面中心处显示了Librarian ID，LibrarianName以及Librarian State，右上角处显示登陆的Librarian name，如下所示：
@@ -184,7 +185,8 @@ Modify Reader Information进行该读者信息修改：
    
 13. 点击logout进行登出操作：   
 <div align=center><img src="./image/image178.jpg"/></div>      
-<div align=center><img src="./image/image180.jpg"/></div>      
+<div align=center><img src="./image/image180.jpg"/></div>   
+
 ### 读者(reader)操作   
    
 1. 登录系统   
