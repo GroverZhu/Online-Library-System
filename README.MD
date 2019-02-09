@@ -1,13 +1,11 @@
 <!-- TOC -->
 
-    - [开发环境](#开发环境)
-    - [开发文档](#开发文档)
-    - [运行示例](#运行示例)
-        - [Administrator操作](#administrator操作)
-- [<center> ![](./image/image004.jpg) </center>](#center-imageimage004jpg-center)
-- [<center>![](./image/image006.jpg)</center>](#centerimageimage006jpgcenter)
-        - [图书馆管理员(librarian)操作](#图书馆管理员librarian操作)
-        - [读者(reader)操作](#读者reader操作)
+- [开发环境](#开发环境)
+- [开发文档](#开发文档)
+- [运行示例](#运行示例)
+    - [Administrator操作](#administrator操作)
+    - [图书馆管理员(librarian)操作](#图书馆管理员librarian操作)
+    - [读者(reader)操作](#读者reader操作)
 
 <!-- /TOC -->
 ## 开发环境   
@@ -24,12 +22,13 @@
 ## 运行示例   
 ### Administrator操作   
 1. 登录系统:   
-# <center> ![](./image/image004.jpg) </center> 
+<div align=center><img src="./image/image004.jpg"/></div>   
 输入账号密码，选择身份，登录。
-# <center>![](./image/image006.jpg)</center>
+<div align=center><img src="./image/image006.jpg"/></div>   
 进入首页，到达管理员首页，可以在侧边栏选择项目进行操作。
-<center>![](./image/image008.jpg) </center>   
-2. 修改个人信息，管理员可以修改自己账号的账户名和密码。<center>![](./image/image010.jpg) ![](./image/image012.jpg)</center>   
+<div align=center><img src="./image/image008.jpg"/></div>   
+2. 修改个人信息，管理员可以修改自己账号的账户名和密码。
+<center>![](./image/image010.jpg) ![](./image/image012.jpg)</center>   
 3. 添加图书馆管理员，输入图书管理员姓名、初始化密码，即可得到图书管理员ID。<center>![](./image/image014.jpg) ![](./image/image016.jpg) </center>   
 4. 搜索图书馆管理员 <center>![](./image/image018.jpg)  ![](./image/image020.jpg)</center>管理员可以按照ID和姓名两种方式查询图书管理员，可以查看全体图书管理员列表。查看全体人员列表以后可以选择删除或修改其中某一个图书管理员。</center>![](./image/image022.jpg) ![](./image/image024.jpg) ![](./image/image026.jpg) ![](./image/image028.jpg)</center>   
 5. 修改图书管理员信息<center>![](./image/image030.jpg) ![](./image/image032.jpg) ![](./image/image034.jpg)</center>   
