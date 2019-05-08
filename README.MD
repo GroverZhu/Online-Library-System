@@ -34,7 +34,7 @@
 更多操作参考 [软件用户手册](./Reference/document/OLMS-SUM-1.0软件用户手册.pdf)   
 
 # 开发文档   
-* [可行性分析报告](./Reference/document/OLMS-DBDD-1.0数据库设计说明.pdf)   
+* [可行性分析报告](./Reference/document/OLMS-FAR-1.0可行性分析报告.pdf)   
 * [软件开发计划](./Reference/document/OLMS-SDP-1.0软件开发计划.pdf)   
 * [软件测试计划](./Reference/document/OLMS-STP-1.0软件测试计划.pdf)   
 * [软件设计说明](./Reference/document/OLMS-SDS-1.0软件设计说明.pdf)   
